@@ -38,6 +38,24 @@
 		</script>
 	</entity>
 	
+	<entity tag="ice" x="-6">
+		<art width="32" height="32" path="assets/images/ice.png">
+		<animation name="melt" frames="0-9" framerate="3" looped="true" autorun="true"/>
+		</art>
+		<script>
+			<text>
+				import flixel.FlxG;
+				
+				function init
+				{
+					owner.y = FlxG.height - owner.height;
+					owner.x = 140;
+				}
+			</text>
+		</script>
+	</entity>	
+	
+	
 	<entity template="grass01">
 		<art width="14" height="11" path="assets/images/Grass01.png"/>
 		<script>
