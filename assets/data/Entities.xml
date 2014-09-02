@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
-	
+	<entity tag="player">
+		<script path="assets/data/scripts/Player.hx"/>
+	</entity>
 </data>
