@@ -15,7 +15,8 @@ class Player
 	
 	public function init() 
 	{
-		owner.makeGraphic(12, 24, 0xff0000ff);
+		//owner.makeGraphic(12, 24, 0xff0000ff);
+		owner.loadGraphic("assets/images/Player.png");
 		owner.x = FlxG.width / 2 - owner.width / 2;
 		owner.y = FlxG.height - owner.height;
 	}

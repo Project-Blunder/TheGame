@@ -19,7 +19,6 @@
 				function init
 				{
 					owner.makeGraphic(FlxG.width, FlxG.height, 0xFFFFFFFF);
-					//owner.y = FlxG.height - 1;
 				}
 			</text>
 		</script>
@@ -37,14 +36,6 @@
 				}
 			</text>
 		</script>
-	</entity>
-	
-	<entity tag="player">
-		<script path="assets/data/scripts/Player.hx"/>
-	</entity>
-	
-	<entity tag="enemy">
-		<script path="assets/data/scripts/Enemy.hx"/>
 	</entity>
 	
 	<entity template="grass01">
@@ -155,4 +146,13 @@
 	<instance template="grass03" x="75%" />
 	<instance template="grass02" x="87%" />
 	<instance template="grass01" x="95%" />
+	
+	<entity tag="player">
+		<script path="assets/data/scripts/Player.hx"/>
+	</entity>
+	
+	<entity tag="enemy">
+		<script path="assets/data/scripts/Enemy.hx"/>
+	</entity>
+	
 </data>
