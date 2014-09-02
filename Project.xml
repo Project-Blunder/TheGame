@@ -33,7 +33,7 @@
 	
 	<!--------------------------------LIBRARIES------------------------------------->
 
-	<haxelib name="flixel"/>
+	<haxelib name="flixel" />
 	
 	<!--------------------------------ICEENTITY-STUFF------------------------------->
 	<!-- This gives the compiler access to the iceentity package -->
