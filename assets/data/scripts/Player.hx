@@ -18,5 +18,9 @@ class Player
 	
 	public function update()
 	{
+		if (FlxG.keys.justPressed.SPACE)
+		{
+			FlxG.camera.shake(0.01, 0.2);
+		}
 	}
 }
