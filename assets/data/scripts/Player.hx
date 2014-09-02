@@ -12,11 +12,11 @@ class Player
 	var target:Entity;
 	
 	var crouching:Bool = false;
+	var attackDefault:Float = 0.2;
+	var attackTimer:Float = 0;
 	
 	public function init() 
 	{
-		//owner.makeGraphic(12, 24, 0xff0000ff);
-		owner.loadGraphic("assets/images/Player.png");
 		owner.x = FlxG.width / 2 - owner.width / 2;
 		owner.y = FlxG.height - owner.height;
 	}
@@ -26,19 +26,35 @@ class Player
 		if (FlxG.keys.pressed.S)
 		{
 			crouching = true;
-			owner.y = FlxG.height - owner.height + 8;
+			owner.animation.play("crouch");
+			//owner.y = FlxG.height - owner.height + 8;
 		}
 		else
 		{
 			if (crouching)
 			{
 				crouching = false;
-				owner.y = FlxG.height - owner.height;
+				owner.animation.play("tall");
+				//owner.y = FlxG.height - owner.height;
 			}
 		}
 		if (FlxG.keys.justPressed.SPACE)
 		{
 			FlxG.camera.shake(0.01, 0.2);
+			attackTimer = attackDefault;
+		}
+		
+		if (attackTimer > 0)
+		{
+			owner.animation.play("attack-tall");
+			attackTimer -= FlxG.elapsed;
+		}
+		else
+		{
+			if (owner.animation.name != "tall" && !FlxG.keys.pressed.SPACE)
+			{
+				owner.animation.play("tall");
+			}
 		}
 	}
 }

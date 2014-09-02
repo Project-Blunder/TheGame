@@ -12,7 +12,7 @@ class Enemy
 	
 	public function init()
 	{
-		owner.makeGraphic(12, 24, 0xffff0000);
+		//owner.makeGraphic(12, 24, 0xffff0000);
 		
 		owner.y = FlxG.height - owner.height;
 		
