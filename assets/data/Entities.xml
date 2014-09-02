@@ -3,4 +3,8 @@
 	<entity tag="player">
 		<script path="assets/data/scripts/Player.hx"/>
 	</entity>
+	
+	<entity tag="enemy">
+		<script path="assets/data/scripts/Enemy.hx"/>
+	</entity>
 </data>
