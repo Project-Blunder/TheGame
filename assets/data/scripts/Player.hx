@@ -13,7 +13,9 @@ class Player
 	
 	var crouching:Bool = false;
 	var attackDefault:Float = 0.2;
-	var attackTimer:Float = 0;
+	var attackTimer:Float = -1;
+	
+	var lastAnim:String = "";
 	
 	public function init() 
 	{
@@ -27,7 +29,7 @@ class Player
 		{
 			crouching = true;
 			owner.animation.play("crouch");
-			//owner.y = FlxG.height - owner.height + 8;
+			lastAnim = "crouch";
 		}
 		else
 		{
@@ -35,10 +37,10 @@ class Player
 			{
 				crouching = false;
 				owner.animation.play("tall");
-				//owner.y = FlxG.height - owner.height;
+				lastAnim = "tall";
 			}
 		}
-		if (FlxG.keys.justPressed.SPACE)
+		if (FlxG.keys.justPressed.SPACE && lastAnim != "attack-tall")
 		{
 			FlxG.camera.shake(0.01, 0.2);
 			attackTimer = attackDefault;
@@ -47,13 +49,19 @@ class Player
 		if (attackTimer > 0)
 		{
 			owner.animation.play("attack-tall");
+			lastAnim = "attack-tall";
 			attackTimer -= FlxG.elapsed;
+			if (attackTimer < 0)
+			{
+				attackTimer = -1;
+			}
 		}
 		else
 		{
-			if (owner.animation.name != "tall" && !FlxG.keys.pressed.SPACE)
+			if ( attackTimer == -1 && !FlxG.keys.pressed.SPACE && lastAnim == "attack-tall")
 			{
 				owner.animation.play("tall");
+				lastAnim = "tall";
 			}
 		}
 	}
