@@ -2,6 +2,7 @@ package ;
 
 import ice.entity.Entity;
 import flixel.FlxG;
+import flixel.FlxObject;
 
 class Player
 {
@@ -21,6 +22,9 @@ class Player
 	{
 		owner.x = FlxG.width / 2 - owner.width / 2;
 		owner.y = FlxG.height - owner.height;
+		
+		owner.setFacingFlip(FlxObject.RIGHT, false, false);
+		owner.setFacingFlip(FlxObject.LEFT, true, false);
 	}
 	
 	public function update()
@@ -40,7 +44,17 @@ class Player
 				lastAnim = "tall";
 			}
 		}
-		if (FlxG.keys.justPressed.SPACE && lastAnim != "attack-tall")
+		
+		if (FlxG.keys.justPressed.A)
+		{
+			owner.facing = FlxObject.LEFT;
+		}
+		else if (FlxG.keys.justPressed.D)
+		{
+			owner.facing = FlxObject.RIGHT;
+		}
+		
+		if (FlxG.keys.justReleased.SPACE && lastAnim != "attack-tall")
 		{
 			FlxG.camera.shake(0.01, 0.2);
 			attackTimer = attackDefault;
@@ -58,7 +72,11 @@ class Player
 		}
 		else
 		{
-			if ( attackTimer == -1 && !FlxG.keys.pressed.SPACE && lastAnim == "attack-tall")
+			if (FlxG.keys.pressed.SPACE)
+			{
+				owner.animation.play("windup");
+			}
+			else if ( attackTimer == -1 && lastAnim == "attack-tall")
 			{
 				owner.animation.play("tall");
 				lastAnim = "tall";
