@@ -11,6 +11,20 @@
 		</text>
 	</script>
 	
+	<entity tag="bg">
+		<script>
+			<text>
+				import flixel.FlxG;
+				
+				function init
+				{
+					owner.makeGraphic(FlxG.width, FlxG.height, 0xFFFFFFFF);
+					//owner.y = FlxG.height - 1;
+				}
+			</text>
+		</script>
+	</entity>
+	
 	<entity tag="ground">
 		<script>
 			<text>
