@@ -47,9 +47,14 @@
 		<art width="23" height="47" path="assets/images/Monument.png"/>
 	</entity>
 	
+	<entity tag="bonsai-thing" x="-6" y="75%">
+		<art width="31" height="31" path="assets/images/Bonsai.png"/>
+	</entity>
+	
 	<!-- using these to show what they do, they're not actually that usefull yet as they need exact values -->
 	<!-- I want to make it so you can do like 100%-height for lining stuff up -->
-	<instance template="grass01" y="92%"/>
+	<instance template="grass01" y="95%"/>
+	<instance template="grass03" x="5%" y="96%"/>
 	<instance template="grass02" x="23%" y="91%"/>
 	<instance template="grass01" x="30%" y="91%"/>
 	<instance template="grass02" x="57%" y="91%"/>
