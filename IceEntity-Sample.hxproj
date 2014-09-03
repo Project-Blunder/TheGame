@@ -7,11 +7,11 @@
     <movie path="Project.xml" />
     <movie fps="60" />
     <movie width="880" />
-    <movie height="480" />
+    <movie height="240" />
     <movie version="3" />
     <movie minorVersion="0" />
     <movie platform="NME" />
-    <movie background="FFFFFF" />
+    <movie background="000000" />
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>

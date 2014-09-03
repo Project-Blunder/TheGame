@@ -1,61 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<data>
-	<script>
-		<text>
-			import flixel.FlxG;
-			
-			function init
-			{
-				FlxG.camera.bgColor = 0xffffff;
-			}
-		</text>
-	</script>
-	
-	<entity tag="bg">
-		<script>
-			<text>
-				import flixel.FlxG;
-				
-				function init
-				{
-					owner.makeGraphic(FlxG.width, FlxG.height, 0xFFFFFFFF);
-				}
-			</text>
-		</script>
-	</entity>
-	
-	<entity tag="ground">
-		<script>
-			<text>
-				import flixel.FlxG;
-				
-				function init
-				{
-					owner.makeGraphic(FlxG.width, 2, 0xFF000000);
-					owner.y = FlxG.height - 1;
-				}
-			</text>
-		</script>
-	</entity>
-	
-	<!--<entity tag="ice" x="-6">
-		<art width="32" height="32" path="assets/images/ice.png">
-		<animation name="melt" frames="0-9" framerate="3" looped="true" autorun="true"/>
-		</art>
-		<script>
-			<text>
-				import flixel.FlxG;
-				
-				function init
-				{
-					owner.y = FlxG.height - owner.height;
-					owner.x = 140;
-				}
-			</text>
-		</script>
-	</entity>	-->
-	
-	
+<data>	
 	<entity template="grass01">
 		<art width="14" height="11" path="assets/images/Grass01.png"/>
 		<script>
@@ -154,8 +98,6 @@
 		</script>
 	</entity>
 	
-	<!-- using these to show what they do, they're not actually that usefull yet as they need exact values -->
-	<!-- I want to make it so you can do like 100%-height for lining stuff up -->
 	<instance template="grass04" />
 	<instance template="grass05" x="7%" />
 	<instance template="grass02" x="23%" />
@@ -164,19 +106,4 @@
 	<instance template="grass03" x="75%" />
 	<instance template="grass02" x="87%" />
 	<instance template="grass01" x="95%" />
-	
-	<entity tag="player">
-		<art path="assets/images/PlayerAnim.png" width="36" height="24">
-			<animation name="tall" frames="0" framerate="1" looped="false" autorun="true"/>
-			<animation name="windup" frames="1" framerate="2" looped="false" />
-			<animation name="attack-tall" frames="2" framerate="2" looped="false" />
-			<animation name="crouch" frames="3" framerate="1" looped="false" />
-		</art>
-		<script path="assets/data/scripts/Player.hx"/>
-	</entity>
-	
-	<entity tag="enemy">
-		<script path="assets/data/scripts/Enemy.hx"/>
-	</entity>
-	
 </data>

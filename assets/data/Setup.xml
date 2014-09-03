@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	<script>
+		<text>
+			import flixel.FlxG;
+			
+			function init
+			{
+				FlxG.camera.bgColor = 0xffffff;
+				FlxG.mouse.visible = false;
+			}
+		</text>
+	</script>
+	
+	<entity tag="bg">
+		<script>
+			<text>
+				import flixel.FlxG;
+				
+				function init
+				{
+					owner.makeGraphic(FlxG.width, FlxG.height, 0xFFFFFFFF);
+				}
+			</text>
+		</script>
+	</entity>
+	
+	<entity tag="ground">
+		<script>
+			<text>
+				import flixel.FlxG;
+				
+				function init
+				{
+					owner.makeGraphic(FlxG.width, 2, 0xFF000000);
+					owner.y = FlxG.height - 1;
+				}
+			</text>
+		</script>
+	</entity>
+</data>
