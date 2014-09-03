@@ -38,7 +38,7 @@
 		</script>
 	</entity>
 	
-	<entity tag="ice" x="-6">
+	<!--<entity tag="ice" x="-6">
 		<art width="32" height="32" path="assets/images/ice.png">
 		<animation name="melt" frames="0-9" framerate="3" looped="true" autorun="true"/>
 		</art>
@@ -53,7 +53,7 @@
 				}
 			</text>
 		</script>
-	</entity>	
+	</entity>	-->
 	
 	
 	<entity template="grass01">

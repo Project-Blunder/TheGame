@@ -12,11 +12,10 @@ class Player
 	
 	var target:Entity;
 	
-	var crouching:Bool = false;
 	var attackDefault:Float = 0.2;
 	var attackTimer:Float = -1;
 	
-	var lastAnim:String = "";
+	var attacking:Bool = false;
 	
 	public function init() 
 	{
@@ -25,26 +24,13 @@ class Player
 		
 		owner.setFacingFlip(FlxObject.RIGHT, false, false);
 		owner.setFacingFlip(FlxObject.LEFT, true, false);
+		
+		owner.FSM.PushState(standing);
 	}
 	
 	public function update()
 	{
-		if (FlxG.keys.pressed.S)
-		{
-			crouching = true;
-			owner.animation.play("crouch");
-			lastAnim = "crouch";
-		}
-		else
-		{
-			if (crouching)
-			{
-				crouching = false;
-				owner.animation.play("tall");
-				lastAnim = "tall";
-			}
-		}
-		
+				
 		if (FlxG.keys.justPressed.A)
 		{
 			owner.facing = FlxObject.LEFT;
@@ -53,34 +39,77 @@ class Player
 		{
 			owner.facing = FlxObject.RIGHT;
 		}
-		
-		if (FlxG.keys.justReleased.SPACE && lastAnim != "attack-tall")
+	}
+	
+	//@
+	function standing()
+	{
+		owner.animation.play("tall");
+		if (FlxG.keys.pressed.S)
 		{
-			FlxG.camera.shake(0.01, 0.2);
-			attackTimer = attackDefault;
+			owner.FSM.PushState(crouching);
 		}
 		
-		if (attackTimer > 0)
+		if (FlxG.keys.justPressed.SPACE)
 		{
-			owner.animation.play("attack-tall");
-			lastAnim = "attack-tall";
-			attackTimer -= FlxG.elapsed;
+			owner.FSM.PushState(attackHigh);
+		}
+	}
+	
+	function crouching()
+	{
+		owner.animation.play("crouch");
+		if (!FlxG.keys.pressed.S)
+		{
+			owner.FSM.PopState();
+		}
+	}
+	
+	function attackHigh()
+	{
+		attack(true);
+	}
+	
+	function attackLow()
+	{
+		attack(false);
+	}	
+		
+	function attack(high:Bool)
+	{
+		if (!attacking)
+		{
+			owner.animation.play("windup");
+			
 			if (attackTimer < 0)
 			{
-				attackTimer = -1;
+				attackTimer = attackDefault;
+			}
+			
+			if (FlxG.keys.justReleased.SPACE)
+			{
+				if (high)
+				{
+					owner.animation.play("attack-tall");
+					FlxG.camera.shake(0.01, 0.2);
+					attacking = true;
+				}
+				else
+				{
+					
+				}
 			}
 		}
 		else
 		{
-			if (FlxG.keys.pressed.SPACE)
-			{
-				owner.animation.play("windup");
-			}
-			else if ( attackTimer == -1 && lastAnim == "attack-tall")
-			{
-				owner.animation.play("tall");
-				lastAnim = "tall";
-			}
+			attackTimer -= FlxG.elapsed;
+		}
+		
+		if (attackTimer < 0)
+		{
+			attacking = false;
+			owner.FSM.PopState();
 		}
 	}
+	//@
 }
