@@ -20,7 +20,7 @@ class Player
 	public function init() 
 	{
 		owner.x = FlxG.width / 2 - owner.width / 2;
-		owner.y = FlxG.height - owner.height;
+		owner.y = FlxG.height - owner.height - 1;
 		
 		owner.setFacingFlip(FlxObject.RIGHT, false, false);
 		owner.setFacingFlip(FlxObject.LEFT, true, false);
@@ -63,6 +63,11 @@ class Player
 		{
 			owner.FSM.PopState();
 		}
+		
+		if (FlxG.keys.justPressed.SPACE)
+		{
+			owner.FSM.PushState(attackLow);
+		}
 	}
 	
 	function attackHigh()
@@ -79,7 +84,14 @@ class Player
 	{
 		if (!attacking)
 		{
-			owner.animation.play("windup");
+			if (high)
+			{
+				owner.animation.play("windup");
+			}
+			else
+			{
+				owner.animation.play("windup-crouch");
+			}
 			
 			if (attackTimer < 0)
 			{
@@ -91,13 +103,13 @@ class Player
 				if (high)
 				{
 					owner.animation.play("attack-tall");
-					FlxG.camera.shake(0.01, 0.2);
-					attacking = true;
 				}
 				else
 				{
-					
+					owner.animation.play("attack-crouch");
 				}
+				FlxG.camera.shake(0.01, 0.2);
+				attacking = true;
 			}
 		}
 		else
