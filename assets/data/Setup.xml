@@ -20,6 +20,8 @@
 				function init
 				{
 					owner.makeGraphic(FlxG.width, FlxG.height, 0xFFFFFFFF);
+					owner.scrollFactor.x = 0;
+					owner.scrollFactor.x = 0;
 				}
 			</text>
 		</script>
