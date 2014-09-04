@@ -106,4 +106,19 @@
 	<instance template="grass03" x="75%" />
 	<instance template="grass02" x="87%" />
 	<instance template="grass01" x="95%" />
+	
+		
+	<entity tag="ground">
+		<script>
+			<text>
+				import flixel.FlxG;
+				
+				function init
+				{
+					owner.makeGraphic(FlxG.width, 2, 0xFF000000);
+					owner.y = FlxG.height - 1;
+				}
+			</text>
+		</script>
+	</entity>
 </data>

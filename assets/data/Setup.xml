@@ -26,18 +26,4 @@
 			</text>
 		</script>
 	</entity>
-	
-	<entity tag="ground">
-		<script>
-			<text>
-				import flixel.FlxG;
-				
-				function init
-				{
-					owner.makeGraphic(FlxG.width, 2, 0xFF000000);
-					owner.y = FlxG.height - 1;
-				}
-			</text>
-		</script>
-	</entity>
 </data>

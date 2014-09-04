@@ -17,6 +17,9 @@ class Player
 	
 	var attacking:Bool = false;
 	
+	var speed:Float = 60;
+	var crouchPercent:Float = 0.4;
+	
 	public function init() 
 	{
 		owner.x = FlxG.width / 2 - owner.width / 2;
@@ -29,13 +32,12 @@ class Player
 	}
 	
 	public function update()
-	{
-				
-		if (FlxG.keys.justPressed.A)
+	{			
+		if (FlxG.keys.pressed.A)
 		{
 			owner.facing = FlxObject.LEFT;
 		}
-		else if (FlxG.keys.justPressed.D)
+		else if (FlxG.keys.pressed.D)
 		{
 			owner.facing = FlxObject.RIGHT;
 		}
@@ -54,6 +56,15 @@ class Player
 		{
 			owner.FSM.PushState(attackHigh);
 		}
+		
+		if (FlxG.keys.pressed.A)
+		{
+			owner.x -= speed * FlxG.elapsed;
+		}
+		else if (FlxG.keys.pressed.D)
+		{
+			owner.x += speed * FlxG.elapsed;
+		}
 	}
 	
 	function crouching()
@@ -67,6 +78,15 @@ class Player
 		if (FlxG.keys.justPressed.SPACE)
 		{
 			owner.FSM.PushState(attackLow);
+		}
+		
+		if (FlxG.keys.pressed.A)
+		{
+			owner.x -= speed * crouchPercent * FlxG.elapsed;
+		}
+		else if (FlxG.keys.pressed.D)
+		{
+			owner.x += speed * crouchPercent * FlxG.elapsed;
 		}
 	}
 	

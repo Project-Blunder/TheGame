@@ -34,8 +34,8 @@ class PlayState extends FlxState
 		
 		//Builds a scene from an XML entity declaration
 		EntityManager.instance.BuildFromXML(AssetPaths.Setup__xml);
-		EntityManager.instance.BuildFromXML(AssetPaths.Scene__xml);
 		EntityManager.instance.BuildFromXML(AssetPaths.Characters__xml);
+		EntityManager.instance.BuildFromXML(AssetPaths.Scene__xml);
 	}
 	
 	/**
