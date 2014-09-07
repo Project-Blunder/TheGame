@@ -42,7 +42,9 @@ class PlayState extends FlxState
 		FlxG.camera.y = (FlxG.height / 2 - FlxG.camera.height / 2) * FlxG.camera.zoom;
 		
 		Reg.start = FlxG.camera.y / FlxG.camera.zoom;
-		Reg.height = FlxG.camera.y / FlxG.camera.zoom + FlxG.camera.height / FlxG.camera.zoom;
+		//OOOOOHHH AHHHHH
+		/*||||MAGIC||||*/Reg.height = FlxG.camera.y / FlxG.camera.zoom + FlxG.camera.height / FlxG.camera.zoom - 5;
+		//IT NEEDS CHANGES ALL THE TIMMMMEEEEEE
 		FlxG.log.add(Reg.height);
 	}
 	
