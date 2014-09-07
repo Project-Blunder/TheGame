@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<data>	
+<data>
+	
 	<entity template="grass01">
-		<art width="14" height="11" path="assets/images/Grass01.png"/>
+		<art width="14" height="11" path="assets/images/playstate/Grass01.png"/>
 		<script>
 			<text>
 				import flixel.FlxG;
@@ -14,7 +15,7 @@
 		</script>
 	</entity>
 	<entity template="grass02">
-		<art width="14" height="11" path="assets/images/Grass02.png"/>
+		<art width="14" height="11" path="assets/images/playstate/Grass02.png"/>
 		<script>
 			<text>
 				import flixel.FlxG;
@@ -27,7 +28,7 @@
 		</script>
 	</entity>
 	<entity template="grass03">
-		<art width="14" height="11" path="assets/images/Grass03.png"/>
+		<art width="14" height="11" path="assets/images/playstate/Grass03.png"/>
 		<script>
 			<text>
 				import flixel.FlxG;
@@ -41,7 +42,7 @@
 	</entity>
 	
 	<entity template="grass04">
-		<art width="14" height="11" path="assets/images/Grass04.png"/>
+		<art width="14" height="11" path="assets/images/playstate/Grass04.png"/>
 		<script>
 			<text>
 				import flixel.FlxG;
@@ -55,7 +56,7 @@
 	</entity>
 	
 	<entity template="grass05">
-		<art width="14" height="11" path="assets/images/Grass05.png"/>
+		<art width="14" height="11" path="assets/images/playstate/Grass05.png"/>
 		<script>
 			<text>
 				import flixel.FlxG;
@@ -69,7 +70,7 @@
 	</entity>
 	
 	<entity tag="monument-thing" x="80%" y="61%">
-		<art width="23" height="47" path="assets/images/Monument.png"/>
+		<art width="23" height="47" path="assets/images/playstate/Monument.png"/>
 		
 		<script>
 			<text>
@@ -84,7 +85,7 @@
 	</entity>
 	
 	<entity tag="bonsai-thing" x="-6">
-		<art width="31" height="31" path="assets/images/Bonsai.png"/>
+		<art width="31" height="31" path="assets/images/playstate/Bonsai.png"/>
 		
 		<script>
 			<text>
@@ -121,4 +122,43 @@
 			</text>
 		</script>
 	</entity>
+	
+	
+	
+	
+	<entity tag="enemy">
+		<script path="assets/data/scripts/Enemy.hx"/>
+	</entity>
+	
+	<entity tag="player">
+		<art path="assets/images/playstate/PlayerAnim.png" width="37" height="24">
+			<animation name="tall" frames="0" framerate="1" looped="false" autorun="true"/>
+			<animation name="windup" frames="1" framerate="2" looped="false" />
+			<animation name="attack-tall" frames="2" framerate="2" looped="false" />
+			<animation name="crouch" frames="3" framerate="1" looped="false" />
+			<animation name="windup-crouch" frames="4" framerate="2" looped="false" />
+			<animation name="attack-crouch" frames="5" framerate="2" looped="false" />
+		</art>
+		<script path="assets/data/scripts/Player.hx"/>
+	</entity>
+	
+	
+	<!--entity tag="pause">
+		<art path="" width="1" height="1"/>
+		<script path="assets/data/scripts/Pause.hx"/>
+	</entity-->
+	
+	
+	<!--entity tag="togglemute">
+		<art path="" width="1" height="1"/>
+		<script path="assets/data/scripts/ToggleMute.hx"/>
+	</entity-->
+	
+	
+	<!--entity tag="retry">
+		<art path="" width="1" height="1"/>
+		<script path="assets/data/scripts/Retry.hx"/>
+	</entity-->
+	
+	
 </data>

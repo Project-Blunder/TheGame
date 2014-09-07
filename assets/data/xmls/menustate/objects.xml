@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	
+	<!--entity tag="backgroundfun">
+		<art path="" width="1" height="1"/>
+		<script>
+		<text>
+			
+		</text>
+		</script>
+	</entity-->
+	
+	<!--entity tag="start">
+		<art path="assets/images/menustate/start.png" width="159" height="66"/>
+		<script path="assets/data/scripts/Start.hx"/>
+	</entity-->
+
+	<!--entity tag="credits">
+		<art path="" width="1" height="1"/>
+		<script path="assets/data/scripts/credits.hx"/>
+	</entity-->
+
+	<!--entity tag="mutetoggle">
+		<art path="" width="1" height="1"/>
+		<script path="assets/data/scripts/MuteToggle.hx"/>
+	</entity-->
+	
+
+	
+</data>
