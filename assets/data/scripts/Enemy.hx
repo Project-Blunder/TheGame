@@ -18,7 +18,7 @@ class Enemy
 	
 	public function init()
 	{
-		owner.makeGraphic(12, 24, 0xffff0000);
+		//owner.makeGraphic(12, 24, 0xffff0000);
 		
 		owner.y = Reg.height - owner.height;
 		
@@ -28,11 +28,11 @@ class Enemy
 		
 		if (rand.sign() > 0)
 		{
-			owner.x = FlxG.width;
+			owner.x = FlxG.width - owner.width - 25;
 		}
 		else
 		{
-			owner.x = -owner.width;
+			owner.x = 25;//-owner.width;
 		}
 	}
 	
