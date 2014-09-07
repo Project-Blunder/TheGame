@@ -4,6 +4,7 @@ import flixel.FlxG;
 import ice.entity.Entity;
 import flixel.math.FlxRandom;
 import ice.entity.EntityManager;
+import Reg;
 
 class Enemy
 {
@@ -19,7 +20,7 @@ class Enemy
 	{
 		owner.makeGraphic(12, 24, 0xffff0000);
 		
-		owner.y = FlxG.height - owner.height;
+		owner.y = Reg.height - owner.height;
 		
 		target = EntityManager.instance.GetEntityByTag("player");
 		
