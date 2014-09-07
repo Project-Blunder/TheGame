@@ -14,7 +14,8 @@
 	<!--------------------------------WINDOW SETTINGS------------------------------->
 	
 	<!--These window settings apply to all targets-->
-	<window width="640" height="480" fps="60" background="#000000" hardware="false" vsync="false" />
+	<window width="640" height="480" fps="60" background="#00000000" hardware="true" vsync="true" unless="flash" />
+		<window width="640" height="480" fps="60" background="#00000000" hardware="false" vsync="false" if="flash" />
 	
 	<!--Web-specific-->
 	<window if="web" orientation="portrait"  />
