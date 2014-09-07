@@ -6,10 +6,11 @@
 		<script>
 			<text>
 				import flixel.FlxG;
+				import Reg;
 				
 				function init
 				{
-					owner.y = FlxG.height - owner.height;
+					owner.y = Reg.height - owner.height;
 				}
 			</text>
 		</script>
@@ -19,10 +20,11 @@
 		<script>
 			<text>
 				import flixel.FlxG;
+				import Reg;
 				
 				function init
 				{
-					owner.y = FlxG.height - owner.height;
+					owner.y = Reg.height - owner.height;
 				}
 			</text>
 		</script>
@@ -32,10 +34,11 @@
 		<script>
 			<text>
 				import flixel.FlxG;
+				import Reg;
 				
 				function init
 				{
-					owner.y = FlxG.height - owner.height;
+					owner.y = Reg.height - owner.height;
 				}
 			</text>
 		</script>
@@ -46,10 +49,11 @@
 		<script>
 			<text>
 				import flixel.FlxG;
+				import Reg;
 				
 				function init
 				{
-					owner.y = FlxG.height - owner.height;
+					owner.y = Reg.height - owner.height;
 				}
 			</text>
 		</script>
@@ -60,10 +64,11 @@
 		<script>
 			<text>
 				import flixel.FlxG;
+				import Reg;
 				
 				function init
 				{
-					owner.y = FlxG.height - owner.height;
+					owner.y = Reg.height - owner.height;
 				}
 			</text>
 		</script>
@@ -75,10 +80,11 @@
 		<script>
 			<text>
 				import flixel.FlxG;
+				import Reg;
 				
 				function init
 				{
-					owner.y = FlxG.height - owner.height;
+					owner.y = Reg.height - owner.height;
 				}
 			</text>
 		</script>
@@ -90,10 +96,11 @@
 		<script>
 			<text>
 				import flixel.FlxG;
+				import Reg;
 				
 				function init
 				{
-					owner.y = FlxG.height - owner.height;
+					owner.y = Reg.height - owner.height;
 				}
 			</text>
 		</script>
@@ -113,11 +120,12 @@
 		<script>
 			<text>
 				import flixel.FlxG;
+				import Reg;
 				
 				function init
 				{
 					owner.makeGraphic(FlxG.width, 2, 0xFF000000);
-					owner.y = FlxG.height - 1;
+					owner.y = Reg.height - 1;
 				}
 			</text>
 		</script>

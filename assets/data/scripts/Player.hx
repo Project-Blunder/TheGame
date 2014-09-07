@@ -4,6 +4,7 @@ import ice.entity.Entity;
 import flixel.FlxG;
 import flixel.FlxObject;
 import ice.entity.EntityManager;
+import Reg;
 
 class Player
 {
@@ -24,7 +25,8 @@ class Player
 	public function init() 
 	{
 		owner.x = FlxG.width / 2 - owner.width / 2;
-		owner.y = FlxG.height - owner.height - 1;
+		owner.y = Reg.height - owner.height - 1;
+		FlxG.log.add(owner.y);
 		
 		owner.setFacingFlip(FlxObject.RIGHT, false, false);
 		owner.setFacingFlip(FlxObject.LEFT, true, false);

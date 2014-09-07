@@ -36,7 +36,14 @@ class PlayState extends FlxState
 		add(EntityManager.instance);
 		
 		//Builds a scene from an XML entity declaration
-		EntityManager.switchScene(["assets/data/xmls/playstate/setup.xml","assets/data/xmls/playstate/objects.xml"]);
+		EntityManager.switchScene(["assets/data/xmls/playstate/setup.xml", "assets/data/xmls/playstate/objects.xml"]);
+		
+		FlxG.camera.height = Std.int(FlxG.height / 2.5);
+		FlxG.camera.y = (FlxG.height / 2 - FlxG.camera.height / 2) * FlxG.camera.zoom;
+		
+		Reg.start = FlxG.camera.y / FlxG.camera.zoom;
+		Reg.height = FlxG.camera.y / FlxG.camera.zoom + FlxG.camera.height / FlxG.camera.zoom;
+		FlxG.log.add(Reg.height);
 	}
 	
 	/**

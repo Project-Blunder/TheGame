@@ -34,4 +34,7 @@ class Reg
 	 * Especially useful for setting up multiple save slots.
 	 */
 	public static var saves:Array<FlxSave> = [];
+	
+	public static var start:Float = 0;
+	public static var height:Float = 0;
 }
