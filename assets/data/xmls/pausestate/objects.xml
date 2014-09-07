@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	
+	<entity tag="gamepaused">
+		<art path="" width="1" height="1"/>
+		<script>
+		<text>
+			
+		</text>
+		</script>
+	</entity>
+	
+	<entity tag="return">
+		<art path="" width="1" height="1"/>
+		<script path="assets/data/scripts/Return.hx"/>
+	</entity>
+
+	<entity tag="menuexit">
+		<art path="" width="1" height="1"/>
+		<script path="assets/data/scripts/MenuExit.hx"/>
+	</entity>
+
+	<entity tag="Retry">
+		<art path="" width="1" height="1"/>
+		<script path="assets/data/scripts/Retry.hx"/>
+	</entity>
+	
+	
+</data>

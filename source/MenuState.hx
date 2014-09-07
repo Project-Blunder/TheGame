@@ -4,8 +4,15 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.text.FlxText;
+import flixel.util.FlxColor;
 import flixel.ui.FlxButton;
-import flixel.math.FlxMath;
+import flixel.group.FlxGroup; //If we don't import this, scripts wont be able to access it
+import flixel.FlxSprite; //Same here
+import flixel.math.FlxRandom;//^
+import ice.entity.EntityManager;
+import ice.entity.*;
+
+
 
 /**
  * A FlxState which can be used for the game's menu.
@@ -18,6 +25,17 @@ class MenuState extends FlxState
 	override public function create():Void
 	{
 		super.create();
+		FlxG.camera.bgColor = FlxColor.BLUE;
+		//Stops flixel from pausing the game when it loses focus, makes live-scripting 
+		//much nicer
+		FlxG.autoPause = false;
+		
+		//Adds the global entity manager to your PlayState
+		add(EntityManager.instance);
+		
+		//Builds a scene from an XML entity declaration
+		EntityManager.instance.BuildFromXML("assets/data/xmls/menustate/setup.xml");
+		EntityManager.instance.BuildFromXML("assets/data/xmls/menustate/objects.xml");
 	}
 	
 	/**
@@ -32,8 +50,9 @@ class MenuState extends FlxState
 	/**
 	 * Function that is called once every frame.
 	 */
-	override public function update():Void
+	override public function update(elapsed:Float):Void
 	{
-		super.update();
+		super.update(elapsed);
+		FlxG.switchState(new PlayState());	
 	}	
 }

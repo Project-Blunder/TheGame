@@ -9,6 +9,7 @@ import flixel.math.FlxMath;
 import flixel.group.FlxGroup; //If we don't import this, scripts wont be able to access it
 import flixel.FlxSprite; //Same here
 import flixel.math.FlxRandom; //^
+import ice.entity.EntityManager;
 import ice.entity.*;
 import openfl.geom.Point;
 
@@ -34,9 +35,8 @@ class PlayState extends FlxState
 		add(EntityManager.instance);
 		
 		//Builds a scene from an XML entity declaration
-		EntityManager.instance.BuildFromXML(AssetPaths.Setup__xml);
-		EntityManager.instance.BuildFromXML(AssetPaths.Characters__xml);
-		EntityManager.instance.BuildFromXML(AssetPaths.Scene__xml);
+		EntityManager.instance.BuildFromXML("assets/data/xmls/playstate/setup.xml");
+		EntityManager.instance.BuildFromXML("assets/data/xmls/playstate/objects.xml");
 	}
 	
 	/**
