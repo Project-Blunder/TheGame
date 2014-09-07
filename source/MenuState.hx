@@ -9,6 +9,7 @@ import flixel.ui.FlxButton;
 import flixel.group.FlxGroup; //If we don't import this, scripts wont be able to access it
 import flixel.FlxSprite; //Same here
 import flixel.math.FlxRandom;//^
+import ice.entity.EntityManager;
 import ice.entity.*;
 
 
@@ -52,6 +53,6 @@ class MenuState extends FlxState
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
-		//FlxG.switchState(new PlayState());	
+		FlxG.switchState(new PlayState());	
 	}	
 }

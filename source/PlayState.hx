@@ -9,6 +9,7 @@ import flixel.math.FlxMath;
 import flixel.group.FlxGroup; //If we don't import this, scripts wont be able to access it
 import flixel.FlxSprite; //Same here
 import flixel.math.FlxRandom; //^
+import ice.entity.EntityManager;
 import ice.entity.*;
 import openfl.geom.Point;
 
