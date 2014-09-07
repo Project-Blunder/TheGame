@@ -3,6 +3,7 @@ package ;
 import flixel.FlxG;
 import ice.entity.Entity;
 import flixel.math.FlxRandom;
+import ice.entity.EntityManager;
 
 class Enemy
 {
@@ -12,11 +13,15 @@ class Enemy
 	
 	var speed:Float = 25;
 	
+	var target:Entity;
+	
 	public function init()
 	{
-		owner.makeGraphic(12, 24, 0xffff0000);
+		//owner.makeGraphic(12, 24, 0xffff0000);
 		
 		owner.y = FlxG.height - owner.height;
+		
+		target = EntityManager.instance.GetEntityByTag("player");
 		
 		var rand = new FlxRandom();
 		
@@ -32,11 +37,11 @@ class Enemy
 	
 	public function update()
 	{	
-		if (owner.x > FlxG.width / 2 + owner.width / 1.2)
+		if (owner.x > target.x + target.width/2 + owner.width/2)
 		{
 			owner.x -= speed * FlxG.elapsed;
 		}
-		else if (owner.x < FlxG.width / 2 - owner.width - owner.width / 1.2)
+		else if (owner.x < target.x - owner.width)
 		{
 			owner.x += speed * FlxG.elapsed;
 		}

@@ -71,10 +71,12 @@ class Player
 		if (FlxG.keys.pressed.A)
 		{
 			owner.x -= speed * FlxG.elapsed;
+			owner.animation.play("walk");
 		}
 		else if (FlxG.keys.pressed.D)
 		{
 			owner.x += speed * FlxG.elapsed;
+			owner.animation.play("walk");
 		}
 	}
 	

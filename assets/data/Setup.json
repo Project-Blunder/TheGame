@@ -1,0 +1,20 @@
+{
+	"entities":
+	[
+		{
+			"tag":"player","x":50,"y":50,
+			"scripts":
+			[
+				{
+					"text":
+					"
+					function init
+					{
+						trace(owner.x);
+					}
+					"
+				}
+			]
+		}
+	]
+}
