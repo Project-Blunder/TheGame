@@ -3,13 +3,11 @@
 	<script>
 		<text>
 			import flixel.FlxG;
-			
-			
+					
 			function init
 			{
 				FlxG.camera.bgColor = 0xffffff;
 			}
-	
 			
 		</text>
 	</script>

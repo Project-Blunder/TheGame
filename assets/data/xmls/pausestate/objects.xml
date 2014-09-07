@@ -2,7 +2,7 @@
 <data>
 	
 	<entity tag="gamepaused">
-		<art path="" width="1" height="1"/>
+		<!--<art path="" width="1" height="1"/>-->
 		<script>
 		<text>
 			
@@ -11,17 +11,17 @@
 	</entity>
 	
 	<entity tag="return">
-		<art path="" width="1" height="1"/>
+		<!--<art path="" width="1" height="1"/>-->
 		<script path="assets/data/scripts/Return.hx"/>
 	</entity>
 
 	<entity tag="menuexit">
-		<art path="" width="1" height="1"/>
+		<!--<art path="" width="1" height="1"/>-->
 		<script path="assets/data/scripts/MenuExit.hx"/>
 	</entity>
 
 	<entity tag="Retry">
-		<art path="" width="1" height="1"/>
+		<!--<art path="" width="1" height="1"/>-->
 		<script path="assets/data/scripts/Retry.hx"/>
 	</entity>
 	

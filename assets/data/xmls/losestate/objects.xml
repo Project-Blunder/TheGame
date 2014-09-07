@@ -2,7 +2,7 @@
 <data>
 	
 	<entity tag="funnyimage">
-		<art path="" width="1" height="1"/>
+		<!--<art path="" width="1" height="1"/>-->
 		<script>
 		<text>
 			
@@ -11,7 +11,7 @@
 	</entity>
 
 	<entity tag="youlost">
-		<art path="" width="1" height="1"/>
+		<!--<art path="" width="1" height="1"/>-->
 		<script>
 		<text>
 			
@@ -20,12 +20,12 @@
 	</entity>
 
 	<entity tag="menuexit">
-		<art path="" width="1" height="1"/>
+		<!--<art path="" width="1" height="1"/>-->
 		<script path="assets/data/scripts/MenuExit.hx"/>
 	</entity>
 
 	<entity tag="retry">
-		<art path="" width="1" height="1"/>
+		<!--<art path="" width="1" height="1"/>-->
 		<script path="assets/data/scripts/Replay.hx"/>
 	</entity>
 	

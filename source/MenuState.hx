@@ -25,7 +25,6 @@ class MenuState extends FlxState
 	override public function create():Void
 	{
 		super.create();
-		FlxG.camera.bgColor = FlxColor.BLUE;
 		//Stops flixel from pausing the game when it loses focus, makes live-scripting 
 		//much nicer
 		FlxG.autoPause = false;
