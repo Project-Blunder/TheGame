@@ -3,6 +3,7 @@ package ;
 import ice.entity.Entity;
 import flixel.FlxG;
 import flixel.FlxObject;
+import ice.entity.EntityManager;
 
 class Player
 {
@@ -10,7 +11,7 @@ class Player
 	var owner:Entity;
 	//#
 	
-	var target:Entity;
+	var target:Entity = EntityManager.instance.GetEntityByTag("enemy");
 	
 	var attackDefault:Float = 0.2;
 	var attackTimer:Float = -1;
@@ -43,7 +44,17 @@ class Player
 		}
 	}
 	
+	public function reload()
+	{
+
+	}
+	
 	//@
+	function test()
+	{
+		trace("Test");
+	}
+	
 	function standing()
 	{
 		owner.animation.play("tall");

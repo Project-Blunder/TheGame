@@ -5,19 +5,20 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
-import flixel.util.FlxMath;
+import flixel.math.FlxMath;
 import flixel.group.FlxGroup; //If we don't import this, scripts wont be able to access it
-import flixel.group.FlxTypedGroup; //^
 import flixel.FlxSprite; //Same here
-import flixel.util.FlxRandom; //^
-import ice.group.EntityGroup; //^
+import flixel.math.FlxRandom; //^
 import ice.entity.*;
+import openfl.geom.Point;
 
 /**
  * A FlxState which can be used for the actual gameplay.
  */
 class PlayState extends FlxState
 {
+	var init:Bool = false;
+	
 	/**
 	 * Function that is called up when to state is created to set it up. 
 	 */
@@ -50,8 +51,8 @@ class PlayState extends FlxState
 	/**
 	 * Function that is called once every frame.
 	 */
-	override public function update():Void
+	override public function update(elapsed:Float):Void
 	{
-		super.update();
+		super.update(elapsed);
 	}	
 }

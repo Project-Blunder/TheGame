@@ -2,7 +2,7 @@ package ;
 
 import flixel.FlxG;
 import ice.entity.Entity;
-import flixel.util.FlxRandom;
+import flixel.math.FlxRandom;
 
 class Enemy
 {
@@ -18,7 +18,9 @@ class Enemy
 		
 		owner.y = FlxG.height - owner.height;
 		
-		if (FlxRandom.sign() > 0)
+		var rand = new FlxRandom();
+		
+		if (rand.sign() > 0)
 		{
 			owner.x = FlxG.width;
 		}

@@ -38,6 +38,7 @@
 	<!--------------------------------ICEENTITY-STUFF------------------------------->
 	<!-- This gives the compiler access to the iceentity package -->
 	<haxelib name="iceentity"/>
+	<haxelib name="nape" />
 	
 	<!-- This allows iceentity to live reload your scripts -->
 	<haxedef name="ICE_LIVE_RELOAD" unless="flash" />
@@ -48,7 +49,7 @@
 	<!------------------------------------------------------------------------------>
 	
 	<!--In case you want to use the addons package-->
-	<!--haxelib name="flixel-addons" /-->
+	<haxelib name="flixel-addons" />
 	
 	<!--In case you want to use the ui package-->
 	<!--haxelib name="flixel-ui"/-->
