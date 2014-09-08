@@ -1,5 +1,6 @@
 package;
 
+import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -28,6 +29,16 @@ class PlayState extends FlxState
 	{
 		super.create();
 		
+		//Music theme (very partial first draft!) - the idea is that the tempo can get faster and faster
+		//with the level of intensity
+		#if web
+		FlxG.sound.playMusic("assets/music/graveytheme.wav", 1, true); //wav doesn't work properly on native (yet)
+		#end
+		
+		#if native
+		//FlxG.sound.playMusic("assets/music/graveytheme.ogg", 1, true); //Stutters on neko, weird on Windows
+		#end
+		
 		//Stops flixel from pausing the game when it loses focus, makes live-scripting 
 		//much nicer
 		FlxG.autoPause = false;
@@ -46,6 +57,10 @@ class PlayState extends FlxState
 		/*||||MAGIC||||*/Reg.height = FlxG.camera.y / FlxG.camera.zoom + FlxG.camera.height / FlxG.camera.zoom - 5;
 		//IT NEEDS CHANGES ALL THE TIMMMMEEEEEE
 		FlxG.log.add(Reg.height);
+		
+		//FlxG.camera.follow(EntityManager.instance.GetEntityByTag("player"));//Just thinking about taking the player to an adventure
+		
+		
 	}
 	
 	/**

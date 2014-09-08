@@ -15,15 +15,15 @@
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
-    <class path="C:\HaxeToolkit\haxe\lib\flixel\git" />
-    <class path="C:\HaxeToolkit\haxe\lib\lime\1,0,1" />
-    <class path="C:\HaxeToolkit\haxe\lib\openfl\2,0,1" />
-    <class path="C:\HaxeToolkit\haxe\lib\iceentity\git" />
-    <class path="C:\HaxeToolkit\haxe\lib\hscript\2,0,1" />
-    <class path="C:\HaxeToolkit\haxe\lib\nape\2,0,16" />
-    <class path="C:\HaxeToolkit\haxe\lib\flixel-addons\1,1,0" />
+    <class path="c:\haxetoolkit\haxe\lib\flixel\git" />
+    <class path="c:\haxetoolkit\haxe\lib\lime\1,0,1" />
+    <class path="c:\haxetoolkit\haxe\lib\openfl\2,0,1" />
+    <class path="c:\haxetoolkit\haxe\lib\iceentity\git" />
+    <class path="c:\haxetoolkit\haxe\lib\hscript\2,0,1" />
+    <class path="c:\haxetoolkit\haxe\lib\nape\2,0,16" />
+    <class path="c:\haxetoolkit\haxe\lib\flixel-addons\git" />
     <class path="source" />
-    <class path="C:\HaxeToolkit\haxe\lib\openfl\2,0,1\backends\flash" />
+    <class path="c:\haxetoolkit\haxe\lib\openfl\2,0,1\backends\flash" />
     <class path="export\flash\haxe" />
   </classpaths>
   <!-- Build options -->
