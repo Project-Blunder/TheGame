@@ -1,6 +1,7 @@
 package ;
 
 import ice.entity.Entity;
+import ice.wrappers.FlxKeyWrap;
 import flixel.FlxG;
 import flixel.FlxObject;
 import ice.entity.EntityManager;
@@ -36,11 +37,11 @@ class Player
 	
 	public function update()
 	{			
-		if (FlxG.keys.pressed.A)
+		if (FlxG.keys.anyPressed([FlxKeyWrap.LEFT, FlxKeyWrap.A]))
 		{
 			owner.facing = FlxObject.LEFT;
 		}
-		else if (FlxG.keys.pressed.D)
+		else if (FlxG.keys.anyPressed([FlxKeyWrap.RIGHT, FlxKeyWrap.D]))
 		{
 			owner.facing = FlxObject.RIGHT;
 		}
@@ -70,12 +71,12 @@ class Player
 			owner.FSM.PushState(attackHigh);
 		}
 		
-		if (FlxG.keys.pressed.A)
+		if (FlxG.keys.anyPressed([FlxKeyWrap.LEFT, FlxKeyWrap.A]))
 		{
 			owner.x -= speed * FlxG.elapsed;
 			owner.animation.play("walk");
 		}
-		else if (FlxG.keys.pressed.D)
+		else if (FlxG.keys.anyPressed([FlxKeyWrap.RIGHT, FlxKeyWrap.D]))
 		{
 			owner.x += speed * FlxG.elapsed;
 			owner.animation.play("walk");
@@ -95,11 +96,11 @@ class Player
 			owner.FSM.PushState(attackLow);
 		}
 		
-		if (FlxG.keys.pressed.A)
+		if (FlxG.keys.anyPressed([FlxKeyWrap.LEFT, FlxKeyWrap.A]))
 		{
 			owner.x -= speed * crouchPercent * FlxG.elapsed;
 		}
-		else if (FlxG.keys.pressed.D)
+		else if (FlxG.keys.anyPressed([FlxKeyWrap.RIGHT, FlxKeyWrap.D]))
 		{
 			owner.x += speed * crouchPercent * FlxG.elapsed;
 		}

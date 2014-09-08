@@ -14,6 +14,8 @@ import flixel.util.FlxColor;
 import ice.entity.EntityManager;
 import ice.entity.*;
 import openfl.geom.Point;
+import flixel.input.keyboard.FlxKey;
+import ice.wrappers.FlxKeyWrap;
 
 /**
  * A FlxState which can be used for the actual gameplay.
