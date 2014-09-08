@@ -44,8 +44,6 @@ class Enemy
 	public function update()
 	{	
 		owner.animation.play("idle");
-		if (owner.x == (target.x + target.width / 2 + owner.width / 2) || (owner.x < target.x - owner.width)) 
-		owner.animation.play("idle");
 		
 		if (owner.x > target.x + target.width/2 + owner.width/2)
 		{
