@@ -95,15 +95,6 @@ class Player
 		{
 			owner.FSM.PushState(attackLow);
 		}
-		
-		if (FlxG.keys.anyPressed([FlxKeyWrap.LEFT, FlxKeyWrap.A]))
-		{
-			owner.x -= speed * crouchPercent * FlxG.elapsed;
-		}
-		else if (FlxG.keys.anyPressed([FlxKeyWrap.RIGHT, FlxKeyWrap.D]))
-		{
-			owner.x += speed * crouchPercent * FlxG.elapsed;
-		}
 	}
 	
 	function attackHigh()
