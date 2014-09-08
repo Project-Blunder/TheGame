@@ -42,9 +42,8 @@ class Enemy
 	}
 	
 	public function update()
-	{	
-		owner.animation.play("idle");
-		
+	{		
+		//owner.animation.play("idle");
 		if (owner.x > target.x + target.width/2 + owner.width/2)
 		{
 			owner.x -= speed * FlxG.elapsed;
@@ -56,6 +55,10 @@ class Enemy
 			owner.x += speed * FlxG.elapsed;
 			owner.facing = FlxObject.RIGHT;
 			owner.animation.play("walk");
+		}
+		else //if (owner.GetDistance(target) < 1)
+		{
+			owner.animation.play("grab");
 		}
 	}
 }
