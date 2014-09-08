@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
 	<entity tag="enemy">
-		<art path="assets/images/playstate/zombie-embark.png" width="32" height="32">
-			<animation name="embark" frames="0-5" framerate="6" looped="false" autorun="true" />
+		<art path="assets/images/playstate/enemywalkwhite.png" width="32" height="64">
+			<animation name="idle" frames="0" framerate="1" looped="false" autorun="false" />
+			<animation name="walk" frames="0-1" framerate="6" looped="true" autorun="false" />
 		</art>
 		<script path="assets/data/scripts/Enemy.hx"/>
 	</entity>

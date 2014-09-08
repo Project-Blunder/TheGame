@@ -4,6 +4,7 @@ import flixel.FlxG;
 import ice.entity.Entity;
 import flixel.math.FlxRandom;
 import ice.entity.EntityManager;
+import flixel.FlxObject;
 import Reg;
 
 class Enemy
@@ -34,17 +35,29 @@ class Enemy
 		{
 			owner.x = 25;//-owner.width;
 		}
+	
+		owner.setFacingFlip(FlxObject.RIGHT, false, false);
+		owner.setFacingFlip(FlxObject.LEFT, true, false);
+	
 	}
 	
 	public function update()
 	{	
+		owner.animation.play("idle");
+		if (owner.x == (target.x + target.width / 2 + owner.width / 2) || (owner.x < target.x - owner.width)) 
+		owner.animation.play("idle");
+		
 		if (owner.x > target.x + target.width/2 + owner.width/2)
 		{
 			owner.x -= speed * FlxG.elapsed;
+			owner.facing = FlxObject.LEFT;
+			owner.animation.play("walk");
 		}
 		else if (owner.x < target.x - owner.width)
 		{
 			owner.x += speed * FlxG.elapsed;
+			owner.facing = FlxObject.RIGHT;
+			owner.animation.play("walk");
 		}
 	}
 }
