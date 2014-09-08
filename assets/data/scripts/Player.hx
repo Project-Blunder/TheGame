@@ -61,7 +61,7 @@ class Player
 	function standing()
 	{
 		owner.animation.play("tall");
-		if (FlxG.keys.pressed.S)
+		if (FlxG.keys.anyPressed([FlxKeyWrap.S, FlxKeyWrap.DOWN]))
 		{
 			owner.FSM.PushState(crouching);
 		}
@@ -86,7 +86,7 @@ class Player
 	function crouching()
 	{
 		owner.animation.play("crouch");
-		if (!FlxG.keys.pressed.S)
+		if (!FlxG.keys.anyPressed([FlxKeyWrap.S, FlxKeyWrap.DOWN]))
 		{
 			owner.FSM.PopState();
 		}
