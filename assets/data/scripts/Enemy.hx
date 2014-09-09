@@ -19,11 +19,17 @@ class Enemy
 	var speed:Float = 25;
 	
 	var target:Entity;
-	var grabDist:Float = 10;
+	var grabDist:Float = 5;
 	
 	var debug:FlxSprite = new FlxSprite();
 	
 	var timer:Float;
+	
+	var currentState:String;
+	
+	var rand = new FlxRandom();
+	
+	var stunnedChance:Float = 0.35;
 	
 	public function init()
 	{	
@@ -33,9 +39,11 @@ class Enemy
 		owner.width = 11;
 		owner.offset.x = 1;
 		
-		target = EntityManager.instance.GetEntityByTag("player");
+		owner.health = 5;
 		
-		var rand = new FlxRandom();
+		owner.drag.x = 350;
+		
+		target = EntityManager.instance.GetEntityByTag("player");
 		
 		if (rand.sign() > 0)
 		{
@@ -60,6 +68,7 @@ class Enemy
 	//@
 	function hunt()
 	{
+		currentState = "hunt";
 		if (owner.getMidpoint().x > target.getMidpoint().x + grabDist)
 		{
 			owner.x -= speed * FlxG.elapsed;
@@ -80,6 +89,7 @@ class Enemy
 	
 	function grab()
 	{
+		currentState = "grab";
 		owner.animation.play("grab");
 		
 		var tween:Dynamic = newObject();
@@ -94,6 +104,7 @@ class Enemy
 	
 	function hold()
 	{
+		currentState = "hold";
 		owner.animation.play("hold");
 		if (timer < 1)
 		{
@@ -111,10 +122,53 @@ class Enemy
 	
 	function stunned()
 	{
+		currentState = "stunned";
 		owner.animation.play("stunned");
 		if (timer < 1.5)
 		{
 			timer += FlxG.elapsed;
+		}
+		else
+		{
+			owner.FSM.PopState();
+		}
+	}
+	
+	function hit()
+	{
+		if (currentState == "hunt")
+		{
+			owner.FSM.PushState(isHit);
+		}
+		else if (currentState != "hit")
+		{
+			owner.FSM.ReplaceState(isHit);
+		}
+	}
+	
+	function isHit()
+	{
+		currentState = "hit";
+		
+		timer = 0;
+		owner.health--;
+		if (owner.health == 0)
+		{
+			owner.kill();
+		}
+		
+		if (target.getMidpoint().x > owner.getMidpoint().x)
+		{
+			owner.velocity.x = -175;
+		}
+		else
+		{
+			owner.velocity.x = 175;
+		}
+		
+		if (rand.bool(stunnedChance))
+		{
+			owner.FSM.ReplaceState(stunned);
 		}
 		else
 		{

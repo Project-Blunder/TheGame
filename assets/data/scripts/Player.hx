@@ -18,6 +18,8 @@ class Player
 	var attackDefault:Float = 0.2;
 	var attackTimer:Float = -1;
 	
+	var attackDist:Float = 17;
+	
 	var attacking:Bool = false;
 	
 	var speed:Float = 60;
@@ -182,6 +184,13 @@ class Player
 		}
 		else
 		{
+			if (owner.animation.finished)
+			{
+				if (owner.GetDistance(target) < attackDist)
+				{
+					target.getVarAsDynamic("hit")();
+				}
+			}
 			attackTimer -= FlxG.elapsed;
 		}
 		

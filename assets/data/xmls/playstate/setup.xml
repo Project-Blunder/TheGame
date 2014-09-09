@@ -3,6 +3,7 @@
 	<script>
 		<text>
 			import flixel.FlxG;
+			import ice.entity.EntityManager;
 			
 			function init
 			{
