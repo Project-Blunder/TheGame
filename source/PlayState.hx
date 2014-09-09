@@ -54,7 +54,9 @@ class PlayState extends FlxState
 		//Builds a scene from an XML entity declaration
 		EntityManager.switchScene(["assets/data/xmls/playstate/setup.xml"]);
 		
+		#if !html5
 		FlxG.scaleMode = new RatioScaleMode(true);
+		#end
 		
 		FlxG.camera.bgColor = 0xFFFFFFFF;
 		
@@ -65,7 +67,10 @@ class PlayState extends FlxState
 		//OOOOOHHH AHHHHH
 		/*||||MAGIC||||*/Reg.height = FlxG.camera.y / FlxG.camera.zoom + FlxG.camera.height / FlxG.camera.zoom - 5;
 		//IT NEEDS CHANGES ALL THE TIMMMMEEEEEE
-		FlxG.log.add(Reg.height);
+		
+		#if html5
+		Reg.height = FlxG.camera.y / FlxG.camera.zoom + FlxG.camera.height / FlxG.camera.zoom + 5;
+		#end
 		
 		//FlxG.camera.follow(EntityManager.instance.GetEntityByTag("player"), null, FlxPoint.get(0,Reg.start + 100));//Just thinking about taking the player to an adventure	
 	}
