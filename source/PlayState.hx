@@ -4,6 +4,7 @@ import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.math.FlxPoint;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.math.FlxMath;
@@ -61,9 +62,7 @@ class PlayState extends FlxState
 		//IT NEEDS CHANGES ALL THE TIMMMMEEEEEE
 		FlxG.log.add(Reg.height);
 		
-		//FlxG.camera.follow(EntityManager.instance.GetEntityByTag("player"));//Just thinking about taking the player to an adventure
-		
-		
+		//FlxG.camera.follow(EntityManager.instance.GetEntityByTag("player"), null, FlxPoint.get(0,Reg.start + 100));//Just thinking about taking the player to an adventure	
 	}
 	
 	/**
