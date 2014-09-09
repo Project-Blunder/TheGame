@@ -32,10 +32,14 @@ class Player
 	
 	var caughtBool:Bool = false;
 	
+	var floorHeight = Reg.height - owner.height - 1;
+	
+	var jumpforce:Float = 300;
+	
 	public function init() 
 	{
 		owner.x = FlxG.width / 2 - owner.width / 2;
-		owner.y = Reg.height - owner.height - 1;
+		owner.y = floorHeight;
 		
 		owner.offset.x = 16;
 		owner.width = 5;
@@ -71,7 +75,7 @@ class Player
 		owner.y += gravity * FlxG.elapsed;
 		if (owner.y + owner.height > Reg.height - 1)
 		{
-			owner.y = Reg.height - 1 - owner.height;
+			owner.y = floorHeight;
 		}
 	}
 	
@@ -113,6 +117,11 @@ class Player
 		{
 			owner.x += speed * FlxG.elapsed;
 			owner.animation.play("walk");
+		}
+		
+		if (owner.y >= floorHeight && FlxG.keys.anyJustPressed([FlxKeyWrap.UP, FlxKeyWrap.W]))
+		{
+			owner.velocity.y -= jumpforce;
 		}
 	}
 	

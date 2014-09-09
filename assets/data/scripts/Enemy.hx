@@ -25,7 +25,7 @@ class Enemy
 	
 	var timer:Float;
 	
-	var currentState:String;
+	var currentState:String = "";
 	
 	var rand = new FlxRandom();
 	
@@ -81,7 +81,7 @@ class Enemy
 			owner.facing = FlxObject.RIGHT;
 			owner.animation.play("walk");
 		}
-		else 
+		else if(owner.getMidpoint().y - target.getMidpoint().y < owner.height / 2)
 		{
 			owner.FSM.PushState(grab);
 		}
@@ -92,11 +92,11 @@ class Enemy
 		currentState = "grab";
 		owner.animation.play("grab");
 		
+		target.getVarAsDynamic("getCaught")();
+		
 		var tween:Dynamic = newObject();
 		tween.x = owner.getMidpoint().x - target.width / 2;
 		FlxTween.tween(target, tween, 0.07);
-		
-		target.getVarAsDynamic("getCaught")();
 		
 		timer = 0;
 		owner.FSM.ReplaceState(hold);
