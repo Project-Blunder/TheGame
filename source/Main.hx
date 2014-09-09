@@ -48,6 +48,14 @@ class Main extends Sprite
 		}
 		
 		setupGame();
+		
+		Lib.current.stage.addEventListener(Event.RESIZE, resize);
+	}
+	
+	private function resize(e):Void
+	{
+		//FlxG.resizeGame(Std.int(Lib.current.stage.width), Std.int(Lib.current.stage.height));
+		//FlxG.camera.width = FlxG.width;
 	}
 	
 	private function setupGame():Void

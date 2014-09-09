@@ -5,6 +5,7 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.math.FlxPoint;
+import flixel.system.scaleModes.*;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.math.FlxMath;
@@ -52,6 +53,10 @@ class PlayState extends FlxState
 		
 		//Builds a scene from an XML entity declaration
 		EntityManager.switchScene(["assets/data/xmls/playstate/setup.xml"]);
+		
+		FlxG.scaleMode = new RatioScaleMode(true);
+		
+		FlxG.camera.bgColor = 0xFFFFFFFF;
 		
 		FlxG.camera.height = Std.int(FlxG.height / 2.5);
 		FlxG.camera.y = (FlxG.height / 2 - FlxG.camera.height / 2) * FlxG.camera.zoom;
