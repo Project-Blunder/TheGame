@@ -22,6 +22,11 @@ import GraveyPreloader.Pfont;
 
 @:font("assets/fonts/PixAntiqua.ttf") class Pfont extends Font {}
 
+
+#if js
+class GraveyPreloader extends NMEPreloader {}
+#else
+
 class GraveyPreloader extends FlxBasePreloader
 {
 	
@@ -104,6 +109,5 @@ class GraveyPreloader extends FlxBasePreloader
 		color = null;
 	}
 	
-	
-	
 }
+#end
