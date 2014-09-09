@@ -36,11 +36,9 @@ class PlayState extends FlxState
 		
 		//Music theme (very partial first draft!) - the idea is that the tempo can get faster and faster
 		//with the level of intensity
-		#if web
+		#if flash
 		FlxG.sound.playMusic("assets/music/graveytheme.wav", 1, true); //wav doesn't work properly on native (yet)
-		#end
-		
-		#if native
+		#else
 		//FlxG.sound.playMusic("assets/music/graveytheme.ogg", 1, true); //Stutters on neko, weird on Windows
 		#end
 		
