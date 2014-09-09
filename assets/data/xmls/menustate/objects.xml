@@ -10,10 +10,10 @@
 		</script>
 	</entity-->
 	
-	<!--entity tag="start">
+	<entity tag="start">
 		<art path="assets/images/menustate/start.png" width="159" height="66"/>
 		<script path="assets/data/scripts/Start.hx"/>
-	</entity-->
+	</entity>
 
 	<!--entity tag="credits">
 		<art path="" width="1" height="1"/>

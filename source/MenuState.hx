@@ -45,13 +45,16 @@ class MenuState extends FlxState
 	{
 		super.destroy();
 	}
-
+	
 	/**
 	 * Function that is called once every frame.
 	 */
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
-		FlxG.switchState(new PlayState());	
+		
+	if ((FlxG.mouse.overlaps(EntityManager.instance.GetEntityByTag("start"))) && (FlxG.mouse.justPressed)) 	
+	FlxG.switchState(new PlayState());	
+		
 	}	
 }

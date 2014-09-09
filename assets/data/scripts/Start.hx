@@ -1,6 +1,8 @@
 package ;
 
+import flixel.FlxG;
 import ice.entity.Entity;
+import Reg;
 //Don't forget to import the classes also to your state
 
 class Start
@@ -11,12 +13,13 @@ class Start
 	
 	public function init()
 	{
-		
+	owner.x = FlxG.width / 2 - owner.width / 2;
+	owner.y =  FlxG.height / 2 - owner.height / 2;	
 	}
 	
 	public function update()
 	{	
-		
+
 	}
 
 
