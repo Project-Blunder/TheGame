@@ -5,6 +5,8 @@
 			<animation name="idle" frames="0" framerate="1" looped="false" autorun="false" />
 			<animation name="walk" frames="0-2,1" framerate="6" looped="true" autorun="false" />
 			<animation name="grab" frames="3-7" framerate="6" looped="false" autorun="false" />
+			<animation name="hold" frames="7" framerate="6" looped="false" autorun="false" />
+			<animation name="stunned" frames="8-10" framerate="6" looped="true" autorun="false" />
 		</art>
 		<script path="assets/data/scripts/Enemy.hx"/>
 	</entity>

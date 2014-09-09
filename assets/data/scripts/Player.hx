@@ -23,11 +23,23 @@ class Player
 	var speed:Float = 60;
 	var crouchPercent:Float = 0.4;
 	
+	var turns:Int = 0;
+	var escapeAmount:Int = 10;
+	
+	var gravity:Float = 175;
+	
+	var caughtBool:Bool = false;
+	
 	public function init() 
 	{
 		owner.x = FlxG.width / 2 - owner.width / 2;
 		owner.y = Reg.height - owner.height - 1;
-		FlxG.log.add(owner.y);
+		
+		owner.offset.x = 16;
+		owner.width = 5;
+		
+		owner.drag.x = 150;
+		owner.drag.y = 300;
 		
 		owner.setFacingFlip(FlxObject.RIGHT, false, false);
 		owner.setFacingFlip(FlxObject.LEFT, true, false);
@@ -39,11 +51,25 @@ class Player
 	{			
 		if (FlxG.keys.anyPressed([FlxKeyWrap.LEFT, FlxKeyWrap.A]))
 		{
-			owner.facing = FlxObject.LEFT;
+			if (owner.facing != FlxObject.LEFT)
+			{
+				owner.facing = FlxObject.LEFT;
+				turns++;
+			}
 		}
 		else if (FlxG.keys.anyPressed([FlxKeyWrap.RIGHT, FlxKeyWrap.D]))
 		{
-			owner.facing = FlxObject.RIGHT;
+			if (owner.facing != FlxObject.RIGHT)
+			{
+				owner.facing = FlxObject.RIGHT;
+				turns++;
+			}
+		}
+		
+		owner.y += gravity * FlxG.elapsed;
+		if (owner.y + owner.height > Reg.height - 1)
+		{
+			owner.y = Reg.height - 1 - owner.height;
 		}
 	}
 	
@@ -60,6 +86,11 @@ class Player
 	
 	function standing()
 	{
+		if (caughtBool)
+		{
+			owner.FSM.PushState(caught);
+			return;
+		}
 		owner.animation.play("tall");
 		if (FlxG.keys.anyPressed([FlxKeyWrap.S, FlxKeyWrap.DOWN]))
 		{
@@ -85,6 +116,11 @@ class Player
 	
 	function crouching()
 	{
+		if (caughtBool)
+		{
+			owner.FSM.ReplaceState(caught);
+			return;
+		}
 		owner.animation.play("crouch");
 		if (!FlxG.keys.anyPressed([FlxKeyWrap.S, FlxKeyWrap.DOWN]))
 		{
@@ -109,6 +145,11 @@ class Player
 		
 	function attack(high:Bool)
 	{
+		if (caughtBool)
+		{
+			owner.FSM.ReplaceState(caught);
+			return;
+		}
 		if (!attacking)
 		{
 			if (high)
@@ -149,6 +190,23 @@ class Player
 			attacking = false;
 			owner.FSM.PopState();
 		}
+	}
+	
+	function caught()
+	{
+		if (turns > escapeAmount)
+		{
+			owner.velocity.x += 100;
+			owner.velocity.y -= 250;
+			caughtBool = false;
+			owner.FSM.PopState();
+		}
+	}
+	
+	function getCaught()
+	{
+		turns = 0;
+		caughtBool = true;
 	}
 	//@
 }
