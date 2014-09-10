@@ -7,7 +7,7 @@
 			<animation name="grab" frames="3-7" framerate="6" looped="false" autorun="false" />
 			<animation name="hold" frames="7" framerate="6" looped="false" autorun="false" />
 			<animation name="stunned" frames="8-10" framerate="6" looped="true" autorun="false" />
-			<animation name="hit" frames="11,12" framerate="6" looped="true" autorun="false" />
+			<animation name="hit" frames="11,12" framerate="3" looped="true" autorun="false" />
 		</art>
 		<script path="assets/scenes/playstate/scripts/Enemy.hx"/>
 	</entity>
