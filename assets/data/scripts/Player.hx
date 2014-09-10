@@ -122,6 +122,28 @@ class Player
 		if (owner.y >= floorHeight && FlxG.keys.anyJustPressed([FlxKeyWrap.UP, FlxKeyWrap.W]))
 		{
 			owner.velocity.y -= jumpforce;
+			owner.FSM.PushState(jumping);
+		}
+	}
+	
+	function jumping()
+	{
+		if (owner.velocity.y <= 0)
+		{
+			owner.animation.play("fall");
+		}
+		if (owner.y >= floorHeight)
+		{
+			owner.FSM.PopState();
+		}
+		
+		if (FlxG.keys.anyPressed([FlxKeyWrap.LEFT, FlxKeyWrap.A]))
+		{
+			owner.x -= speed * FlxG.elapsed;
+		}
+		else if (FlxG.keys.anyPressed([FlxKeyWrap.RIGHT, FlxKeyWrap.D]))
+		{
+			owner.x += speed * FlxG.elapsed;
 		}
 	}
 	

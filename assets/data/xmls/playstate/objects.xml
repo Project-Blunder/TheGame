@@ -20,13 +20,14 @@
 			<animation name="windup-crouch" frames="4" framerate="2" looped="false" />
 			<animation name="attack-crouch" frames="5" framerate="2" looped="false" />
 			<animation name="walk" frames="6-8,7" framerate="5" looped="true" />
+			<animation name="fall" frames="9,10" framerate="5" looped="true" />
 		</art>
 		<script path="assets/data/scripts/Player.hx"/>
 	</entity>
 	
-	<entity tag="bug">
+	<!--<entity tag="bug">
 		<script path="assets/data/scripts/Bug.hx"/>
-	</entity>
+	</entity>-->
 	
 	<entity template="grass01">
 		<art width="14" height="11" path="assets/images/playstate/Grass01.png"/>
