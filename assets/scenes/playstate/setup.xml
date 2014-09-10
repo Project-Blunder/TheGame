@@ -28,5 +28,5 @@
 		</script>
 	</entity>
 	
-	<load path="assets/data/xmls/playstate/objects.xml"/>
+	<load path="assets/scenes/playstate/objects.xml"/>
 </data>

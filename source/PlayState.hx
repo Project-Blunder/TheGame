@@ -50,7 +50,7 @@ class PlayState extends FlxState
 		add(EntityManager.instance);
 		
 		//Builds a scene from an XML entity declaration
-		EntityManager.switchScene(["assets/data/xmls/playstate/setup.xml"]);
+		EntityManager.switchScene(["assets/scenes/playstate/setup.xml"]);
 		
 		#if !html5
 		FlxG.scaleMode = new RatioScaleMode(true);

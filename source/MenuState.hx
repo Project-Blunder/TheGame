@@ -33,8 +33,8 @@ class MenuState extends FlxState
 		add(EntityManager.instance);
 		
 		//Builds a scene from an XML entity declaration
-		EntityManager.instance.BuildFromXML("assets/data/xmls/menustate/setup.xml");
-		EntityManager.instance.BuildFromXML("assets/data/xmls/menustate/objects.xml");
+		EntityManager.instance.BuildFromXML("assets/scenes/menustate/setup.xml");
+		EntityManager.instance.BuildFromXML("assets/scenes/menustate/objects.xml");
 	}
 	
 	/**

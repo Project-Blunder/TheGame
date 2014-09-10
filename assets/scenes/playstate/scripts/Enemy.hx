@@ -166,13 +166,18 @@ class Enemy
 			owner.velocity.x = 175;
 		}
 		
-		if (rand.bool(stunnedChance))
+		owner.animation.play("hit");
+		
+		if (owner.velocity == 0)
 		{
-			owner.FSM.ReplaceState(stunned);
-		}
-		else
-		{
-			owner.FSM.PopState();
+			if (rand.bool(stunnedChance))
+			{
+				owner.FSM.ReplaceState(stunned);
+			}
+			else
+			{
+				owner.FSM.PopState();
+			}
 		}
 	}
 	//@
