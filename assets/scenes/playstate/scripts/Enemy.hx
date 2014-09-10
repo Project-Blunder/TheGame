@@ -168,7 +168,12 @@ class Enemy
 		
 		owner.animation.play("hit");
 		
-		if (owner.velocity == 0)
+		owner.FSM.ReplaceState(knocked);
+	}
+	
+	function knocked()
+	{
+		if (owner.velocity.x == 0)
 		{
 			if (rand.bool(stunnedChance))
 			{
