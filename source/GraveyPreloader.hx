@@ -17,7 +17,7 @@ import GraveyPreloader.Pfont;
 
 //import GraveyPreloader.L;
 
-@:bitmap("assets/images/preloader/background.png") class BG extends flash.display.BitmapData { }
+@:bitmap("assets/scenes/preloader/background.png") class BG extends flash.display.BitmapData { }
 //@:bitmap("assets/images/logo.png") class L extends flash.dis play.BitmapData { }
 
 @:font("assets/fonts/PixAntiqua.ttf") class Pfont extends Font {}
