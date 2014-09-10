@@ -11,6 +11,8 @@ import flixel.FlxSprite; //Same here
 import flixel.math.FlxRandom;//^
 import ice.entity.EntityManager;
 import ice.entity.*;
+import PlayState;
+import Reg;
 
 
 
@@ -53,8 +55,8 @@ class MenuState extends FlxState
 	{
 		super.update(elapsed);
 		
-	if ((FlxG.mouse.overlaps(EntityManager.instance.GetEntityByTag("start"))) && (FlxG.mouse.justPressed)) 	
-	FlxG.switchState(new PlayState());	
+	//if ((FlxG.mouse.overlaps(EntityManager.instance.GetEntityByTag("start"))) && (FlxG.mouse.justPressed)) 	
+	//FlxG.switchState(new PlayState());	
 		
 	}	
 }

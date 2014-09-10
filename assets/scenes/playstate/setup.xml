@@ -8,7 +8,7 @@
 			function init
 			{
 				FlxG.camera.bgColor = 0xffffff;
-				FlxG.mouse.visible = false;
+				//FlxG.mouse.visible = false;
 			}
 		</text>
 	</script>

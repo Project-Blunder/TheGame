@@ -53,7 +53,8 @@ class PlayState extends FlxState
 		EntityManager.switchScene(["assets/scenes/playstate/setup.xml"]);
 		
 		#if !html5
-		FlxG.scaleMode = new RatioScaleMode(true);
+		//FlxG.scaleMode = new RatioScaleMode(true);
+		FlxG.scaleMode = new FixedHeightScaleMode();
 		#end
 		
 		FlxG.camera.bgColor = 0xFFFFFFFF;

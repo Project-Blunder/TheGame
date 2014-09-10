@@ -6,6 +6,7 @@ import flixel.FlxG;
 import flixel.FlxObject;
 import ice.entity.EntityManager;
 import Reg;
+import PlayState;
 
 class Player
 {
@@ -54,7 +55,7 @@ class Player
 	}
 	
 	public function update()
-	{			
+	{	
 		if (FlxG.keys.anyPressed([FlxKeyWrap.LEFT, FlxKeyWrap.A]))
 		{
 			if (owner.facing != FlxObject.LEFT)
