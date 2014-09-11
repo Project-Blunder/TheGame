@@ -19,7 +19,7 @@ class Start
 	
 	public function update()
 	{	
-		if ((FlxG.mouse.overlaps(owner)) && (FlxG.mouse.justPressed))   
+		if (FlxG.mouse.overlaps(owner) && FlxG.mouse.justPressed || FlxG.keys.justPressed.SPACE)   
 		{
 			FlxG.switchState(new PlayState());  
 		}
