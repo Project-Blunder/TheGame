@@ -154,7 +154,8 @@ class Enemy
 		owner.health--;
 		if (owner.health == 0)
 		{
-			owner.kill();
+			owner.destroy();
+			return;
 		}
 		
 		if (target.getMidpoint().x > owner.getMidpoint().x)

@@ -19,6 +19,7 @@ import openfl.geom.Point;
 import flixel.input.keyboard.FlxKey;
 import ice.wrappers.FlxKeyWrap;
 import ice.wrappers.FlxColorWrap;
+import ice.group.EntityGroup;
 
 /**
  * A FlxState which can be used for the actual gameplay.
@@ -53,8 +54,8 @@ class PlayState extends FlxState
 		EntityManager.switchScene(["assets/scenes/playstate/setup.xml"]);
 		
 		#if !html5
-		//FlxG.scaleMode = new RatioScaleMode(true);
-		FlxG.scaleMode = new FixedHeightScaleMode();
+		FlxG.scaleMode = new RatioScaleMode(true);
+		//FlxG.scaleMode = new FixedHeightScaleMode();
 		#end
 		
 		FlxG.camera.bgColor = 0xFFFFFFFF;

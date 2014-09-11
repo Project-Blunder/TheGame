@@ -1,6 +1,7 @@
 package ;
 
 import ice.entity.Entity;
+import ice.group.EntityGroup;
 import ice.wrappers.FlxKeyWrap;
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -14,7 +15,7 @@ class Player
 	var owner:Entity;
 	//#
 	
-	var target:Entity = EntityManager.instance.GetEntityByTag("enemy");
+	var enemies:EntityGroup = EntityManager.instance.GetGroup("enemies");
 	
 	var attackDefault:Float = 0.2;
 	var attackTimer:Float = -1;
@@ -218,9 +219,16 @@ class Player
 		{
 			if (owner.animation.finished)
 			{
-				if (owner.GetDistance(target) < attackDist)
+				for (target in enemies.members)
 				{
-					target.getVarAsDynamic("hit")();
+					if (target != null)
+					{
+						if (owner.GetDistance(target) < attackDist)
+						{
+							target.getVarAsDynamic("hit")();
+							break;
+						}
+					}
 				}
 			}
 			attackTimer -= FlxG.elapsed;
