@@ -45,14 +45,14 @@ class Enemy
 		
 		target = EntityManager.instance.GetEntityByTag("player");
 		
-		if (rand.sign() > 0)
+		/*if (rand.sign() > 0)
 		{
 			owner.x = FlxG.width - owner.width - 25;
 		}
 		else
 		{
 			owner.x = 25;
-		}
+		}*/
 	
 		owner.setFacingFlip(FlxObject.LEFT, true, false);
 		owner.setFacingFlip(FlxObject.RIGHT, false, false);
@@ -155,6 +155,7 @@ class Enemy
 		if (owner.health == 0)
 		{
 			owner.destroy();
+			EntityManager.instance.GetGroup("enemies").remove(owner);
 			return;
 		}
 		
