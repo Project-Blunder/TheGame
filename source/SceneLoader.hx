@@ -11,7 +11,9 @@ import flixel.FlxSprite; //Same here
 import flixel.math.FlxRandom;//^
 import ice.entity.EntityManager;
 import ice.entity.*;
-import PlayState;
+import ice.group.EntityGroup;
+import ice.wrappers.FlxKeyWrap;
+import ice.wrappers.FlxColorWrap;
 import Reg;
 
 
@@ -19,7 +21,7 @@ import Reg;
 /**
  * A FlxState which can be used for the game's menu.
  */
-class MenuState extends FlxState
+class SceneLoader extends FlxState
 {
 	/**
 	 * Function that is called up when to state is created to set it up. 
@@ -36,7 +38,6 @@ class MenuState extends FlxState
 		
 		//Builds a scene from an XML entity declaration
 		EntityManager.instance.BuildFromXML("assets/scenes/menustate/setup.xml");
-		EntityManager.instance.BuildFromXML("assets/scenes/menustate/objects.xml");
 	}
 	
 	/**
@@ -54,9 +55,5 @@ class MenuState extends FlxState
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
-		
-	//if ((FlxG.mouse.overlaps(EntityManager.instance.GetEntityByTag("start"))) && (FlxG.mouse.justPressed)) 	
-	//FlxG.switchState(new PlayState());	
-		
 	}	
 }

@@ -37,4 +37,7 @@ class Reg
 	
 	public static var start:Float = 0;
 	public static var height:Float = 0;
+	
+	public static var flash:Bool = false;
+	public static var html:Bool = false;
 }

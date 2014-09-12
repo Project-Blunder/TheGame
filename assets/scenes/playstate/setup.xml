@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
-	<script>
-		<text>
-			import flixel.FlxG;
-			import ice.entity.EntityManager;
-			
-			function init
-			{
-				FlxG.camera.bgColor = 0xffffffff;
-				FlxG.mouse.visible = false;
-			}
-		</text>
-	</script>
+	<script path="assets/scenes/playstate/scripts/setup.hx"/>
 
 	<load path="assets/scenes/playstate/objects.xml"/>
 </data>

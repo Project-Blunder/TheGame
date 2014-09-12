@@ -7,7 +7,6 @@ import flixel.FlxG;
 import flixel.FlxObject;
 import ice.entity.EntityManager;
 import Reg;
-import PlayState;
 
 class Player
 {
@@ -40,6 +39,7 @@ class Player
 	
 	public function init() 
 	{
+		trace(floorHeight + " || " + Reg.height);
 		owner.x = FlxG.width / 2 - owner.width / 2;
 		owner.y = floorHeight;
 		
@@ -72,10 +72,11 @@ class Player
 				owner.facing = FlxObject.RIGHT;
 				turns++;
 			}
-		}
+		}		
 		
 		owner.y += gravity * FlxG.elapsed;
-		if (owner.y + owner.height > Reg.height - 1)
+
+		if (owner.y > floorHeight)
 		{
 			owner.y = floorHeight;
 		}

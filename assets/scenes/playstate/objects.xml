@@ -25,7 +25,7 @@
 				
 				function init
 				{
-					owner.y = Reg.height - owner.height;
+					owner.y = Reg.height - owner.height; 
 				}
 			</text>
 		</script>
@@ -148,6 +148,4 @@
 		<art path="" width="1" height="1"/>
 		<script path="assets/data/scripts/Retry.hx"/>
 	</entity-->
-	
-	
 </data>

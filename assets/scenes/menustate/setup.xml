@@ -7,8 +7,9 @@
 			function init
 			{
 				FlxG.camera.bgColor = 0xffffffff;
-			}
-			
+			}		
 		</text>
 	</script>
+	
+	<load path="assets/scenes/menustate/objects.xml"/>
 </data>

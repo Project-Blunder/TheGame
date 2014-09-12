@@ -13,7 +13,7 @@ class Main extends Sprite
 {
 	var gameWidth:Int = 120; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
 	var gameHeight:Int = 160; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
-	var initialState:Class<FlxState> = MenuState; // The FlxState the game starts with.
+	var initialState:Class<FlxState> = SceneLoader; // The FlxState the game starts with.
 	var zoom:Float = -1; // If -1, zoom is automatically calculated to fit the window dimensions.
 	var framerate:Int = 60; // How many frames per second the game should run at.
 	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
@@ -24,6 +24,14 @@ class Main extends Sprite
 	public static function main():Void
 	{	
 		Lib.current.addChild(new Main());
+		
+		#if flash
+		Reg.flash = true;
+		#end
+		
+		#if html
+		Reg.html = true;
+		#end
 	}
 	
 	public function new() 

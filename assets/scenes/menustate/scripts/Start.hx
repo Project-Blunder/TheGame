@@ -2,8 +2,8 @@ package ;
 
 import flixel.FlxG;
 import ice.entity.Entity;
+import ice.entity.EntityManager;
 import Reg;
-import PlayState;
 
 class Start
 {
@@ -21,7 +21,7 @@ class Start
 	{	
 		if (FlxG.mouse.overlaps(owner) && FlxG.mouse.justPressed || FlxG.keys.justPressed.SPACE)   
 		{
-			FlxG.switchState(new PlayState());  
+			EntityManager.switchScene(["assets/scenes/playstate/setup.xml"]);
 		}
 	}
 
