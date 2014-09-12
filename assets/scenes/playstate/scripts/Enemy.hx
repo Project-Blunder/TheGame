@@ -37,7 +37,7 @@ class Enemy
 		
 		owner.y = Reg.height - owner.height - 1;
 		owner.width = 11;
-		owner.offset.x = 1;
+		owner.offset.x = 8;
 		
 		owner.health = 2;
 		

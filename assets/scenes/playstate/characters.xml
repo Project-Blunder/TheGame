@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
 	<entity tag="enemy" template="enemy" >
-		<art path="assets/scenes/playstate/images/enemywalkwhite.png" width="19" height="27">
+		<art path="assets/scenes/playstate/images/enemywalkwhite.png" width="26" height="27">
 			<animation name="idle" frames="0" framerate="1" looped="false" autorun="false" />
 			<animation name="walk" frames="0-2,1" framerate="6" looped="true" autorun="false" />
 			<animation name="grab" frames="3-7" framerate="6" looped="false" autorun="false" />

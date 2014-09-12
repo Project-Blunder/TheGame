@@ -7,6 +7,8 @@ import flixel.FlxG;
 import flixel.FlxObject;
 import ice.entity.EntityManager;
 import Reg;
+import flixel.util.FlxSpriteUtil;
+import SceneLoader;
 
 class Player
 {
@@ -19,7 +21,7 @@ class Player
 	var attackDefault:Float = 0.2;
 	var attackTimer:Float = -1;
 	
-	var attackDist:Float = 13;
+	var attackDist:Float = 17;
 	
 	var attacking:Bool = false;
 	
@@ -37,9 +39,13 @@ class Player
 	
 	var jumpforce:Float = 300;
 	
+	var lineStyle = newObject();
+	
 	public function init() 
 	{
-		trace(floorHeight + " || " + Reg.height);
+		lineStyle.width = 1;
+		lineStyle.color = 0xFFFF0000;
+		
 		owner.x = FlxG.width / 2 - owner.width / 2;
 		owner.y = floorHeight;
 		
@@ -57,6 +63,22 @@ class Player
 	
 	public function update()
 	{	
+		/*SceneLoader.debug.clear();
+		for (target in enemies.members)
+		{
+			if (target != null)
+			{
+				FlxSpriteUtil.drawLine(
+					SceneLoader.debug, 
+					owner.getMidpoint().x, 
+					owner.getMidpoint().y, 
+					target.getMidpoint().x, 
+					target.getMidpoint().y,
+					lineStyle
+				);
+				
+			}
+		}*/
 		if (FlxG.keys.anyPressed([FlxKeyWrap.LEFT, FlxKeyWrap.A]))
 		{
 			if (owner.facing != FlxObject.LEFT)
@@ -223,11 +245,16 @@ class Player
 				for (target in enemies.members)
 				{
 					if (target != null)
-					{
+					{						
 						if (owner.GetDistance(target) < attackDist && isFacing(target))
 						{
+							trace("hit");
 							target.getVarAsDynamic("hit")();
 							break;
+						}
+						else
+						{
+							trace(owner.GetDistance(target));
 						}
 					}
 				}

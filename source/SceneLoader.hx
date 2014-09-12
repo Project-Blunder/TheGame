@@ -16,13 +16,14 @@ import ice.wrappers.FlxKeyWrap;
 import ice.wrappers.FlxColorWrap;
 import Reg;
 
-
-
 /**
  * A FlxState which can be used for the game's menu.
  */
 class SceneLoader extends FlxState
 {
+	
+	public static var debug:Debug;
+	
 	/**
 	 * Function that is called up when to state is created to set it up. 
 	 */
@@ -35,6 +36,9 @@ class SceneLoader extends FlxState
 		
 		//Adds the global entity manager to your PlayState
 		add(EntityManager.instance);
+		
+		debug = new Debug();
+		add(debug);
 		
 		//Builds a scene from an XML entity declaration
 		EntityManager.instance.BuildFromXML("assets/scenes/menustate/setup.xml");
