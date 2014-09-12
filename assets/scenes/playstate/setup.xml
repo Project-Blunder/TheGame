@@ -7,26 +7,11 @@
 			
 			function init
 			{
-				FlxG.camera.bgColor = 0xffffff;
-				//FlxG.mouse.visible = false;
+				FlxG.camera.bgColor = 0xffffffff;
+				FlxG.mouse.visible = false;
 			}
 		</text>
 	</script>
-	
-	<entity tag="bg">
-		<script>
-			<text>
-				import flixel.FlxG;
-				
-				function init
-				{
-					owner.makeGraphic(FlxG.width, FlxG.height, 0xFFFFFFFF);
-					owner.scrollFactor.x = 0;
-					owner.scrollFactor.x = 0;
-				}
-			</text>
-		</script>
-	</entity>
-	
+
 	<load path="assets/scenes/playstate/objects.xml"/>
 </data>

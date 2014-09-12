@@ -11,7 +11,7 @@ import flixel.FlxState;
 
 class Main extends Sprite 
 {
-	var gameWidth:Int = 0;//160; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
+	var gameWidth:Int = 120; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
 	var gameHeight:Int = 160; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
 	var initialState:Class<FlxState> = MenuState; // The FlxState the game starts with.
 	var zoom:Float = -1; // If -1, zoom is automatically calculated to fit the window dimensions.
@@ -49,13 +49,12 @@ class Main extends Sprite
 		
 		setupGame();
 		
-		Lib.current.stage.addEventListener(Event.RESIZE, resize);
+		//Lib.current.stage.addEventListener(Event.RESIZE, resize);
 	}
 	
 	private function resize(e):Void
 	{
-		//FlxG.resizeGame(Std.int(Lib.current.stage.width), Std.int(Lib.current.stage.height));
-		//FlxG.camera.width = FlxG.width;
+		
 	}
 	
 	private function setupGame():Void

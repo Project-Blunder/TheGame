@@ -60,8 +60,6 @@ class PlayState extends FlxState
 		//FlxG.scaleMode = new FixedHeightScaleMode();
 		#end
 		
-		FlxG.camera.bgColor = 0xFFFFFFFF;
-		
 		FlxG.camera.height = Std.int(FlxG.height / 2.5);
 		FlxG.camera.y = (FlxG.height / 2 - FlxG.camera.height / 2) * FlxG.camera.zoom;
 		

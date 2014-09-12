@@ -6,24 +6,9 @@
 			
 			function init
 			{
-				FlxG.camera.bgColor = 0xffffff;
+				FlxG.camera.bgColor = 0xffffffff;
 			}
 			
 		</text>
 	</script>
-	
-	<entity tag="bg">
-		<script>
-			<text>
-				import flixel.FlxG;
-				
-				function init
-				{
-					owner.makeGraphic(FlxG.width, FlxG.height, 0xFFFFFFFF);
-					owner.scrollFactor.x = 0;
-					owner.scrollFactor.x = 0;
-				}
-			</text>
-		</script>
-	</entity>
 </data>
