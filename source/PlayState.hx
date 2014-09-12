@@ -20,6 +20,8 @@ import flixel.input.keyboard.FlxKey;
 import ice.wrappers.FlxKeyWrap;
 import ice.wrappers.FlxColorWrap;
 import ice.group.EntityGroup;
+import flixel.input.gamepad.XboxButtonID;
+import flixel.input.gamepad.FlxGamepad;
 
 /**
  * A FlxState which can be used for the actual gameplay.

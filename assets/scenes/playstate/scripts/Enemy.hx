@@ -39,20 +39,11 @@ class Enemy
 		owner.width = 11;
 		owner.offset.x = 1;
 		
-		owner.health = 5;
+		owner.health = 2;
 		
 		owner.drag.x = 350;
 		
 		target = EntityManager.instance.GetEntityByTag("player");
-		
-		/*if (rand.sign() > 0)
-		{
-			owner.x = FlxG.width - owner.width - 25;
-		}
-		else
-		{
-			owner.x = 25;
-		}*/
 	
 		owner.setFacingFlip(FlxObject.LEFT, true, false);
 		owner.setFacingFlip(FlxObject.RIGHT, false, false);
@@ -136,18 +127,6 @@ class Enemy
 	
 	function hit()
 	{
-		if (currentState == "hunt")
-		{
-			owner.FSM.PushState(isHit);
-		}
-		else if (currentState != "hit")
-		{
-			owner.FSM.ReplaceState(isHit);
-		}
-	}
-	
-	function isHit()
-	{
 		currentState = "hit";
 		
 		timer = 0;
@@ -170,7 +149,7 @@ class Enemy
 		
 		owner.animation.play("hit");
 		
-		owner.FSM.ReplaceState(knocked);
+		owner.FSM.PushState(knocked);
 	}
 	
 	function knocked()

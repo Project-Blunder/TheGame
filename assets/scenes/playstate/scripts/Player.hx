@@ -223,22 +223,45 @@ class Player
 				{
 					if (target != null)
 					{
-						if (owner.GetDistance(target) < attackDist)
+						if (owner.GetDistance(target) < attackDist && isFacing(target))
 						{
 							target.getVarAsDynamic("hit")();
 							break;
 						}
 					}
 				}
+				owner.FSM.ReplaceState(windDown);
 			}
-			attackTimer -= FlxG.elapsed;
 		}
-		
+	}
+	
+	function windDown()
+	{
+		attackTimer -= FlxG.elapsed;
 		if (attackTimer < 0)
 		{
 			attacking = false;
 			owner.FSM.PopState();
 		}
+	}
+	
+	function isFacing(target:Entity):Bool
+	{
+		if (target.getMidpoint().x <= owner.getMidpoint().x)
+		{
+			if (owner.facing == FlxObject.LEFT)
+			{
+				return true;
+			}
+		}
+		if (target.getMidpoint().x >= owner.getMidpoint().x)
+		{
+			if (owner.facing == FlxObject.RIGHT)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	function caught()
