@@ -130,7 +130,9 @@ class Player
 		
 		if (FlxG.keys.justPressed.SPACE)
 		{
-			owner.FSM.PushState(attackHigh);
+			var info = newObject();
+			info.high = true;
+			owner.FSM.PushState(attack, info);
 		}
 		
 		if (FlxG.keys.anyPressed([FlxKeyWrap.LEFT, FlxKeyWrap.A]))
@@ -187,21 +189,13 @@ class Player
 		
 		if (FlxG.keys.justPressed.SPACE)
 		{
-			owner.FSM.PushState(attackLow);
+			var info = newObject();
+			info.high = false;
+			owner.FSM.PushState(attack, info);
 		}
-	}
-	
-	function attackHigh()
-	{
-		attack(true);
-	}
-	
-	function attackLow()
-	{
-		attack(false);
 	}	
 		
-	function attack(high:Bool)
+	function attack()
 	{
 		if (caughtBool)
 		{
@@ -210,7 +204,7 @@ class Player
 		}
 		if (!attacking)
 		{
-			if (high)
+			if (owner.FSM.info.high)
 			{
 				owner.animation.play("windup");
 			}
@@ -226,7 +220,7 @@ class Player
 			
 			if (FlxG.keys.justReleased.SPACE)
 			{
-				if (high)
+				if (owner.FSM.info.high)
 				{
 					owner.animation.play("attack-tall");
 				}
