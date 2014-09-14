@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<data>
-	<script path="assets/scenes/playstate/scripts/setup.hx"/>
-
-	<load path="assets/scenes/playstate/objects.xml"/>
-</data>

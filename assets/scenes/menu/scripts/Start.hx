@@ -21,7 +21,7 @@ class Start
 	{	
 		if (FlxG.mouse.overlaps(owner) && FlxG.mouse.justPressed || FlxG.keys.justPressed.SPACE)   
 		{
-			EntityManager.switchScene(["assets/scenes/playstate/setup.xml"]);
+			EntityManager.switchScene(["assets/scenes/play/setup.xml"]);
 		}
 	}
 

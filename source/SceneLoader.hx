@@ -34,14 +34,14 @@ class SceneLoader extends FlxState
 		//much nicer
 		FlxG.autoPause = false;
 		
-		//Adds the global entity manager to your PlayState
+		//Adds the global entity manager to your play
 		add(EntityManager.instance);
 		
 		debug = new Debug();
 		add(debug);
 		
 		//Builds a scene from an XML entity declaration
-		EntityManager.instance.BuildFromXML("assets/scenes/menustate/setup.xml");
+		EntityManager.instance.BuildFromXML("assets/scenes/menu/setup.xml");
 	}
 	
 	/**

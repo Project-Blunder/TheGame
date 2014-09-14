@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
 	<entity tag="enemy" template="enemy" >
-		<art path="assets/scenes/playstate/images/enemywalkwhite.png" width="26" height="27">
+		<art path="assets/scenes/play/images/enemywalkwhite.png" width="26" height="27">
 			<animation name="idle" frames="0" framerate="1" looped="false" autorun="false" />
 			<animation name="walk" frames="0-2,1" framerate="6" looped="true" autorun="false" />
 			<animation name="grab" frames="3-7" framerate="6" looped="false" autorun="false" />
@@ -9,11 +9,11 @@
 			<animation name="stunned" frames="8-10" framerate="6" looped="true" autorun="false" />
 			<animation name="hit" frames="11,12" framerate="3" looped="true" autorun="false" />
 		</art>
-		<script path="assets/scenes/playstate/scripts/Enemy.hx"/>
+		<script path="assets/scenes/play/scripts/Enemy.hx"/>
 	</entity>
 	
 	<entity tag="player">
-		<art path="assets/scenes/playstate/images/PlayerAnim.png" width="37" height="24">
+		<art path="assets/scenes/play/images/PlayerAnim.png" width="37" height="24">
 			<animation name="tall" frames="0" framerate="1" looped="false" autorun="true"/>
 			<animation name="windup" frames="1" framerate="2" looped="false" />
 			<animation name="attack-tall" frames="2" framerate="2" looped="false" />
@@ -23,10 +23,10 @@
 			<animation name="walk" frames="6-8,7" framerate="5" looped="true" />
 			<animation name="fall" frames="9,10" framerate="5" looped="true" />
 		</art>
-		<script path="assets/scenes/playstate/scripts/Player.hx"/>
+		<script path="assets/scenes/play/scripts/Player.hx"/>
 	</entity>
 	
-	<script path="assets/scenes/playstate/scripts/EnemyManager.hx" />
+	<script path="assets/scenes/play/scripts/EnemyManager.hx" />
 	
 	<!--<entity tag="bug">
 		<script path="assets/data/scripts/Bug.hx"/>

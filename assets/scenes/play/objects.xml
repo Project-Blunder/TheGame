@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
-	<load path="assets/scenes/playstate/characters.xml"/>
+	<load path="assets/scenes/play/characters.xml"/>
 	
 	<entity template="grass01">
-		<art width="14" height="11" path="assets/scenes/playstate/images/Grass01.png"/>
+		<art width="14" height="11" path="assets/scenes/play/images/Grass01.png"/>
 		<script>
 			<text>
 				import flixel.FlxG;
@@ -17,7 +17,7 @@
 		</script>
 	</entity>
 	<entity template="grass02">
-		<art width="14" height="11" path="assets/scenes/playstate/images/Grass02.png"/>
+		<art width="14" height="11" path="assets/scenes/play/images/Grass02.png"/>
 		<script>
 			<text>
 				import flixel.FlxG;
@@ -31,7 +31,7 @@
 		</script>
 	</entity>
 	<entity template="grass03">
-		<art width="14" height="11" path="assets/scenes/playstate/images/Grass03.png"/>
+		<art width="14" height="11" path="assets/scenes/play/images/Grass03.png"/>
 		<script>
 			<text>
 				import flixel.FlxG;
@@ -46,7 +46,7 @@
 	</entity>
 	
 	<entity template="grass04">
-		<art width="14" height="11" path="assets/scenes/playstate/images/Grass04.png"/>
+		<art width="14" height="11" path="assets/scenes/play/images/Grass04.png"/>
 		<script>
 			<text>
 				import flixel.FlxG;
@@ -61,7 +61,7 @@
 	</entity>
 	
 	<entity template="grass05">
-		<art width="14" height="11" path="assets/scenes/playstate/images/Grass05.png"/>
+		<art width="14" height="11" path="assets/scenes/play/images/Grass05.png"/>
 		<script>
 			<text>
 				import flixel.FlxG;
@@ -76,7 +76,7 @@
 	</entity>
 	
 	<entity tag="monument-thing" x="80%" y="61%">
-		<art width="23" height="47" path="assets/scenes/playstate/images/Monument.png"/>
+		<art width="23" height="47" path="assets/scenes/play/images/Monument.png"/>
 		
 		<script>
 			<text>
@@ -92,7 +92,7 @@
 	</entity>
 	
 	<entity tag="bonsai-thing" x="-6">
-		<art width="31" height="31" path="assets/scenes/playstate/images/Bonsai.png"/>
+		<art width="31" height="31" path="assets/scenes/play/images/Bonsai.png"/>
 		
 		<script>
 			<text>
@@ -114,8 +114,7 @@
 	<instance template="grass02" x="57%" />
 	<instance template="grass03" x="75%" />
 	<instance template="grass02" x="87%" />
-	<instance template="grass01" x="95%" />
-	
+	<instance template="grass01" x="95%" />	
 		
 	<entity tag="ground">
 		<script>

@@ -11,5 +11,5 @@
 		</text>
 	</script>
 	
-	<load path="assets/scenes/menustate/objects.xml"/>
+	<load path="assets/scenes/menu/objects.xml"/>
 </data>

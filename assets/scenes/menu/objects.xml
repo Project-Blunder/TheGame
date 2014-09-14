@@ -11,8 +11,8 @@
 	</entity-->
 	
 	<entity tag="start">
-		<art path="assets/scenes/menustate/images/start.png" width="159" height="66"/>
-		<script path="assets/scenes/menustate/scripts/Start.hx"/>
+		<art path="assets/scenes/menu/images/start.png" width="159" height="66"/>
+		<script path="assets/scenes/menu/scripts/Start.hx"/>
 	</entity>
 
 	<!--entity tag="credits">
