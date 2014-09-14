@@ -243,7 +243,14 @@ class Player
 						if (owner.GetDistance(target) < attackDist && isFacing(target))
 						{
 							trace("hit");
-							target.getVarAsDynamic("hit")();
+							if (owner.FSM.info.high)
+							{
+								target.getVarAsDynamic("hit")(true);
+							}
+							else
+							{
+								target.getVarAsDynamic("hit")(false);
+							}
 							break;
 						}
 						else

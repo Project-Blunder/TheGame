@@ -29,7 +29,7 @@ class Enemy
 	
 	var rand = new FlxRandom();
 	
-	var stunnedChance:Float = 0.35;
+	var stunnedChance:Float = 35;
 	
 	public function init()
 	{	
@@ -125,7 +125,7 @@ class Enemy
 		}
 	}
 	
-	function hit()
+	function hit(high:Bool)
 	{
 		currentState = "hit";
 		
@@ -149,20 +149,36 @@ class Enemy
 		
 		owner.animation.play("hit");
 		
-		owner.FSM.PushState(knocked);
+		var info = newObject();
+		info.high = high;
+		owner.FSM.PushState(knocked, info);
 	}
 	
 	function knocked()
 	{
 		if (owner.velocity.x == 0)
 		{
-			if (rand.bool(stunnedChance))
+			if (owner.FSM.info.high)
 			{
-				owner.FSM.ReplaceState(stunned);
+				if (rand.bool(stunnedChance))
+				{
+					owner.FSM.ReplaceState(stunned);
+				}
+				else
+				{
+					owner.FSM.PopState();
+				}
 			}
 			else
 			{
-				owner.FSM.PopState();
+				if (rand.bool(stunnedChance * 2))
+				{
+					owner.FSM.ReplaceState(stunned);
+				}
+				else
+				{
+					owner.FSM.PopState();
+				}
 			}
 		}
 	}
