@@ -23,13 +23,16 @@ class Enemy
 	
 	var debugText:FlxText = new FlxText();
 	
-	var timer:Float;
+	var timer:Float = 0;
 	var currentState:String = "";
 	
 	var rand = new FlxRandom();
 	
 	var speed:Float = rand.float(25 - 1, 25 + 1);
+	var reactionTime:Float = rand.float(0.05, 0.15);
 	var stunnedChance:Float = 35;
+	
+	
 	var grabDist:Float = 7;
 	var separateDist:Float;
 	var moveAnyway:Bool = false;
@@ -110,23 +113,47 @@ class Enemy
 		}
 		if(move)
 		{
-			if (owner.getMidpoint().x > target.getMidpoint().x + grabDist)
+			if (owner.facing == FlxObject.LEFT)
 			{
-				owner.x -= speed * FlxG.elapsed;
-				owner.facing = FlxObject.LEFT;
-				owner.animation.play("walk");
+				if (getXDist(target) > grabDist)
+				{
+					owner.x -= speed * FlxG.elapsed;
+					owner.animation.play("walk");
+				}
+				else
+				{
+					owner.FSM.PushState(attack);
+					attack();
+				}
 			}
-			else if (owner.getMidpoint().x < target.getMidpoint().x - grabDist)
+			else
 			{
-				owner.x += speed * FlxG.elapsed;
-				owner.facing = FlxObject.RIGHT;
-				owner.animation.play("walk");
+				if (getXDist(target) > grabDist)
+				{
+					owner.x += speed * FlxG.elapsed;
+					owner.animation.play("walk");
+				}
+				else
+				{
+					owner.FSM.PushState(attack);
+					attack();
+				}
 			}
-			else if(owner.getMidpoint().y - target.getMidpoint().y < owner.height / 2)
+			if (!isFacing(target))
 			{
-				//grab();
-				owner.FSM.PushState(attack);
-				attack();
+				timer += FlxG.elapsed;
+				if (timer > reactionTime)
+				{
+					timer = 0;
+					if (owner.facing == FlxObject.LEFT)
+					{
+						owner.facing = FlxObject.RIGHT;
+					}
+					else
+					{
+						owner.facing = FlxObject.LEFT;
+					}
+				}
 			}
 		}
 	}
@@ -269,6 +296,30 @@ class Enemy
 		{
 			debugText.text = t;
 		}
+	}
+	
+	function getXDist(t:FlxObject):Float
+	{
+		return Math.abs(owner.getMidpoint().x - t.getMidpoint().x);
+	}
+	
+	function isFacing(target:Entity):Bool
+	{
+		if (target.getMidpoint().x <= owner.getMidpoint().x)
+		{
+			if (owner.facing == FlxObject.LEFT)
+			{
+				return true;
+			}
+		}
+		if (target.getMidpoint().x >= owner.getMidpoint().x)
+		{
+			if (owner.facing == FlxObject.RIGHT)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 	//@
 }
