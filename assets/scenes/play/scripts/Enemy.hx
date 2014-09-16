@@ -86,9 +86,13 @@ class Enemy
 		{
 			for (e in group)
 			{
+				if (e == null)
+				{
+					continue;
+				}
 				if (e.GID == owner.GID)
 				{
-					break;
+					continue;
 				}
 				if (owner.GetDistance(target) > grabDist + 3 && owner.GetDistance(e) < separateDist)
 				{
