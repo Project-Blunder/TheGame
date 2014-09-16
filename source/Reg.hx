@@ -40,4 +40,6 @@ class Reg
 	
 	public static var flash:Bool = false;
 	public static var html:Bool = false;
+	
+	public static var showDebug:Bool = false;
 }

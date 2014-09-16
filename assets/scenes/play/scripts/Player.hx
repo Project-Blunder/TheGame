@@ -1,5 +1,6 @@
 package ;
 
+import flixel.text.FlxText;
 import ice.entity.Entity;
 import ice.group.EntityGroup;
 import ice.wrappers.FlxKeyWrap;
@@ -41,10 +42,15 @@ class Player
 	
 	var lineStyle = newObject();
 	
+	var debugText:FlxText = new FlxText();
+	
 	public function init() 
 	{
 		lineStyle.width = 1;
 		lineStyle.color = 0xFFFF0000;
+				
+		debugText.color = 0xFFFF0000;
+		EntityManager.instance.AddFlxBasic(debugText);
 		
 		owner.x = FlxG.width / 2 - owner.width / 2;
 		owner.y = floorHeight;
@@ -63,22 +69,26 @@ class Player
 	
 	public function update()
 	{	
-		/*SceneLoader.debug.clear();
-		for (target in enemies.members)
+		if (Reg.showDebug)
 		{
-			if (target != null)
+			debugText.x = owner.x + owner.width / 2 - debugText.width / 2;
+			debugText.y = owner.y - debugText.textField.textHeight;
+			for (target in enemies.members)
 			{
-				FlxSpriteUtil.drawLine(
-					SceneLoader.debug, 
-					owner.getMidpoint().x, 
-					owner.getMidpoint().y, 
-					target.getMidpoint().x, 
-					target.getMidpoint().y,
-					lineStyle
-				);
-				
+				if (target != null)
+				{
+					FlxSpriteUtil.drawLine(
+						SceneLoader.debug, 
+						owner.getMidpoint().x, 
+						owner.getMidpoint().y, 
+						target.getMidpoint().x, 
+						target.getMidpoint().y,
+						lineStyle
+					);		
+				}
 			}
-		}*/
+		}
+		
 		if (FlxG.keys.anyPressed([FlxKeyWrap.LEFT, FlxKeyWrap.A]))
 		{
 			if (owner.facing != FlxObject.LEFT)
@@ -110,13 +120,10 @@ class Player
 	}
 	
 	//@
-	function test()
-	{
-		trace("Test");
-	}
-	
 	function standing()
 	{
+		setDebug("stand");
+		
 		if (caughtBool)
 		{
 			owner.FSM.PushState(caught);
@@ -155,6 +162,8 @@ class Player
 	
 	function jumping()
 	{
+		setDebug("jump");
+		
 		if (owner.velocity.y <= 0)
 		{
 			owner.animation.play("fall");
@@ -176,6 +185,8 @@ class Player
 	
 	function crouching()
 	{
+		setDebug("crouch");
+		
 		if (caughtBool)
 		{
 			owner.FSM.ReplaceState(caught);
@@ -197,6 +208,8 @@ class Player
 		
 	function attack()
 	{
+		setDebug("attack");
+		
 		if (caughtBool)
 		{
 			owner.FSM.ReplaceState(caught);
@@ -242,7 +255,6 @@ class Player
 					{						
 						if (owner.GetDistance(target) < attackDist && isFacing(target))
 						{
-							trace("hit");
 							if (owner.FSM.info.high)
 							{
 								target.getVarAsDynamic("hit")(true);
@@ -253,10 +265,6 @@ class Player
 							}
 							break;
 						}
-						else
-						{
-							trace(owner.GetDistance(target));
-						}
 					}
 				}
 				owner.FSM.ReplaceState(windDown);
@@ -266,6 +274,7 @@ class Player
 	
 	function windDown()
 	{
+		setDebug("wind-down");
 		attackTimer -= FlxG.elapsed;
 		if (attackTimer < 0)
 		{
@@ -295,6 +304,7 @@ class Player
 	
 	function caught()
 	{
+		setDebug("caught");
 		if (turns > escapeAmount)
 		{
 			owner.velocity.x += 100;
@@ -307,7 +317,18 @@ class Player
 	function getCaught()
 	{
 		turns = 0;
+		owner.velocity.x = 0;
+		owner.velocity.y = 0;
+		caught();
 		caughtBool = true;
+	}
+	
+	function setDebug(t:String)
+	{
+		if (Reg.showDebug)
+		{
+			debugText.text = t;
+		}
 	}
 	//@
 }

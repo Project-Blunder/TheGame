@@ -2,6 +2,7 @@ package ;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.text.FlxText;
 import flixel.tweens.FlxTween;
 import ice.entity.Entity;
 import flixel.math.FlxRandom;
@@ -9,6 +10,7 @@ import ice.entity.EntityManager;
 import flixel.FlxObject;
 import ice.wrappers.FlxColorWrap;
 import Reg;
+import Math;
 
 class Enemy
 {
@@ -21,8 +23,6 @@ class Enemy
 	var target:Entity;
 	var grabDist:Float = 5;
 	
-	var debug:FlxSprite = new FlxSprite();
-	
 	var timer:Float;
 	
 	var currentState:String = "";
@@ -31,9 +31,12 @@ class Enemy
 	
 	var stunnedChance:Float = 35;
 	
+	var debugText:FlxText = new FlxText();
+	
 	public function init()
 	{	
-		debug.makeGraphic(1, 1, FlxColorWrap.RED);
+		debugText.color = 0xFFFF0000;
+		EntityManager.instance.AddFlxBasic(debugText);
 		
 		owner.y = Reg.height - owner.height - 1;
 		owner.width = 11;
@@ -53,7 +56,13 @@ class Enemy
 	
 	public function update()
 	{		
-
+		if (Reg.showDebug)
+		{
+			debugText.x = owner.x + owner.width / 2 - debugText.width / 2;
+			debugText.y = owner.y - debugText.textField.textHeight;
+			
+			setDebug(Math.round(owner.GetDistance(target)) +"\n" +currentState);
+		}
 	}
 	
 	//@
@@ -74,7 +83,7 @@ class Enemy
 		}
 		else if(owner.getMidpoint().y - target.getMidpoint().y < owner.height / 2)
 		{
-			owner.FSM.PushState(grab);
+			grab();
 		}
 	}
 	
@@ -90,7 +99,7 @@ class Enemy
 		FlxTween.tween(target, tween, 0.07);
 		
 		timer = 0;
-		owner.FSM.ReplaceState(hold);
+		owner.FSM.PushState(hold);
 	}
 	
 	function hold()
@@ -156,6 +165,8 @@ class Enemy
 	
 	function knocked()
 	{
+		currentState = "knocked";
+		
 		if (owner.velocity.x == 0)
 		{
 			if (owner.FSM.info.high)
@@ -180,6 +191,14 @@ class Enemy
 					owner.FSM.PopState();
 				}
 			}
+		}
+	}
+	
+	function setDebug(t:String)
+	{
+		if (Reg.showDebug)
+		{
+			debugText.text = t;
 		}
 	}
 	//@

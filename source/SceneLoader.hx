@@ -58,6 +58,15 @@ class SceneLoader extends FlxState
 	 */
 	override public function update(elapsed:Float):Void
 	{
+		if (FlxG.keys.justPressed.TAB)
+		{
+			Reg.showDebug = !Reg.showDebug;
+		}
+		if (Reg.showDebug)
+		{
+			SceneLoader.debug.clear();
+		}
+		
 		super.update(elapsed);
 	}	
 }
