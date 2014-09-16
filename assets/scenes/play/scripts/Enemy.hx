@@ -28,10 +28,10 @@ class Enemy
 	
 	var rand = new FlxRandom();
 	
-	var speed:Float = rand.float(25 - 5, 25 + 5);
+	var speed:Float = rand.float(25 - 1, 25 + 1);
 	var stunnedChance:Float = 35;
 	var grabDist:Float = 7;
-	var separateDist:Float = owner.width;
+	var separateDist:Float;
 	var moveAnyway:Bool = false;
 	
 	var target:Entity = EntityManager.instance.GetEntityByTag("player");
@@ -47,6 +47,8 @@ class Enemy
 		owner.offset.x = 8;	
 		owner.health = 2;
 		owner.drag.x = 350;
+		
+		separateDist = owner.width;
 	
 		owner.setFacingFlip(FlxObject.LEFT, true, false);
 		owner.setFacingFlip(FlxObject.RIGHT, false, false);
@@ -96,13 +98,9 @@ class Enemy
 				}
 				if (owner.GetDistance(target) > grabDist + 3 && owner.GetDistance(e) < separateDist)
 				{
-					if (rand.bool(85))
-					{
-						move = false;
-						//owner.animation.play("idle");
-						e.setVar("moveAnyway", true);
-						break;
-					}
+					move = false;
+					e.setVar("moveAnyway", true);
+					break;
 				}
 			}
 		}
