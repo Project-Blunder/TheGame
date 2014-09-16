@@ -84,7 +84,7 @@ class Enemy
 		var move:Bool = true;
 		if (!moveAnyway)
 		{
-			for (e in group)
+			for (e in group.members)
 			{
 				if (e == null)
 				{
