@@ -9,6 +9,8 @@ import flixel.math.FlxRandom;
 import ice.entity.EntityManager;
 import flixel.FlxObject;
 import ice.wrappers.FlxColorWrap;
+import flixel.util.FlxSpriteUtil;
+import SceneLoader;
 import Reg;
 import Math;
 
@@ -58,11 +60,22 @@ class Enemy
 	{		
 		if (Reg.showDebug)
 		{
+			debugText.visible = true;
 			debugText.x = owner.x + owner.width / 2 - debugText.width / 2;
 			debugText.y = owner.y - debugText.textField.textHeight;
 			
 			setDebug(Math.round(owner.GetDistance(target)) +"\n" +currentState);
+			FlxSpriteUtil.drawRect(SceneLoader.debug, Math.round(owner.getMidpoint().x-2), Math.round(owner.getMidpoint().y-2), 4, 4, FlxColorWrap.GREEN);
 		}
+		else
+		{
+			debugText.visible = false;
+		}
+	}
+	
+	public function destroy()
+	{
+		debugText.destroy();
 	}
 	
 	//@

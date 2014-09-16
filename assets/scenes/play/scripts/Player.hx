@@ -3,6 +3,7 @@ package ;
 import flixel.text.FlxText;
 import ice.entity.Entity;
 import ice.group.EntityGroup;
+import ice.wrappers.FlxColorWrap;
 import ice.wrappers.FlxKeyWrap;
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -10,6 +11,7 @@ import ice.entity.EntityManager;
 import Reg;
 import flixel.util.FlxSpriteUtil;
 import SceneLoader;
+import Math;
 
 class Player
 {
@@ -22,7 +24,7 @@ class Player
 	var attackDefault:Float = 0.2;
 	var attackTimer:Float = -1;
 	
-	var attackDist:Float = 17;
+	var attackDist:Float = 21;
 	
 	var attacking:Bool = false;
 	
@@ -71,6 +73,7 @@ class Player
 	{	
 		if (Reg.showDebug)
 		{
+			debugText.visible = true;
 			debugText.x = owner.x + owner.width / 2 - debugText.width / 2;
 			debugText.y = owner.y - debugText.textField.textHeight;
 			for (target in enemies.members)
@@ -87,6 +90,19 @@ class Player
 					);		
 				}
 			}
+			FlxSpriteUtil.drawRect(SceneLoader.debug, Math.round(owner.getMidpoint().x - 2), Math.round(owner.getMidpoint().y - 2), 4, 4, FlxColorWrap.GREEN);
+			if (owner.facing != FlxObject.LEFT)
+			{
+				FlxSpriteUtil.drawRect(SceneLoader.debug, Math.round(owner.getMidpoint().x + attackDist - 1), Math.round(owner.getMidpoint().y - 2), 2, 4, FlxColorWrap.PURPLE);
+			}
+			else
+			{
+				FlxSpriteUtil.drawRect(SceneLoader.debug, Math.round(owner.getMidpoint().x - attackDist - 1), Math.round(owner.getMidpoint().y - 2), 2, 4, FlxColorWrap.PURPLE);
+			}
+		}
+		else
+		{
+			debugText.visible = false;
 		}
 		
 		if (FlxG.keys.anyPressed([FlxKeyWrap.LEFT, FlxKeyWrap.A]))
@@ -253,7 +269,7 @@ class Player
 				{
 					if (target != null)
 					{						
-						if (owner.GetDistance(target) < attackDist && isFacing(target))
+						if (getXDist(target) < attackDist && isFacing(target))
 						{
 							if (owner.FSM.info.high)
 							{
@@ -329,6 +345,11 @@ class Player
 		{
 			debugText.text = t;
 		}
+	}
+	
+	function getXDist(t:FlxObject):Float
+	{
+		return Math.abs(owner.getMidpoint().x - t.getMidpoint().x);
 	}
 	//@
 }

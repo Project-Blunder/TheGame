@@ -61,6 +61,10 @@ class SceneLoader extends FlxState
 		if (FlxG.keys.justPressed.TAB)
 		{
 			Reg.showDebug = !Reg.showDebug;
+			if (!Reg.showDebug)
+			{
+				SceneLoader.debug.clear();
+			}
 		}
 		if (Reg.showDebug)
 		{
