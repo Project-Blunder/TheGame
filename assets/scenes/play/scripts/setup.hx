@@ -37,6 +37,8 @@ class setup
 		Reg.height = FlxG.camera.y / FlxG.camera.zoom + FlxG.camera.height / FlxG.camera.zoom + 5;
 		
 		FlxG.camera.follow(EntityManager.instance.GetEntityByTag("player"), null, FlxPoint.get(0, Reg.start + 100));
+		FlxG.camera.setScrollBoundsRect( -FlxG.width, 0, FlxG.width * 3, FlxG.height);
+		
 		
 		for (e in EntityManager.instance.bg)
 		{
