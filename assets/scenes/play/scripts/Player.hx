@@ -394,7 +394,12 @@ class Player
 	
 	function hit()
 	{
-		
+		owner.health--;
+		if (owner.health < 0)
+		{
+			owner.kill();
+		}
+		owner.alpha = owner.health / startingHealth;
 	}
 	
 	function setDebug(t:String)

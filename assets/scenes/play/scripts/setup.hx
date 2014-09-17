@@ -1,8 +1,11 @@
 package ;
 
 import flixel.FlxG;
+import flixel.math.FlxRandom;
+import ice.entity.Entity;
 import ice.entity.EntityManager;
 import flixel.system.scaleModes.RatioScaleMode;
+import flixel.math.FlxPoint;
 import Reg;
 import Std;
 import Math;
@@ -33,6 +36,34 @@ class setup
 		if(Reg.html)
 		Reg.height = FlxG.camera.y / FlxG.camera.zoom + FlxG.camera.height / FlxG.camera.zoom + 5;
 		
-		//FlxG.camera.follow(EntityManager.instance.GetEntityByTag("player"), null, FlxPoint.get(0,Reg.start + 100));//Just thinking about taking the player to an adventure	
-	}	
+		FlxG.camera.follow(EntityManager.instance.GetEntityByTag("player"), null, FlxPoint.get(0, Reg.start + 100));
+		
+		for (i in 0...20)
+		{
+			var r = Math.floor(new FlxRandom().float(0, 5));
+			var s = "assets/scenes/play/images/Monument.png";
+			switch(r)
+			{
+				case 0: 
+					s = "assets/scenes/play/images/Monument.png";
+				case 1: 
+					s = "assets/scenes/play/images/Bonsai.png";
+				case 2: 
+					s = "assets/scenes/play/images/Grass01.png";
+				case 3: 
+					s = "assets/scenes/play/images/Grass02.png";
+				case 4: 
+					s = "assets/scenes/play/images/rock.png";
+				case 5: 
+					s = "assets/scenes/play/images/rock1.png";
+			}
+			var p:Entity = new Entity();
+			p.loadGraphic(s);
+			p.scrollFactor.x = 0.5;
+			p.y = Reg.height - p.height;
+			p.x = i * p.width + 2;
+			p.alpha = 0.1;	
+			EntityManager.instance.AddEntity(p, 0);
+		}
+	}
 }

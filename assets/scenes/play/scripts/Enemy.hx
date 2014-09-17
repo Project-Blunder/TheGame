@@ -31,7 +31,7 @@ class Enemy
 	var speed:Float = rand.float(25 - 1, 25 + 1);
 	var reactionTime:Float = rand.float(0.05, 0.15);
 	var stunnedChance:Float = 35;
-	
+	var swatChance:Float = 25;
 	
 	var grabDist:Float = 7;
 	var separateDist:Float;
@@ -161,11 +161,27 @@ class Enemy
 	
 	function attack()
 	{
-		currentState = "attack";
 		if (owner.GetDistance(target) <= grabDist + 2)
 		{
 			if(owner.getMidpoint().y - target.getMidpoint().y < owner.height / 2)
 			{
+				if (currentState == "attack")
+				{
+					if (owner.animation.finished)
+					{
+						target.getVarAsDynamic("hit")();
+					}
+				}
+				else
+				{
+					if (rand.bool(swatChance))
+					{
+						owner.animation.play("swat");
+						target.getVarAsDynamic("hit")();
+						return;
+					}
+				}
+				
 				owner.animation.play("scary");
 				
 				if (target.getMidpoint().x < owner.getMidpoint().x)
@@ -182,6 +198,7 @@ class Enemy
 		{
 			owner.FSM.PopState();
 		}
+		currentState = "attack";
 	}
 	
 	function grab()
