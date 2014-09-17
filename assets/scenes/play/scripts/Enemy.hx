@@ -87,7 +87,8 @@ class Enemy
 		currentState = "hunt";
 		
 		var move:Bool = true;
-		if (!moveAnyway)
+		//Attempts to combat grouping
+		/*if (!moveAnyway)
 		{
 			for (e in group.members)
 			{
@@ -110,7 +111,7 @@ class Enemy
 		else
 		{
 			moveAnyway = false;
-		}
+		}*/
 		if(move)
 		{
 			if (owner.facing == FlxObject.LEFT)

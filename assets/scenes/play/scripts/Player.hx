@@ -1,16 +1,18 @@
 package ;
 
-import flixel.text.FlxText;
-import ice.entity.Entity;
+import ice.entity.EntityManager;
 import ice.group.EntityGroup;
+import ice.entity.Entity;
 import ice.wrappers.FlxColorWrap;
 import ice.wrappers.FlxKeyWrap;
+
 import flixel.FlxG;
-import flixel.FlxObject;
-import ice.entity.EntityManager;
-import Reg;
+import flixel.text.FlxText;
 import flixel.util.FlxSpriteUtil;
+import flixel.FlxObject;
+
 import SceneLoader;
+import Reg;
 import Math;
 
 class Player
@@ -19,63 +21,77 @@ class Player
 	var owner:Entity;
 	//#
 	
+	//Groups/////////////////////////////////////////////////////////////
 	var enemies:EntityGroup = EntityManager.instance.GetGroup("enemies");
-	
+	//////////////////////////////////////////////////////////////////////
+		
+	//Attacking////////////////////
+	var attackDist:Float = 21;
+	var attacking:Bool = false;
 	var attackDefault:Float = 0.2;
 	var attackTimer:Float = -1;
-	
-	var attackDist:Float = 21;
-	
-	var attacking:Bool = false;
-	
-	var speed:Float = 60;
-	var crouchPercent:Float = 0.4;
-	
+	//////////////////////////////
+		
+	//Caught///////////////////////
+	var caughtBool:Bool = false;
 	var turns:Int = 0;
 	var escapeAmount:Int = 10;
+	////////////////////////////////
 	
+	//Defaults////////////////////////
+	var speed:Float = 60;	
+	var startingHealth:Int = 10;
+	var floorHeight = Reg.height - owner.height - 1;	
 	var gravity:Float = 175;
-	
-	var caughtBool:Bool = false;
-	
-	var floorHeight = Reg.height - owner.height - 1;
-	
 	var jumpforce:Float = 300;
+	//////////////////////////////
 	
+	//Debug///////////////////////////////
 	var lineStyle = newObject();
-	
 	var debugText:FlxText = new FlxText();
+	//////////////////////////////////////
 	
 	public function init() 
 	{
+		//Debug///////////////////////////////////////
 		lineStyle.width = 1;
-		lineStyle.color = 0xFFFF0000;
-				
+		lineStyle.color = 0xFFFF0000;			
 		debugText.color = 0xFFFF0000;
 		EntityManager.instance.AddFlxBasic(debugText);
+		//////////////////////////////////////////////
 		
+		
+		//Setup////////////////////////////////////////
 		owner.x = FlxG.width / 2 - owner.width / 2;
 		owner.y = floorHeight;
-		
+
 		owner.offset.x = 16;
 		owner.width = 5;
 		
 		owner.drag.x = 150;
 		owner.drag.y = 300;
 		
+		owner.health = startingHealth;
+		
 		owner.setFacingFlip(FlxObject.RIGHT, false, false);
 		owner.setFacingFlip(FlxObject.LEFT, true, false);
+		///////////////////////////////////////////////////
 		
+		//Start-Up/////////////////////////////
 		owner.FSM.PushState(standing);
+		////////////////////////////////
 	}
 	
 	public function update()
 	{	
+		//Debug/////////////////////////////////////////////////////////////////////////////////////
 		if (Reg.showDebug)
 		{
 			debugText.visible = true;
 			debugText.x = owner.x + owner.width / 2 - debugText.width / 2;
 			debugText.y = owner.y - debugText.textField.textHeight;
+			
+			//Draw a line to all enemies
 			for (target in enemies.members)
 			{
 				if (target != null)
@@ -90,7 +106,18 @@ class Player
 					);		
 				}
 			}
-			FlxSpriteUtil.drawRect(SceneLoader.debug, Math.round(owner.getMidpoint().x - 2), Math.round(owner.getMidpoint().y - 2), 4, 4, FlxColorWrap.GREEN);
+			
+			//Draw a square in the players center
+			FlxSpriteUtil.drawRect(
+				SceneLoader.debug, 
+				Math.round(owner.getMidpoint().x - 2), 
+				Math.round(owner.getMidpoint().y - 2), 
+				4,
+				4, 
+				FlxColorWrap.GREEN
+			);
+			
+			//Draw where the attack distance maxes out
 			if (owner.facing != FlxObject.LEFT)
 			{
 				FlxSpriteUtil.drawRect(SceneLoader.debug, Math.round(owner.getMidpoint().x + attackDist - 1), Math.round(owner.getMidpoint().y - 2), 2, 4, FlxColorWrap.PURPLE);
@@ -104,7 +131,9 @@ class Player
 		{
 			debugText.visible = false;
 		}
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
+		//Flip player
 		if (FlxG.keys.anyPressed([FlxKeyWrap.LEFT, FlxKeyWrap.A]))
 		{
 			if (owner.facing != FlxObject.LEFT)
@@ -122,8 +151,10 @@ class Player
 			}
 		}		
 		
+		//Add gravity
 		owner.y += gravity * FlxG.elapsed;
 
+		//Lock to floor
 		if (owner.y > floorHeight)
 		{
 			owner.y = floorHeight;
@@ -140,17 +171,21 @@ class Player
 	{
 		setDebug("stand");
 		
+		//handle getting caught
 		if (caughtBool)
 		{
 			owner.FSM.PushState(caught);
 			return;
 		}
+		
 		owner.animation.play("tall");
+		
 		if (FlxG.keys.anyPressed([FlxKeyWrap.S, FlxKeyWrap.DOWN]))
 		{
 			owner.FSM.PushState(crouching);
 		}
 		
+		//transition to attack
 		if (FlxG.keys.justPressed.SPACE)
 		{
 			var info = newObject();
@@ -158,6 +193,7 @@ class Player
 			owner.FSM.PushState(attack, info);
 		}
 		
+		//movement
 		if (FlxG.keys.anyPressed([FlxKeyWrap.LEFT, FlxKeyWrap.A]))
 		{
 			owner.x -= speed * FlxG.elapsed;
@@ -169,6 +205,7 @@ class Player
 			owner.animation.play("walk");
 		}
 		
+		//jumping
 		if (owner.y >= floorHeight && FlxG.keys.anyJustPressed([FlxKeyWrap.UP, FlxKeyWrap.W]))
 		{
 			owner.velocity.y -= jumpforce;
@@ -180,15 +217,19 @@ class Player
 	{
 		setDebug("jump");
 		
+		//play anim
 		if (owner.velocity.y <= 0)
 		{
 			owner.animation.play("fall");
 		}
+		
+		//transtion back to standing
 		if (owner.y >= floorHeight)
 		{
 			owner.FSM.PopState();
 		}
 		
+		//movement
 		if (FlxG.keys.anyPressed([FlxKeyWrap.LEFT, FlxKeyWrap.A]))
 		{
 			owner.x -= speed * FlxG.elapsed;
@@ -208,12 +249,16 @@ class Player
 			owner.FSM.ReplaceState(caught);
 			return;
 		}
+		
 		owner.animation.play("crouch");
+		
+		//back to standing on key release
 		if (!FlxG.keys.anyPressed([FlxKeyWrap.S, FlxKeyWrap.DOWN]))
 		{
 			owner.FSM.PopState();
 		}
 		
+		//low-attack
 		if (FlxG.keys.justPressed.SPACE)
 		{
 			var info = newObject();
@@ -231,6 +276,8 @@ class Player
 			owner.FSM.ReplaceState(caught);
 			return;
 		}
+		
+		//wind-up
 		if (!attacking)
 		{
 			if (owner.FSM.info.high)
@@ -242,11 +289,13 @@ class Player
 				owner.animation.play("windup-crouch");
 			}
 			
+			//set-up timer for wind-down
 			if (attackTimer < 0)
 			{
 				attackTimer = attackDefault;
 			}
 			
+			//on release play attack anim
 			if (FlxG.keys.justReleased.SPACE)
 			{
 				if (owner.FSM.info.high)
@@ -261,9 +310,9 @@ class Player
 				attacking = true;
 			}
 		}
-		else
+		else //now we're attacking
 		{
-			if (owner.animation.finished)
+			if (owner.animation.finished) //when strike is finished:
 			{
 				for (target in enemies.members)
 				{
@@ -271,6 +320,7 @@ class Player
 					{						
 						if (getXDist(target) < attackDist && isFacing(target))
 						{
+							//Hit just one enemy
 							if (owner.FSM.info.high)
 							{
 								target.getVarAsDynamic("hit")(true);
@@ -283,6 +333,7 @@ class Player
 						}
 					}
 				}
+				//transition to wind-down
 				owner.FSM.ReplaceState(windDown);
 			}
 		}
@@ -291,6 +342,8 @@ class Player
 	function windDown()
 	{
 		setDebug("wind-down");
+		
+		//just wait for a bit until we go back to standing
 		attackTimer -= FlxG.elapsed;
 		if (attackTimer < 0)
 		{
@@ -337,6 +390,11 @@ class Player
 		owner.velocity.y = 0;
 		caught();
 		caughtBool = true;
+	}
+	
+	function hit()
+	{
+		
 	}
 	
 	function setDebug(t:String)

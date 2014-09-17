@@ -6,9 +6,9 @@ import flixel.FlxState;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.ui.FlxButton;
-import flixel.group.FlxGroup; //If we don't import this, scripts wont be able to access it
-import flixel.FlxSprite; //Same here
-import flixel.math.FlxRandom;//^
+import flixel.group.FlxGroup;
+import flixel.FlxSprite;
+import flixel.math.FlxRandom;
 import ice.entity.EntityManager;
 import ice.entity.*;
 import ice.group.EntityGroup;
