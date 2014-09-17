@@ -38,7 +38,14 @@ class setup
 		
 		FlxG.camera.follow(EntityManager.instance.GetEntityByTag("player"), null, FlxPoint.get(0, Reg.start + 100));
 		
-		for (i in 0...20)
+		for (e in EntityManager.instance.bg)
+		{
+			e.scrollFactor.x = 0.5;
+			e.alpha = 0.1;	
+		}
+		
+		//Random Spattering Test
+		/*for (i in 0...20)
 		{
 			var r = Math.floor(new FlxRandom().float(0, 5));
 			var s = "assets/scenes/play/images/Monument.png";
@@ -64,6 +71,6 @@ class setup
 			p.x = i * p.width + 2;
 			p.alpha = 0.1;	
 			EntityManager.instance.AddEntity(p, 0);
-		}
+		}*/
 	}
 }

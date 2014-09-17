@@ -18,7 +18,7 @@ class EnemyManager
 	
 	public function init() 
 	{
-		EntityManager.instance.AddGroup(enemies, "enemies", 1);
+		EntityManager.instance.AddGroup(enemies, "enemies", 0);
 		addEnemy();
 		setTimer();
 	}

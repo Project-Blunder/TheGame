@@ -147,4 +147,21 @@
 		<art path="" width="1" height="1"/>
 		<script path="assets/data/scripts/Retry.hx"/>
 	</entity-->
+	
+	<!---- BACKGROUND------------------------------------------->
+	<entity tag="monument-thing" x="70%" y="61%" depth="bg">
+		<art width="23" height="47" path="assets/scenes/play/images/Monument.png"/>
+		
+		<script>
+			<text>
+				import flixel.FlxG;
+				import Reg;
+				
+				function init
+				{
+					owner.y = Reg.height - owner.height;
+				}
+			</text>
+		</script>
+	</entity>
 </data>
