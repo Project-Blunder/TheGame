@@ -91,6 +91,22 @@
 		</script>
 	</entity>
 	
+	<entity tag="grave" x="-96%" y="61%">
+		<art width="23" height="47" path="assets/scenes/play/images/grave.png"/>
+		
+		<script>
+			<text>
+				import flixel.FlxG;
+				import Reg;
+				
+				function init
+				{
+					owner.y = Reg.height - owner.height;
+				}
+			</text>
+		</script>
+	</entity>
+	
 	<entity tag="bonsai-thing" x="-6">
 		<art width="31" height="31" path="assets/scenes/play/images/Bonsai.png"/>
 		
@@ -107,6 +123,30 @@
 		</script>
 	</entity>
 	
+	<entity tag="bonsai-thing" x="175%">
+		<art width="31" height="31" path="assets/scenes/play/images/Bonsai1.png"/>
+		
+		<script>
+			<text>
+				import flixel.FlxG;
+				import Reg;
+				
+				function init
+				{
+					owner.y = Reg.height - owner.height;
+				}
+			</text>
+		</script>
+	</entity>
+	
+	<instance template="grass03" x="-11%" />
+	<instance template="grass02" x="-31%" />
+	<instance template="grass05" x="-53%" />
+	<instance template="grass02" x="-59%" />
+	<instance template="grass01" x="-75%" />
+	<instance template="grass05" x="-87%" />
+	<instance template="grass03" x="-93%" />	
+	
 	<instance template="grass04" />
 	<instance template="grass05" x="7%" />
 	<instance template="grass02" x="23%" />
@@ -115,6 +155,14 @@
 	<instance template="grass03" x="75%" />
 	<instance template="grass02" x="87%" />
 	<instance template="grass01" x="95%" />	
+	
+	<instance template="grass02" x="107%" />
+	<instance template="grass01" x="131%" />
+	<instance template="grass03" x="147%" />
+	<instance template="grass01" x="157%" />
+	<instance template="grass04" x="171%" />
+	<instance template="grass01" x="183%" />
+	<instance template="grass02" x="190%" />	
 		
 	<entity tag="ground">
 		<script>
@@ -124,7 +172,8 @@
 				
 				function init
 				{
-					owner.makeGraphic(FlxG.width, 2, 0xFF000000);
+					owner.makeGraphic(FlxG.width * 3, 2, 0xFF000000);
+					owner.x = -FlxG.width;
 					owner.y = Reg.height - 1;
 				}
 			</text>
@@ -148,9 +197,9 @@
 		<script path="assets/data/scripts/Retry.hx"/>
 	</entity-->
 	
-	<!---- BACKGROUND------------------------------------------->
-	<entity tag="monument-thing" x="70%" y="61%" depth="bg">
-		<art width="23" height="47" path="assets/scenes/play/images/Monument.png"/>
+	<!----BACKGROUND------------------------------------------->
+	<!--<entity tag="rock" template="rock-bg" x="70%" y="61%" depth="bg">
+		<art width="35" height="17" path="assets/scenes/play/images/rock.png"/>
 		
 		<script>
 			<text>
@@ -163,5 +212,7 @@
 				}
 			</text>
 		</script>
-	</entity>
+	</entity>-->
+	
+	<!--<instance template="rock-bg"/>-->
 </data>

@@ -48,11 +48,11 @@ class EnemyManager
 		
 		if (rand.sign() > 0)
 		{
-			enemy.x = FlxG.width + enemy.width;
+			enemy.x = FlxG.camera.scroll.x + FlxG.width + enemy.width;
 		}
 		else
 		{
-			enemy.x = -enemy.width;
+			enemy.x = FlxG.camera.scroll.x -enemy.width;
 		}
 	}
 	//@
