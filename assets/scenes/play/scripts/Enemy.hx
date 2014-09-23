@@ -11,6 +11,7 @@ import flixel.FlxObject;
 import ice.group.EntityGroup;
 import ice.wrappers.FlxColorWrap;
 import flixel.util.FlxSpriteUtil;
+import openfl.Assets;
 import SceneLoader;
 import Reg;
 import Math;
@@ -199,12 +200,14 @@ class Enemy
 			owner.FSM.PopState();
 		}
 		currentState = "attack";
+		FlxG.sound.play("assets/sounds/Eating.wav");
 	}
 	
 	function grab()
 	{
 		currentState = "grab";
 		owner.animation.play("grab");
+		
 		
 		target.getVarAsDynamic("getCaught")();
 		
@@ -220,6 +223,7 @@ class Enemy
 	{
 		currentState = "hold";
 		owner.animation.play("hold");
+		
 		if (timer < 1)
 		{
 			timer += FlxG.elapsed;
@@ -251,6 +255,9 @@ class Enemy
 	function hit(high:Bool)
 	{
 		currentState = "hit";
+		
+		FlxG.sound.play("assets/sounds/Thump.wav");
+		
 		
 		timer = 0;
 		owner.health--;

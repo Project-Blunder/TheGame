@@ -264,6 +264,8 @@ class Player
 			var info = newObject();
 			info.high = false;
 			owner.FSM.PushState(attack, info);
+			if (Reg.flash) FlxG.sound.play("assets/sounds/Whoosh.mp3");
+			if (!Reg.flash) FlxG.sound.play("assets/sounds/Whoosh.ogg");
 		}
 	}	
 		
@@ -301,10 +303,14 @@ class Player
 				if (owner.FSM.info.high)
 				{
 					owner.animation.play("attack-tall");
+					if (Reg.flash) FlxG.sound.play("assets/sounds/Whoosh.mp3");
+					if (!Reg.flash) FlxG.sound.play("assets/sounds/Whoosh.ogg");
 				}
 				else
 				{
 					owner.animation.play("attack-crouch");
+					if (Reg.flash) FlxG.sound.play("assets/sounds/Whoosh.mp3");
+					if (!Reg.flash) FlxG.sound.play("assets/sounds/Whoosh.ogg");
 				}
 				FlxG.camera.shake(0.01, 0.2);
 				attacking = true;

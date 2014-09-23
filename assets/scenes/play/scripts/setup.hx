@@ -19,8 +19,19 @@ class setup
 		
 		//Music theme (very partial first draft!) - the idea is that the tempo can get faster and faster
 		//with the level of intensity
-		if(Reg.flash)
-		FlxG.sound.playMusic("assets/music/graveytheme.wav", 1, true); //wav doesn't work properly on native (yet)
+		if (Reg.flash)
+		{
+		var music = FlxG.sound.load("assets/music/3bztheme.mp3",1,true,false,true);	
+		}
+		
+		if (!Reg.flash)
+		{
+		var music = FlxG.sound.load("assets/music/3bztheme.ogg", 1, true, false, true);	
+		}
+		//FlxG.sound.playMusic("assets/music/graveytheme.wav", 1, true); //wav doesn't work properly on native (yet)
+		
+		
+		
 		
 		if(!Reg.html)
 		FlxG.scaleMode = new RatioScaleMode(true);

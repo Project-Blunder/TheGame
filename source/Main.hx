@@ -8,6 +8,7 @@ import flash.Lib;
 import flixel.FlxG;
 import flixel.FlxGame;
 import flixel.FlxState;
+import openfl.Assets;
 
 class Main extends Sprite 
 {
@@ -55,7 +56,9 @@ class Main extends Sprite
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
+		//loadSFX();
 		setupGame();
+		
 		
 		//Lib.current.stage.addEventListener(Event.RESIZE, resize);
 	}
@@ -81,4 +84,12 @@ class Main extends Sprite
 
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen));
 	}
+
+	
+	private function loadSFX():Void
+	{
+		Assets.getSound("assets/sounds/Thump.wav", false);
+		Assets.getSound("assets/sounds/Swoosh.wav", false);
+	}
+	
 }
