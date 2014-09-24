@@ -2,15 +2,15 @@
 <project version="2">
   <!-- Output SWF options -->
   <output>
-    <movie outputType="CustomBuild" />
+    <movie outputType="Application" />
     <movie input="" />
     <movie path="Project.xml" />
     <movie fps="60" />
     <movie width="640" />
     <movie height="480" />
-    <movie version="1" />
+    <movie version="3" />
     <movie minorVersion="0" />
-    <movie platform="Lime" />
+    <movie platform="NME" />
     <movie background="000000" />
   </output>
   <!-- Other classes to be compiled into your SWF -->
@@ -49,7 +49,7 @@
     <hidden path="export" />
   </hiddenPaths>
   <!-- Executed before build -->
-  <preBuildCommand>"$(CompilerPath)/haxelib" run lime build "$(OutputFile)" $(TargetBuild) -$(BuildConfig) -Dfdb</preBuildCommand>
+  <preBuildCommand> </preBuildCommand>
   <!-- Executed after build -->
   <postBuildCommand alwaysRun="False" />
   <!-- Other project options -->
