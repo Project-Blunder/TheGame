@@ -73,8 +73,8 @@ class Player
 		
 		owner.health = startingHealth;
 		
-		owner.setFacingFlip(FlxObject.RIGHT, false, false);
-		owner.setFacingFlip(FlxObject.LEFT, true, false);
+		owner.setFacingFlipScript(FlxObject.RIGHT, false, false);
+		owner.setFacingFlipScript(FlxObject.LEFT, true, false);
 		///////////////////////////////////////////////////
 		
 		//Start-Up/////////////////////////////

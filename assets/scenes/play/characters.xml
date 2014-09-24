@@ -11,7 +11,7 @@
 			<animation name="scary" frames="13-16" framerate="6" looped="false" autorun="false" />
 			<animation name="swat" frames="13-16" framerate="15" looped="false" autorun="false" />
 		</art>
-		<script path="assets/scenes/play/scripts/Enemy.hx"/>
+		<script path="assets/scenes/play/scripts/EnemyBasic.hx"/>
 	</entity>
 	
 	<entity tag="player">
