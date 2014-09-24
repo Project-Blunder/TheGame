@@ -51,7 +51,7 @@ class setup
 		FlxG.camera.setScrollBoundsRect( -FlxG.width, 0, FlxG.width * 3, FlxG.height);
 		
 		
-		for (e in EntityManager.instance.bg.members)
+		for (e in EntityManager.instance.bg.members )
 		{
 			e.scrollFactor.x = 0.5;
 			e.alpha = 0.1;	
