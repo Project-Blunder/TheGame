@@ -34,7 +34,7 @@ class EnemyManager
 	public function update()
 	{
 		var over:Bool = true;
-		for (e in enemies)
+		for (e in enemies.members)
 		{
 			if (e != null)
 			{

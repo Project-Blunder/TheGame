@@ -16,7 +16,7 @@ import SceneLoader;
 import Reg;
 import Math;
 
-class EnemyBasic
+class EnemyCanine
 {
 	//#
 	var owner:Entity;
