@@ -200,7 +200,7 @@ class Enemy
 			owner.FSM.PopState();
 		}
 		currentState = "attack";
-		FlxG.sound.play("assets/sounds/Eating.wav");
+		//FlxG.sound.play("assets/sounds/Eating.wav");
 	}
 	
 	function grab()
