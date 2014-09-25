@@ -38,6 +38,8 @@ class EnemyBasic
 	var separateDist:Float;
 	var moveAnyway:Bool = false;
 	
+	var doneDead:Bool = false;
+	
 	var target:Entity = EntityManager.instance.GetEntityByTag("player");
 	var group:EntityGroup = EntityManager.instance.GetGroup("enemies");
 	
@@ -292,7 +294,7 @@ class EnemyBasic
 			owner.animation.play("die");
 			owner.alive = false;
 		}
-		if (owner.animation.finished)
+		if (!doneDead && owner.animation.finished)
 		{
 			switch(Math.floor(rand.float(0, 3, [3])))
 			{
@@ -301,6 +303,7 @@ class EnemyBasic
 				case 2:
 					owner.animation.play("dead-2");
 			}
+			doneDead = true;
 		}
 	}
 	
