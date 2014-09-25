@@ -94,7 +94,7 @@ class Player
 			//Draw a line to all enemies
 			for (target in enemies.members)
 			{
-				if (target != null && target.alive)
+				if (target != null)
 				{
 					FlxSpriteUtil.drawLine(
 						SceneLoader.debug, 
@@ -322,7 +322,7 @@ class Player
 			{
 				for (target in enemies.members)
 				{
-					if (target != null)
+					if (target != null && target.alive)
 					{						
 						if (getXDist(target) < attackDist && isFacing(target))
 						{

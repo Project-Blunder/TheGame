@@ -13,6 +13,8 @@ class EnemyManager
 	
 	var timer:Float = 0;
 	var wave:Int = 0;
+	var waveDelay:Float = 5;
+	var enemyOffScreenSpeed:Float = 50;
 	var spawned:Int = 0;
 	var spawnCount:Int = 0;
 	var spawnDefault:Float = 6;
@@ -44,7 +46,8 @@ class EnemyManager
 		}
 		if (over && spawned >= spawnCount)
 		{
-			setUpWave();
+			endWave();
+			return;
 		}
 		
 		timer -= FlxG.elapsed;
@@ -58,8 +61,31 @@ class EnemyManager
 	}
 	
 	//@
+	function endWave()
+	{
+		timer += FlxG.elapsed;
+		
+		if (timer > waveDelay)
+		{
+			setUpWave();
+		}
+		
+		for (e in enemies.members)
+		{
+			if (e != null)
+			{
+				e.y += enemyOffScreenSpeed * FlxG.elapsed;
+			}
+		}
+	}
+	
 	function setUpWave()
 	{
+		for (e in enemies.members)
+		{
+			e.destroy();
+		}
+		enemies.clear();
 		spawned = 0;
 		addEnemy();
 		setTimer();
