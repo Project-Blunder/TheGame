@@ -17,7 +17,7 @@ class EnemyManager
 	var enemyOffScreenSpeed:Float = 50;
 	var spawned:Int = 0;
 	var spawnCount:Int = 0;
-	var spawnDefault:Float = 6;
+	var spawnDefault:Float = 4;
 	var spawnRange:Float = 1;
 	
 	var spawnTimeDefault:Float = 6;
@@ -91,7 +91,7 @@ class EnemyManager
 		setTimer();
 		trace(++wave);
 		spawnCount += Math.floor(rand.float(spawnDefault - spawnRange, spawnDefault + spawnRange));
-		spawnTimeDefault -= rand.float(0, spawnTimeRange);
+		spawnTimeDefault -= rand.float(spawnTimeRange/2, spawnTimeRange);
 	}
 	
 	function setTimer()
