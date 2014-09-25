@@ -86,75 +86,46 @@ class EnemyBasic
 	function hunt()
 	{
 		currentState = "hunt";
-		
-		var move:Bool = true;
-		//Attempts to combat grouping
-		/*if (!moveAnyway)
+
+		if (owner.facing == FlxObject.LEFT)
 		{
-			for (e in group.members)
+			if (getXDist(target) > grabDist)
 			{
-				if (e == null)
-				{
-					continue;
-				}
-				if (e.GID == owner.GID)
-				{
-					continue;
-				}
-				if (owner.GetDistance(target) > grabDist + 3 && owner.GetDistance(e) < separateDist)
-				{
-					move = false;
-					e.setVar("moveAnyway", true);
-					break;
-				}
+				owner.x -= speed * FlxG.elapsed;
+				owner.animation.play("walk");
+			}
+			else
+			{
+				owner.FSM.PushState(attack);
+				attack();
 			}
 		}
 		else
 		{
-			moveAnyway = false;
-		}*/
-		if(move)
-		{
-			if (owner.facing == FlxObject.LEFT)
+			if (getXDist(target) > grabDist)
 			{
-				if (getXDist(target) > grabDist)
-				{
-					owner.x -= speed * FlxG.elapsed;
-					owner.animation.play("walk");
-				}
-				else
-				{
-					owner.FSM.PushState(attack);
-					attack();
-				}
+				owner.x += speed * FlxG.elapsed;
+				owner.animation.play("walk");
 			}
 			else
 			{
-				if (getXDist(target) > grabDist)
+				owner.FSM.PushState(attack);
+				attack();
+			}
+		}
+		if (!isFacing(target))
+		{
+			timer += FlxG.elapsed;
+			if (timer > reactionTime)
+			{
+				timer = 0;
+				if (owner.facing == FlxObject.LEFT)
 				{
-					owner.x += speed * FlxG.elapsed;
-					owner.animation.play("walk");
+					owner.facing = FlxObject.RIGHT;
 				}
 				else
 				{
-					owner.FSM.PushState(attack);
-					attack();
-				}
-			}
-			if (!isFacing(target))
-			{
-				timer += FlxG.elapsed;
-				if (timer > reactionTime)
-				{
-					timer = 0;
-					if (owner.facing == FlxObject.LEFT)
-					{
-						owner.facing = FlxObject.RIGHT;
-					}
-					else
-					{
-						owner.facing = FlxObject.LEFT;
-					}
+					owner.facing = FlxObject.LEFT;
 				}
 			}
 		}
@@ -316,13 +287,21 @@ class EnemyBasic
 	
 	function die()
 	{
-		//owner.destroy();
-		//EntityManager.instance.GetGroup("enemies").remove(owner);
 		if (owner.alive)
 		{
-		owner.animation.play("die");
+			owner.animation.play("die");
+			owner.alive = false;
 		}
-		owner.alive = false;
+		if (owner.animation.finished)
+		{
+			switch(Math.floor(rand.float(0, 3, [3])))
+			{
+				case 1:
+					owner.animation.play("dead-1");
+				case 2:
+					owner.animation.play("dead-2");
+			}
+		}
 	}
 	
 	function setDebug(t:String)
