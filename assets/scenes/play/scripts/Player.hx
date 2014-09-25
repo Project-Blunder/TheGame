@@ -94,7 +94,7 @@ class Player
 			//Draw a line to all enemies
 			for (target in enemies.members)
 			{
-				if (target != null)
+				if (target != null && target.alive)
 				{
 					FlxSpriteUtil.drawLine(
 						SceneLoader.debug, 

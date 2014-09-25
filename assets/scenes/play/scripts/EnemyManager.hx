@@ -36,7 +36,7 @@ class EnemyManager
 		var over:Bool = true;
 		for (e in enemies.members)
 		{
-			if (e != null)
+			if (e != null && e.alive)
 			{
 				over = false;
 				break;
