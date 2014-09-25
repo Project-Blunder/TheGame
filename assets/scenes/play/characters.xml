@@ -10,6 +10,7 @@
 			<animation name="hit" frames="11,12" framerate="3" looped="true" autorun="false" />
 			<animation name="scary" frames="13-16" framerate="6" looped="false" autorun="false" />
 			<animation name="swat" frames="13-16" framerate="15" looped="false" autorun="false" />
+			<animation name="die" frames="17-29" framerate="20" looped="false" autorun="false" />
 		</art>
 		<script path="assets/scenes/play/scripts/EnemyBasic.hx"/>
 	</entity>

@@ -263,8 +263,7 @@ class EnemyBasic
 		owner.health--;
 		if (owner.health == 0)
 		{
-			owner.destroy();
-			EntityManager.instance.GetGroup("enemies").remove(owner);
+			owner.FSM.PushState(die);
 			return;
 		}
 		
@@ -313,6 +312,17 @@ class EnemyBasic
 				}
 			}
 		}
+	}
+	
+	function die()
+	{
+		//owner.destroy();
+		//EntityManager.instance.GetGroup("enemies").remove(owner);
+		if (owner.alive)
+		{
+		owner.animation.play("die");
+		}
+		owner.alive = false;
 	}
 	
 	function setDebug(t:String)
