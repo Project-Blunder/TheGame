@@ -291,6 +291,7 @@ class EnemyBasic
 	{
 		if (owner.alive)
 		{
+			Reg.zombiesKilled++;
 			owner.animation.play("die");
 			owner.alive = false;
 		}

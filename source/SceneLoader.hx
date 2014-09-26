@@ -1,5 +1,6 @@
 package;
 
+import flixel.addons.api.FlxKongregate;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -34,6 +35,8 @@ class SceneLoader extends FlxState
 		//much nicer
 		FlxG.autoPause = false;
 		
+		FlxKongregate.init(onLoad);
+		
 		//Adds the global entity manager to your play
 		add(EntityManager.instance);
 		
@@ -42,6 +45,11 @@ class SceneLoader extends FlxState
 		
 		//Builds a scene from an XML entity declaration
 		EntityManager.instance.BuildFromXML("assets/scenes/menu/setup.xml");
+	}
+	
+	function onLoad()
+	{
+		Reg.kongConnected = true;
 	}
 	
 	/**

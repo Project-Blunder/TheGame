@@ -1,5 +1,6 @@
 package;
 
+import flixel.addons.api.FlxKongregate;
 import flixel.util.FlxSave;
 
 /**
@@ -42,4 +43,8 @@ class Reg
 	public static var html:Bool = false;
 	
 	public static var showDebug:Bool = false;
+	
+	public static var kongConnected:Bool = false;
+	
+	public static var zombiesKilled:Int = 0;
 }

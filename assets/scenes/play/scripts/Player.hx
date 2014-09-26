@@ -1,5 +1,6 @@
 package ;
 
+import flixel.addons.api.FlxKongregate;
 import ice.entity.EntityManager;
 import ice.group.EntityGroup;
 import ice.entity.Entity;

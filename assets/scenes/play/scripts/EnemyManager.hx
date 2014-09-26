@@ -1,15 +1,18 @@
 package ;
 
+import flixel.addons.api.FlxKongregate;
 import flixel.FlxG;
 import ice.group.EntityGroup;
 import ice.entity.EntityManager;
 import ice.entity.Entity;
 import flixel.math.FlxRandom;
 import Math;
+import Reg;
 
 class EnemyManager
 {
 	var enemies:EntityGroup = new EntityGroup();
+	var player = EntityManager.instance.GetEntityByTag("player");
 	
 	var leftTimer:Float = 0;
 	var rightTimer:Float = 0;
@@ -26,6 +29,8 @@ class EnemyManager
 	var spawnTimeRange:Float = 0.5;
 	
 	var rand = new FlxRandom();
+	
+	var end:Bool = false;
 	
 	public function init() 
 	{
@@ -67,6 +72,18 @@ class EnemyManager
 			{
 				addEnemy(1);
 				setRightTimer();
+			}
+		}
+		
+		if (!end)
+		{
+			if (!player.alive)
+			{
+				end = true;
+				//FlxKongregate.submitStats("Highest Wave", wave);
+				//FlxKongregate.submitStats("Most Zombies Killed", Reg.zombiesKilled);
+				//FlxKongregate.submitStats("Total Zombies Killed", Reg.zombiesKilled);
+				trace("score submitted");
 			}
 		}
 	}
