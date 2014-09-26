@@ -11,9 +11,11 @@ class EnemyManager
 {
 	var enemies:EntityGroup = new EntityGroup();
 	
-	var timer:Float = 0;
+	var leftTimer:Float = 0;
+	var rightTimer:Float = 0;
+	
 	var wave:Int = 0;
-	var waveDelay:Float = 5;
+	var waveDelay:Float = 2.5;
 	var enemyOffScreenSpeed:Float = 50;
 	var spawned:Int = 0;
 	var spawnCount:Int = 0;
@@ -30,7 +32,8 @@ class EnemyManager
 		EntityManager.instance.AddGroup(enemies, "enemies", 0);
 		setUpWave();
 		
-		setTimer();
+		setLeftTimer();
+		setRightTimer();
 	}
 	
 	public function update()
@@ -50,22 +53,30 @@ class EnemyManager
 			return;
 		}
 		
-		timer -= FlxG.elapsed;
+		leftTimer -= FlxG.elapsed;
+		rightTimer -= FlxG.elapsed;
 		
-		if (spawned < spawnCount && timer < 0)
+		if (spawned < spawnCount)
 		{
-			addEnemy();
-			
-			setTimer();
+			if (leftTimer < 0)
+			{
+				addEnemy(0);
+				setLeftTimer();
+			}
+			if (rightTimer < 0)
+			{
+				addEnemy(1);
+				setRightTimer();
+			}
 		}
 	}
 	
 	//@
 	function endWave()
 	{
-		timer += FlxG.elapsed;
+		leftTimer += FlxG.elapsed;
 		
-		if (timer > waveDelay)
+		if (leftTimer > waveDelay)
 		{
 			setUpWave();
 		}
@@ -87,24 +98,30 @@ class EnemyManager
 		}
 		enemies.clear();
 		spawned = 0;
-		addEnemy();
-		setTimer();
+		addEnemy(0);
+		setLeftTimer();
+		setRightTimer();
 		trace(++wave);
 		spawnCount += Math.floor(rand.float(spawnDefault - spawnRange, spawnDefault + spawnRange));
 		spawnTimeDefault -= rand.float(spawnTimeRange/2, spawnTimeRange);
 	}
 	
-	function setTimer()
+	function setLeftTimer()
 	{
-		timer = rand.float(spawnTimeDefault - spawnTimeRange, spawnTimeDefault + spawnTimeRange);
+		leftTimer = rand.float(spawnTimeDefault - spawnTimeRange, spawnTimeDefault + spawnTimeRange);
 	}
 	
-	function addEnemy()
+	function setRightTimer()
+	{
+		rightTimer = rand.float(spawnTimeDefault - spawnTimeRange, spawnTimeDefault + spawnTimeRange);
+	}
+	
+	function addEnemy(direction:Int)
 	{
 		var enemy = EntityManager.instance.instantiate("enemy");
 		enemies.add(enemy);
 		
-		if (rand.sign() > 0)
+		if (direction == 1)
 		{
 			enemy.x = FlxG.camera.scroll.x + FlxG.width + enemy.width;
 		}
