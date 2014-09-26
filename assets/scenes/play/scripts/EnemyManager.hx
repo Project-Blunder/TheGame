@@ -101,7 +101,7 @@ class EnemyManager
 		addEnemy(0);
 		setLeftTimer();
 		setRightTimer();
-		trace(++wave);
+		++wave;
 		spawnCount += Math.floor(rand.float(spawnDefault - spawnRange, spawnDefault + spawnRange));
 		spawnTimeDefault -= rand.float(spawnTimeRange/2, spawnTimeRange);
 	}

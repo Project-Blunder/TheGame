@@ -1,12 +1,12 @@
 package ; 
 
 import flixel.system.FlxBasePreloader;
-import flash.display.Bitmap;
-import flash.display.BitmapData;
-import flash.events.Event;
-import flash.display.Stage;
-import flash.Lib;
-import flash.display.Sprite;
+import openfl.display.Bitmap;
+import openfl.display.BitmapData;
+import openfl.events.Event;
+import openfl.display.Stage;
+import openfl.Lib;
+import openfl.display.Sprite;
 import openfl.text.Font;
 import openfl.text.TextField;
 import openfl.text.TextFormat;
@@ -17,7 +17,7 @@ import GraveyPreloader.Pfont;
 
 //import GraveyPreloader.L;
 
-@:bitmap("assets/scenes/preloader/background.png") class BG extends flash.display.BitmapData { }
+@:bitmap("assets/scenes/preloader/zombiesplit.png") class BG extends flash.display.BitmapData { }
 //@:bitmap("assets/images/logo.png") class L extends flash.dis play.BitmapData { }
 
 @:font("assets/fonts/PixAntiqua.ttf") class Pfont extends Font {}
@@ -30,10 +30,12 @@ class GraveyPreloader extends NMEPreloader {}
 class GraveyPreloader extends FlxBasePreloader
 {
 	
-	var percentage: TextField;
+	var percentage: Bitmap;
 	var format: TextFormat;
-	var background: Bitmap;
+	var zombie: Bitmap;
 	var color: Dynamic;
+	
+	var percentStart:Float = 0;
 	
 	public function new () 
 	{
@@ -42,60 +44,36 @@ class GraveyPreloader extends FlxBasePreloader
 
 	override private function create():Void	
 	{	
-
-	//add a background image if you need one
-	background = new Bitmap(new BG(0,0));
-	background.smoothing = true;
-	addChild(background);
-	
-	//add a loading bar, NMEPreloader style
-	var color = 0x000000;
-
-	outline = new Sprite ();
-	outline.graphics.lineStyle (5, color, 1, true);
-	outline.graphics.drawRect (0, 0, 522, 30);
-	outline.x = 56;
-	outline.y = 350;
-	addChild (outline);
-
-	progress = new Sprite ();
-	progress.graphics.beginFill (color, 1);
-	progress.graphics.drawRect (0, 0, 522-2, 30-2);
-	progress.width = stage.width;
-	progress.height = 30;
-	progress.x = 56;
-	progress.y = 350;
-	progress.scaleX = 0;
-	addChild (progress);
-
-	//And some perecntages textfield
-	Font.registerFont (Pfont);
-
-	format = new TextFormat ("PixAntiqua", outline.height - 10, 0xC0C0C0);
-	
-	percentage = new TextField ();
-
-	percentage.defaultTextFormat = format;
-	percentage.embedFonts = true;
-	percentage.selectable = false;
-	percentage.x = outline.x + Math.floor(outline.width/2 - 10);
-	percentage.y = outline.y + outline.height - 35;
-	addChild (percentage);
-
-	
-	//add a logo
-	
+		var bgd:BitmapData = new BitmapData(640, 480, false, 0xFFFFFFFF);
+		var bg:Bitmap = new Bitmap(bgd);
+		
+		zombie = new Bitmap(new BG(0, 0));
+		zombie.scaleX = 640 / 160;
+		zombie.scaleY = 480 / 120;
+		zombie.x = Math.floor(320 - zombie.width / 2);
+		zombie.y = Math.floor(240 - zombie.height / 2);
+		
+		var overlay:BitmapData = new BitmapData(9, 26, false, 0xFFFFFFFF);
+		percentage = new Bitmap(overlay);
+		percentage.scaleX = 640 / 160;
+		percentage.scaleY = 480 / 120;
+		percentage.x = zombie.x;
+		percentage.y = zombie.y;
+		percentStart = percentage.y;
+		
+		addChild(bg);
+		addChild(zombie);
+		addChild(percentage);
 	}
 	
 	override public function update(Percent:Float):Void
 	{
-	progress.scaleX = Percent;
-	percentage.text = Std.string(Std.int(Percent*100));
+		percentage.y = percentStart - Math.ceil((Percent * percentage.height) / 4) * 4;
 	}
 	
 	override public function destroy():Void
 	{
-	removeEventListener(Event.ENTER_FRAME, onEnterFrame);
+		removeEventListener(Event.ENTER_FRAME, onEnterFrame);
 
 		// How to destroy? like this:
 		// something = null;
@@ -104,10 +82,9 @@ class GraveyPreloader extends FlxBasePreloader
 		format = null;
 		outline = null;
 		progress = null;
-		background = null;
+		zombie = null;
 		outline = null;
 		color = null;
 	}
-	
 }
 #end
