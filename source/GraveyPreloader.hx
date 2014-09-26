@@ -39,7 +39,7 @@ class GraveyPreloader extends FlxBasePreloader
 	
 	public function new () 
 	{
-		super(2);
+		super(2, ["kongregate.com", FlxBasePreloader.LOCAL]);
 	}
 
 	override private function create():Void	
