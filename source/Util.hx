@@ -1,5 +1,7 @@
 package ;
 
+using StringTools;
+
 /**
  * ...
  * @author 
@@ -26,6 +28,6 @@ class Util
 			urlEnd = url.length;
 		}
 		var home:String = url.substring(urlStart, urlEnd);
-		return (home == "") ? "local" : home;
+		return (home == "") ? "local" : home.trim();
 	}
 }

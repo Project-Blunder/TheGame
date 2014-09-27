@@ -228,7 +228,7 @@ class IceBasePreloader extends NMEPreloader
 		var homeDomain:String = Util.getDomain(loaderInfo.loaderURL);
 		for (allowedURL in allowedURLs)
 		{
-			if (FlxStringUtil.getDomain(allowedURL) == homeDomain)
+			if (Util.getDomain(allowedURL) == homeDomain)
 			{
 				return true;
 			}
