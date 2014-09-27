@@ -31,8 +31,7 @@ class EnemyCanine
 	
 	var speed:Float = 80;//rand.float(25 - 1, 25 + 1);
 	var reactionTime:Float = rand.float(0.05, 0.15);
-	var stunnedChance:Float = 35;
-	var swatChance:Float = 25;
+	var attackDist:Int = 60;
 	
 	var target:Entity = EntityManager.instance.GetEntityByTag("player");
 	var group:EntityGroup = EntityManager.instance.GetGroup("enemies");
@@ -41,6 +40,8 @@ class EnemyCanine
 	var gravity:Float = 100;
 	
 	var floorHeight:Int;
+	var groundTimer:Float = 0;
+	var jumpDelay:Float = 0.35;
 	
 	public function init()
 	{	
@@ -85,6 +86,10 @@ class EnemyCanine
 			owner.y = floorHeight;
 			owner.velocity.y = 0;
 		}
+		if (owner.y == floorHeight)
+		{
+			groundTimer += FlxG.elapsed;
+		}
 	}
 	
 	public function destroy()
@@ -112,10 +117,6 @@ class EnemyCanine
 			timer += FlxG.elapsed;
 			if (timer > reactionTime)
 			{
-				if (owner.y == floorHeight)
-				{
-					owner.FSM.PushState(jump);
-				}
 				timer = 0;
 				if (owner.facing == FlxObject.LEFT)
 				{
@@ -127,10 +128,17 @@ class EnemyCanine
 				}
 			}
 		}
+		
+		if (groundTimer > jumpDelay && isFacing(target) && getXDist(target) < attackDist)
+		{
+			owner.FSM.PushState(jump);
+		}
 	}
 	
 	function jump()
 	{
+		groundTimer = 0;
+		
 		owner.velocity.y -= jumpForce;
 
 		owner.animation.play("jump");
