@@ -21,8 +21,8 @@ class EnemyManager
 	var waveDelay:Float = 2.5;
 	var enemyOffScreenSpeed:Float = 50;
 	var spawned:Int = 0;
-	var spawnCount:Int = 0;
-	var spawnDefault:Float = 4;
+	var spawnCount:Int = 3;
+	var spawnDefault:Float = 2;
 	var spawnRange:Float = 1;
 	
 	var spawnTimeDefault:Float = 6;
@@ -36,9 +36,6 @@ class EnemyManager
 	{
 		EntityManager.instance.AddGroup(enemies, "enemies", 0);
 		setUpWave();
-		
-		setLeftTimer();
-		setRightTimer();
 	}
 	
 	public function update()
@@ -115,22 +112,28 @@ class EnemyManager
 		}
 		enemies.clear();
 		spawned = 0;
-		addEnemy(0);
-		setLeftTimer();
-		setRightTimer();
+		
 		++wave;
-		spawnCount += Math.floor(rand.float(spawnDefault - spawnRange, spawnDefault + spawnRange));
-		spawnTimeDefault -= rand.float(spawnTimeRange/2, spawnTimeRange);
+		trace(wave);
+
+		leftTimer = rand.float(0,3);
+		rightTimer = rand.float(0,3);
+			
+		if (wave != 1)
+		{
+			spawnCount += Math.floor(rand.float(spawnDefault - spawnRange, spawnDefault + spawnRange + 1));
+			spawnTimeDefault -= rand.float(spawnTimeRange / 2, spawnTimeRange);
+		}
 	}
 	
 	function setLeftTimer()
 	{
-		leftTimer = rand.float(spawnTimeDefault - spawnTimeRange, spawnTimeDefault + spawnTimeRange);
+		leftTimer = rand.float(spawnTimeDefault - spawnTimeRange, spawnTimeDefault + spawnTimeRange + 1);
 	}
 	
 	function setRightTimer()
 	{
-		rightTimer = rand.float(spawnTimeDefault - spawnTimeRange, spawnTimeDefault + spawnTimeRange);
+		rightTimer = rand.float(spawnTimeDefault - spawnTimeRange, spawnTimeDefault + spawnTimeRange + 1);
 	}
 	
 	function addEnemy(direction:Int)
