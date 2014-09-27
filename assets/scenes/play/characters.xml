@@ -31,5 +31,9 @@
 		<script path="assets/scenes/play/scripts/Player.hx"/>
 	</entity>
 	
+	<entity tag="canine">
+		<script path="assets/scenes/play/scripts/EnemyCanine.hx"/>
+	</entity>
+	
 	<script path="assets/scenes/play/scripts/EnemyManager.hx" />
 </data>

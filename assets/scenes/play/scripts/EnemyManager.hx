@@ -26,7 +26,7 @@ class EnemyManager
 	var spawnRange:Float = 1;
 	
 	var spawnTimeDefault:Float = 6;
-	var spawnTimeRange:Float = 0.5;
+	var spawnTimeRange:Float = 0.25;
 	
 	var rand = new FlxRandom();
 	
@@ -35,12 +35,12 @@ class EnemyManager
 	public function init() 
 	{
 		EntityManager.instance.AddGroup(enemies, "enemies", 0);
-		setUpWave();
+		//setUpWave();
 	}
 	
 	public function update()
 	{
-		var over:Bool = true;
+		/*var over:Bool = true;
 		for (e in enemies.members)
 		{
 			if (e != null && e.alive)
@@ -82,7 +82,7 @@ class EnemyManager
 				//FlxKongregate.submitStats("Total Zombies Killed", Reg.zombiesKilled);
 				trace("score submitted");
 			}
-		}
+		}*/
 	}
 	
 	//@

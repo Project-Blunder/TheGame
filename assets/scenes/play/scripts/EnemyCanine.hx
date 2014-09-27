@@ -37,16 +37,26 @@ class EnemyCanine
 	var target:Entity = EntityManager.instance.GetEntityByTag("player");
 	var group:EntityGroup = EntityManager.instance.GetGroup("enemies");
 	
+	var jumpForce:Float = 230;
+	var gravity:Float = 100;
+	
+	var floorHeight:Int;
+	
 	public function init()
 	{	
 		debugText.color = 0xFFFF0000;
 		EntityManager.instance.AddFlxBasic(debugText);
+		
+		owner.makeGraphic(17, 17, FlxColorWrap.RED);
 		
 		owner.y = Reg.height - owner.height - 1;
 		owner.width = 11;
 		owner.offset.x = 8;	
 		owner.health = 2;
 		owner.drag.x = 350;
+		owner.drag.y = 300;
+		
+		floorHeight = Reg.height - owner.height - 1;	
 	
 		owner.setFacingFlip(FlxObject.LEFT, true, false);
 		owner.setFacingFlip(FlxObject.RIGHT, false, false);
@@ -69,6 +79,12 @@ class EnemyCanine
 		{
 			debugText.visible = false;
 		}
+		owner.y += gravity * FlxG.elapsed;
+		if (owner.y > floorHeight)
+		{
+			owner.y = floorHeight;
+			owner.velocity.y = 0;
+		}
 	}
 	
 	public function destroy()
@@ -79,234 +95,81 @@ class EnemyCanine
 	//@
 	function hunt()
 	{
-		currentState = "hunt";
+		currentState = "hunt";	
 		
-		var move:Bool = true;
-		//Attempts to combat grouping
-		/*if (!moveAnyway)
+		if (owner.facing == FlxObject.LEFT)
 		{
-			for (e in group.members)
-			{
-				if (e == null)
-				{
-					continue;
-				}
-				if (e.GID == owner.GID)
-				{
-					continue;
-				}
-				if (owner.GetDistance(target) > grabDist + 3 && owner.GetDistance(e) < separateDist)
-				{
-					move = false;
-					e.setVar("moveAnyway", true);
-					break;
-				}
-			}
+			owner.x -= speed * FlxG.elapsed;
 		}
 		else
 		{
-			moveAnyway = false;
-		}*/
-		if(move)
+			owner.x += speed * FlxG.elapsed;
+		}
+		if (!isFacing(target))
 		{
-			if (owner.facing == FlxObject.LEFT)
+			timer += FlxG.elapsed;
+			if (timer > reactionTime)
 			{
-				if (getXDist(target) > grabDist)
+				if (owner.y == floorHeight)
 				{
-					owner.x -= speed * FlxG.elapsed;
-					owner.animation.play("walk");
+					owner.FSM.PushState(jump);
+				}
+				timer = 0;
+				if (owner.facing == FlxObject.LEFT)
+				{
+					owner.facing = FlxObject.RIGHT;
 				}
 				else
 				{
-					owner.FSM.PushState(attack);
-					attack();
+					owner.facing = FlxObject.LEFT;
 				}
 			}
-			else
-			{
-				if (getXDist(target) > grabDist)
-				{
-					owner.x += speed * FlxG.elapsed;
-					owner.animation.play("walk");
-				}
-				else
-				{
-					owner.FSM.PushState(attack);
-					attack();
-				}
-			}
-			if (!isFacing(target))
-			{
-				timer += FlxG.elapsed;
-				if (timer > reactionTime)
-				{
-					timer = 0;
-					if (owner.facing == FlxObject.LEFT)
-					{
-						owner.facing = FlxObject.RIGHT;
-					}
-					else
-					{
-						owner.facing = FlxObject.LEFT;
-					}
-				}
-			}
+		}
+	}
+	
+	function jump()
+	{
+		owner.velocity.y -= jumpForce;
+
+		owner.FSM.ReplaceState(midAir);
+	}
+	
+	function midAir()
+	{
+		if (owner.facing == FlxObject.LEFT)
+		{
+			owner.velocity.x = -100;
+		}
+		else
+		{
+			owner.velocity.x = 100;
+		}
+		
+		if (owner.y == floorHeight)
+		{
+			owner.velocity.x = 0;
+			owner.FSM.PopState();
 		}
 	}
 	
 	function attack()
 	{
-		if (owner.GetDistance(target) <= grabDist + 2)
-		{
-			if(owner.getMidpoint().y - target.getMidpoint().y < owner.height / 2)
-			{
-				if (currentState == "attack")
-				{
-					if (owner.animation.finished)
-					{
-						target.getVarAsDynamic("hit")();
-					}
-				}
-				else
-				{
-					if (rand.bool(swatChance))
-					{
-						owner.animation.play("swat");
-						target.getVarAsDynamic("hit")();
-						return;
-					}
-				}
-				
-				owner.animation.play("scary");
-				
-				if (target.getMidpoint().x < owner.getMidpoint().x)
-				{
-					owner.facing = FlxObject.LEFT;
-				}
-				else
-				{
-					owner.facing = FlxObject.RIGHT;
-				}
-			}
-		}
-		else
-		{
-			owner.FSM.PopState();
-		}
 		currentState = "attack";
-		//FlxG.sound.play("assets/sounds/Eating.wav");
-	}
-	
-	function grab()
-	{
-		currentState = "grab";
-		owner.animation.play("grab");
-		
-		
-		target.getVarAsDynamic("getCaught")();
-		
-		var tween:Dynamic = newObject();
-		tween.x = owner.getMidpoint().x - target.width / 2;
-		FlxTween.tween(target, tween, 0.07);
-		
-		timer = 0;
-		owner.FSM.PushState(hold);
-	}
-	
-	function hold()
-	{
-		currentState = "hold";
-		owner.animation.play("hold");
-		
-		if (timer < 1)
-		{
-			timer += FlxG.elapsed;
-		}
-		else
-		{
-			if (target.x != owner.getMidpoint().x - target.width / 2)
-			{
-				timer = 0;
-				owner.FSM.ReplaceState(stunned);
-			}
-		}
 	}
 	
 	function stunned()
 	{
 		currentState = "stunned";
-		owner.animation.play("stunned");
-		if (timer < 1.5)
-		{
-			timer += FlxG.elapsed;
-		}
-		else
-		{
-			owner.FSM.PopState();
-		}
 	}
 	
 	function hit(high:Bool)
 	{
 		currentState = "hit";
-		
-		FlxG.sound.play("assets/sounds/Thump.wav");
-		
-		
-		timer = 0;
-		owner.health--;
-		if (owner.health == 0)
-		{
-			owner.destroy();
-			EntityManager.instance.GetGroup("enemies").remove(owner);
-			return;
-		}
-		
-		if (target.getMidpoint().x > owner.getMidpoint().x)
-		{
-			owner.velocity.x = -175;
-		}
-		else
-		{
-			owner.velocity.x = 175;
-		}
-		
-		owner.animation.play("hit");
-		
-		var info = newObject();
-		info.high = high;
-		owner.FSM.PushState(knocked, info);
 	}
 	
 	function knocked()
 	{
 		currentState = "knocked";
-		
-		if (owner.velocity.x == 0)
-		{
-			if (owner.FSM.info.high)
-			{
-				if (rand.bool(stunnedChance))
-				{
-					owner.FSM.ReplaceState(stunned);
-				}
-				else
-				{
-					owner.FSM.PopState();
-				}
-			}
-			else
-			{
-				if (rand.bool(stunnedChance * 2))
-				{
-					owner.FSM.ReplaceState(stunned);
-				}
-				else
-				{
-					owner.FSM.PopState();
-				}
-			}
-		}
 	}
 	
 	function setDebug(t:String)
