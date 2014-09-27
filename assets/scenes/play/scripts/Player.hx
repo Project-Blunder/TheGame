@@ -52,6 +52,9 @@ class Player
 	var debugText:FlxText = new FlxText();
 	//////////////////////////////////////
 	
+	var leftEdge:Int = -203;
+	var rightEdge:Int = 417;
+	
 	public function init() 
 	{
 		//Debug///////////////////////////////////////
@@ -159,6 +162,15 @@ class Player
 		if (owner.y > floorHeight)
 		{
 			owner.y = floorHeight;
+		}
+		
+		if (owner.x < leftEdge)
+		{
+			owner.x = leftEdge;
+		}
+		else if (owner.x + owner.width > rightEdge)
+		{
+			owner.x = rightEdge - owner.width;
 		}
 	}
 	

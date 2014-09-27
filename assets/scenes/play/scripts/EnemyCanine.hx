@@ -25,12 +25,14 @@ class EnemyCanine
 	var debugText:FlxText = new FlxText();
 	
 	var timer:Float = 0;
+	var slideTimer:Float = 0;
 	var currentState:String = "";
 	
 	var rand = new FlxRandom();
 	
 	var speed:Float = 80;//rand.float(25 - 1, 25 + 1);
-	var reactionTime:Float = rand.float(0.05, 0.15);
+	var reactionTime:Float = 0.1;//rand.float(0.05, 0.15);
+	var slideTime:Float = 0.35;
 	var attackDist:Int = 60;
 	
 	var target:Entity = EntityManager.instance.GetEntityByTag("player");
@@ -42,6 +44,8 @@ class EnemyCanine
 	var floorHeight:Int;
 	var groundTimer:Float = 0;
 	var jumpDelay:Float = 0.35;
+	
+	var direction:Int = 0;
 	
 	public function init()
 	{	
@@ -104,7 +108,17 @@ class EnemyCanine
 		
 		owner.animation.play("run");
 		
-		if (owner.facing == FlxObject.LEFT)
+		if (slideTimer > 0)
+		{
+			slideTimer -= FlxG.elapsed;
+			
+			if (slideTimer <= 0)
+			{
+				direction = owner.facing;
+			}
+		}
+		
+		if (direction == FlxObject.LEFT)
 		{
 			owner.x -= speed * FlxG.elapsed;
 		}
@@ -121,17 +135,19 @@ class EnemyCanine
 				if (owner.facing == FlxObject.LEFT)
 				{
 					owner.facing = FlxObject.RIGHT;
+					slideTimer = slideTime;
 				}
 				else
 				{
 					owner.facing = FlxObject.LEFT;
+					slideTimer = slideTime;
 				}
 			}
 		}
 		
 		if (groundTimer > jumpDelay && isFacing(target) && getXDist(target) < attackDist)
 		{
-			owner.FSM.PushState(jump);
+			//owner.FSM.PushState(jump);
 		}
 	}
 	
