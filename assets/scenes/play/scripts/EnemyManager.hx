@@ -88,19 +88,22 @@ class EnemyManager
 	//@
 	function endWave()
 	{
-		leftTimer += FlxG.elapsed;
-		
-		if (leftTimer > waveDelay)
-		{
-			setUpWave();
-		}
-		
+		var over:Bool = true;
 		for (e in enemies.members)
 		{
 			if (e != null)
 			{
 				e.y += enemyOffScreenSpeed * FlxG.elapsed;
+				if (e.y <= Reg.height)
+				{
+					over = false;
+				}
 			}
+		}
+		
+		if (over)
+		{
+			setUpWave();
 		}
 	}
 	
@@ -116,8 +119,8 @@ class EnemyManager
 		++wave;
 		trace(wave);
 
-		leftTimer = rand.float(0,3);
-		rightTimer = rand.float(0,3);
+		leftTimer = rand.float(0,1);
+		rightTimer = rand.float(0,1);
 			
 		if (wave != 1)
 		{
