@@ -29,7 +29,7 @@ class EnemyCanine
 	
 	var rand = new FlxRandom();
 	
-	var speed:Float = rand.float(25 - 1, 25 + 1);
+	var speed:Float = 80;//rand.float(25 - 1, 25 + 1);
 	var reactionTime:Float = rand.float(0.05, 0.15);
 	var stunnedChance:Float = 35;
 	var swatChance:Float = 25;
@@ -47,7 +47,7 @@ class EnemyCanine
 		debugText.color = 0xFFFF0000;
 		EntityManager.instance.AddFlxBasic(debugText);
 		
-		owner.makeGraphic(17, 17, FlxColorWrap.RED);
+		//owner.makeGraphic(17, 17, FlxColorWrap.RED);
 		
 		owner.y = Reg.height - owner.height - 1;
 		owner.width = 11;
@@ -97,6 +97,8 @@ class EnemyCanine
 	{
 		currentState = "hunt";	
 		
+		owner.animation.play("run");
+		
 		if (owner.facing == FlxObject.LEFT)
 		{
 			owner.x -= speed * FlxG.elapsed;
@@ -131,6 +133,8 @@ class EnemyCanine
 	{
 		owner.velocity.y -= jumpForce;
 
+		owner.animation.play("jump");
+		
 		owner.FSM.ReplaceState(midAir);
 	}
 	
