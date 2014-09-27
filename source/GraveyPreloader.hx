@@ -1,6 +1,7 @@
 package ; 
 
 import flixel.system.FlxBasePreloader;
+import flixel.util.FlxStringUtil;
 import openfl.display.Bitmap;
 import openfl.display.BitmapData;
 import openfl.events.Event;
@@ -27,7 +28,7 @@ import GraveyPreloader.Pfont;
 class GraveyPreloader extends NMEPreloader {}
 #else
 
-class GraveyPreloader extends FlxBasePreloader
+class GraveyPreloader extends IceBasePreloader
 {
 	
 	var percentage: Bitmap;
@@ -39,7 +40,7 @@ class GraveyPreloader extends FlxBasePreloader
 	
 	public function new () 
 	{
-		super(2, ["www.kongregate.com", "nicom1.github.io", FlxBasePreloader.LOCAL]);
+		super(2, ["www.kongregate.com", "http://nicom1.github.io/", FlxBasePreloader.LOCAL]);
 	}
 
 	override private function create():Void	
