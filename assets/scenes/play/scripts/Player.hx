@@ -308,6 +308,10 @@ class Player
 			if (attackTimer < 0)
 			{
 				attackTimer = attackDefault;
+				if (!owner.FSM.info.high)
+				{
+					attackTimer /= 2;
+				}
 			}
 			
 			//on release play attack anim

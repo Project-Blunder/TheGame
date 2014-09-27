@@ -24,7 +24,7 @@
 			<animation name="attack-tall" frames="2" framerate="2" looped="false" />
 			<animation name="crouch" frames="3" framerate="1" looped="false" />
 			<animation name="windup-crouch" frames="4" framerate="2" looped="false" />
-			<animation name="attack-crouch" frames="5" framerate="2" looped="false" />
+			<animation name="attack-crouch" frames="5" framerate="4" looped="false" />
 			<animation name="walk" frames="6-8,7" framerate="5" looped="true" />
 			<animation name="fall" frames="9,10" framerate="5" looped="true" />
 		</art>
