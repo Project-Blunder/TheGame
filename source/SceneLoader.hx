@@ -17,6 +17,8 @@ import ice.wrappers.FlxKeyWrap;
 import ice.wrappers.FlxColorWrap;
 import Reg;
 
+import googleAnalytics.Stats;
+
 /**
  * A FlxState which can be used for the game's menu.
  */
@@ -42,6 +44,9 @@ class SceneLoader extends FlxState
 		
 		debug = new Debug();
 		add(debug);
+		
+		Stats.init("UA-49979451-2", "www.3-bit-zombies.com");
+		Stats.trackEvent("play", "main", "loaded-game"); 
 		
 		//Builds a scene from an XML entity declaration
 		EntityManager.instance.BuildFromXML("assets/scenes/menu/setup.xml");
