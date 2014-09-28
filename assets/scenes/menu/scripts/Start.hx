@@ -11,9 +11,11 @@ class Start
 	var owner:Entity;
 	//#
 	
-	var speed:Float = 130;
+	var speed:Float = 170;
 	
 	var player:Entity = EntityManager.instance.GetEntityByTag("player-menu");
+	
+	var pan:Bool = false;
 	
 	public function init()
 	{
@@ -23,7 +25,14 @@ class Start
 	
 	public function update()
 	{	
-		if (FlxG.overlap(owner,player))   
+		if (!pan)
+		{
+			if (FlxG.overlap(owner, player))
+			{
+				pan = true;
+			}
+		}
+		else
 		{
 			panCamera();
 		}

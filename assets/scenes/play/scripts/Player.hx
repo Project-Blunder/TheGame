@@ -55,6 +55,8 @@ class Player
 	var leftEdge:Int = -203;
 	var rightEdge:Int = 417;
 	
+	public var hasControl:Bool = true;
+	
 	public function init() 
 	{
 		//Debug///////////////////////////////////////
@@ -138,22 +140,25 @@ class Player
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		//Flip player
-		if (FlxG.keys.anyPressed([FlxKeyWrap.LEFT, FlxKeyWrap.A]))
+		if (hasControl)
 		{
-			if (owner.facing != FlxObject.LEFT)
+			if (FlxG.keys.anyPressed([FlxKeyWrap.LEFT, FlxKeyWrap.A]))
 			{
-				owner.facing = FlxObject.LEFT;
-				turns++;
+				if (owner.facing != FlxObject.LEFT)
+				{
+					owner.facing = FlxObject.LEFT;
+					turns++;
+				}
+			}
+			else if (FlxG.keys.anyPressed([FlxKeyWrap.RIGHT, FlxKeyWrap.D]))
+			{
+				if (owner.facing != FlxObject.RIGHT)
+				{
+					owner.facing = FlxObject.RIGHT;
+					turns++;
+				}
 			}
 		}
-		else if (FlxG.keys.anyPressed([FlxKeyWrap.RIGHT, FlxKeyWrap.D]))
-		{
-			if (owner.facing != FlxObject.RIGHT)
-			{
-				owner.facing = FlxObject.RIGHT;
-				turns++;
-			}
-		}		
 		
 		//Add gravity
 		owner.y += gravity * FlxG.elapsed;
@@ -193,36 +198,39 @@ class Player
 		
 		owner.animation.play("tall");
 		
-		if (FlxG.keys.anyPressed([FlxKeyWrap.S, FlxKeyWrap.DOWN]))
+		if (hasControl)
 		{
-			owner.FSM.PushState(crouching);
-		}
-		
-		//transition to attack
-		if (FlxG.keys.justPressed.SPACE)
-		{
-			var info = newObject();
-			info.high = true;
-			owner.FSM.PushState(attack, info);
-		}
-		
-		//movement
-		if (FlxG.keys.anyPressed([FlxKeyWrap.LEFT, FlxKeyWrap.A]))
-		{
-			owner.x -= speed * FlxG.elapsed;
-			owner.animation.play("walk");
-		}
-		else if (FlxG.keys.anyPressed([FlxKeyWrap.RIGHT, FlxKeyWrap.D]))
-		{
-			owner.x += speed * FlxG.elapsed;
-			owner.animation.play("walk");
-		}
-		
-		//jumping
-		if (owner.y >= floorHeight && FlxG.keys.anyJustPressed([FlxKeyWrap.UP, FlxKeyWrap.W]))
-		{
-			owner.velocity.y -= jumpforce;
-			owner.FSM.PushState(jumping);
+			if (FlxG.keys.anyPressed([FlxKeyWrap.S, FlxKeyWrap.DOWN]))
+			{
+				owner.FSM.PushState(crouching);
+			}
+			
+			//transition to attack
+			if (FlxG.keys.justPressed.SPACE)
+			{
+				var info = newObject();
+				info.high = true;
+				owner.FSM.PushState(attack, info);
+			}
+			
+			//movement
+			if (FlxG.keys.anyPressed([FlxKeyWrap.LEFT, FlxKeyWrap.A]))
+			{
+				owner.x -= speed * FlxG.elapsed;
+				owner.animation.play("walk");
+			}
+			else if (FlxG.keys.anyPressed([FlxKeyWrap.RIGHT, FlxKeyWrap.D]))
+			{
+				owner.x += speed * FlxG.elapsed;
+				owner.animation.play("walk");
+			}
+			
+			//jumping
+			if (owner.y >= floorHeight && FlxG.keys.anyJustPressed([FlxKeyWrap.UP, FlxKeyWrap.W]))
+			{
+				owner.velocity.y -= jumpforce;
+				owner.FSM.PushState(jumping);
+			}
 		}
 	}
 	

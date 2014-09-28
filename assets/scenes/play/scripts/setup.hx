@@ -12,7 +12,11 @@ import Math;
 
 class setup
 {
-	var speed:Float = 130;
+	var speed:Float = 170;
+	
+	var player:Entity;
+	
+	var set:Bool = false;
 	
 	public function init() 
 	{	
@@ -46,22 +50,29 @@ class setup
 		
 		FlxG.camera.scroll.y = -Reg.height - Reg.start;
 		FlxG.camera.scroll.x = 3;//EntityManager.instance.GetEntityByTag("player").width/2;
+		player = EntityManager.instance.GetEntityByTag("player");
+		player.setVar("hasControl", false);
 	}
 	
 	public function update()
 	{
+		if (!set && player.getVarAsDynamic("hasControl") == true)
+		{
+			player.setVar("hasControl", false);
+			set = true;
+		}
 		if (FlxG.camera.scroll.y < 0)
 		{
 			FlxG.camera.scroll.y += speed * FlxG.elapsed;
 
-			if (FlxG.camera.scroll.y > 0)
+			if (FlxG.camera.scroll.y >= 0)
 			{
 				FlxG.camera.scroll.y = 0;
 			}
 		}
 		else
 		{
-			var player = EntityManager.instance.GetEntityByTag("player");
+			player.setVar("hasControl", true);
 			FlxG.camera.follow(player, null, FlxPoint.get(0, Reg.start + 100));
 			FlxG.camera.setScrollBoundsRect( -FlxG.width, 0, FlxG.width * 3, FlxG.height);
 		}

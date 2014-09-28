@@ -3,6 +3,7 @@ package ;
 import flixel.FlxG;
 import ice.entity.Entity;
 import ice.entity.EntityManager;
+import ice.wrappers.FlxKeyWrap;
 import Reg;
 
 class Twitter
@@ -17,6 +18,10 @@ class Twitter
 	
 	var up:Bool = true;
 	
+	var pan:Bool = false;
+	
+	var fix:Bool = false;
+	
 	public function init()
 	{
 		owner.y =  Reg.height - owner.height;	
@@ -25,9 +30,26 @@ class Twitter
 	
 	public function update()
 	{	
-		if (FlxG.overlap(owner,player))   
+		if (!pan)
+		{
+			if (FlxG.overlap(owner, player))
+			{
+				pan = true;
+			}
+		}
+		else
 		{
 			panCamera();
+		}
+		
+		if (fix)
+		{
+			if (FlxG.keys.anyJustPressed([FlxKeyWrap.A,FlxKeyWrap.S,FlxKeyWrap.D,FlxKeyWrap.W, FlxKeyWrap.LEFT,FlxKeyWrap.RIGHT,FlxKeyWrap.UP,FlxKeyWrap.DOWN,FlxKeyWrap.SPACE]))
+			{
+				FlxG.keys.reset();
+				player.setVar("hasControl", true);
+				fix = false;
+			}
 		}
 	}
 
@@ -55,6 +77,9 @@ class Twitter
 			else
 			{
 				up = false;
+				player.setVar("hasControl", false);
+				player.x = FlxG.width / 2;
+				FlxG.openURL("https://twitter.com/nico_m__");
 			}
 		}
 		else
@@ -65,9 +90,9 @@ class Twitter
 				if (FlxG.camera.scroll.y >= 0)
 				{
 					FlxG.camera.scroll.y = 0;
-					player.x = FlxG.width / 2;
+					pan = false;
 					up = true;
-					FlxG.openURL("https://twitter.com/nico_m__");
+					fix = true;
 				}
 			}
 		}
