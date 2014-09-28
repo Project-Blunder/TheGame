@@ -337,22 +337,25 @@ class Player
 		{
 			if (owner.animation.finished) //when strike is finished:
 			{
-				for (target in enemies.members)
+				if (enemies != null)
 				{
-					if (target != null && target.alive)
-					{						
-						if (getXDist(target) < attackDist && isFacing(target))
-						{
-							//Hit just one enemy
-							if (owner.FSM.info.high)
+					for (target in enemies.members)
+					{
+						if (target != null && target.alive)
+						{						
+							if (getXDist(target) < attackDist && isFacing(target))
 							{
-								target.getVarAsDynamic("hit")(true);
+								//Hit just one enemy
+								if (owner.FSM.info.high)
+								{
+									target.getVarAsDynamic("hit")(true);
+								}
+								else
+								{
+									target.getVarAsDynamic("hit")(false);
+								}
+								break;
 							}
-							else
-							{
-								target.getVarAsDynamic("hit")(false);
-							}
-							break;
 						}
 					}
 				}
