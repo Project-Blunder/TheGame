@@ -5,6 +5,7 @@ import ice.entity.Entity;
 import ice.entity.EntityManager;
 import ice.wrappers.FlxKeyWrap;
 import Reg;
+import googleAnalytics.Stats;
 
 class Twitter
 {
@@ -79,6 +80,7 @@ class Twitter
 				up = false;
 				player.setVar("hasControl", false);
 				player.x = FlxG.width / 2;
+				Stats.trackEvent("load", "twitter", "opened twitter");
 				FlxG.openURL("https://twitter.com/nico_m__");
 			}
 		}

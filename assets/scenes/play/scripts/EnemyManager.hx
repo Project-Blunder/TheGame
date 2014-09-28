@@ -2,6 +2,7 @@ package ;
 
 import flixel.addons.api.FlxKongregate;
 import flixel.FlxG;
+import googleAnalytics.Stats;
 import ice.group.EntityGroup;
 import ice.entity.EntityManager;
 import ice.entity.Entity;
@@ -81,6 +82,8 @@ class EnemyManager
 			if (!player.alive)
 			{
 				end = true;
+				Stats.trackEvent("game", "over", "waves: " + wave + " kills: " + Reg.zombiesKilled);
+				Stats.trackEvent("kongregate", "submitted", "score");
 				FlxKongregate.submitStats("Highest Wave", wave);
 				FlxKongregate.submitStats("Most Zombies Killed", Reg.zombiesKilled);
 				FlxKongregate.submitStats("Total Zombies Killed", Reg.zombiesKilled);

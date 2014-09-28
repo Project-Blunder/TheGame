@@ -4,6 +4,7 @@ import flixel.FlxG;
 import ice.entity.Entity;
 import ice.entity.EntityManager;
 import Reg;
+import googleAnalytics.Stats;
 
 class Start
 {
@@ -59,6 +60,7 @@ class Start
 		}
 		else
 		{
+			Stats.trackEvent("load", "start", "started game");
 			EntityManager.switchScene(["assets/scenes/play/setup.xml"]);
 		}
 	}

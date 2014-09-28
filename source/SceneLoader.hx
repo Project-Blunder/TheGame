@@ -45,8 +45,8 @@ class SceneLoader extends FlxState
 		debug = new Debug();
 		add(debug);
 		
-		Stats.init("UA-49979451-2", "www.3-bit-zombies.com");
-		Stats.trackEvent("play", "main", "loaded-game"); 
+		Stats.init("UA-49979451-1", "nicom1.github.io");
+		Stats.trackEvent("load", "menu", ""); 
 		
 		//Builds a scene from an XML entity declaration
 		EntityManager.instance.BuildFromXML("assets/scenes/menu/setup.xml");
@@ -54,6 +54,7 @@ class SceneLoader extends FlxState
 	
 	function onLoad()
 	{
+		Stats.trackEvent("kongregate", "loaded", "success");
 		Reg.kongConnected = true;
 	}
 	
