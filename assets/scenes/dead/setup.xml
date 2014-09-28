@@ -1,6 +1,64 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
-	<load path="assets/scenes/menu/objects.xml"/>
+	<load path="assets/scenes/dead/objects.xml"/>
 	
 	<script path="assets/scenes/dead/scripts/setup.hx" />
+	
+	<entity tag="waves" x="90%">
+		<art path="assets/scenes/dead/images/waves.png" width="23" height="47">
+			<animation name="1" frames="0-1" framerate="10" looped="false" autorun="false"/>
+			<animation name="2" frames="0-2" framerate="10" looped="false" autorun="false"/>
+			<animation name="3" frames="0-3" framerate="10" looped="false" autorun="false"/>
+			<animation name="4" frames="0-4" framerate="10" looped="false" autorun="false"/>
+			<animation name="5" frames="0-5" framerate="10" looped="false" autorun="false"/>
+			<animation name="6" frames="0-6" framerate="10" looped="false" autorun="false"/>
+			<animation name="7" frames="0-7" framerate="10" looped="false" autorun="false"/>
+			<animation name="8" frames="0-8" framerate="10" looped="false" autorun="false"/>
+			<animation name="9" frames="0-9" framerate="10" looped="false" autorun="false"/>
+			<animation name="10" frames="0-10" framerate="10" looped="false" autorun="false"/>
+			<animation name="11" frames="0-11" framerate="10" looped="false" autorun="false"/>
+			<animation name="12" frames="0-12" framerate="10" looped="false" autorun="false"/>
+			<animation name="13" frames="0-13" framerate="10" looped="false" autorun="false"/>
+			<animation name="14" frames="0-14" framerate="10" looped="false" autorun="false"/>
+			<animation name="15" frames="0-15" framerate="10" looped="false" autorun="false"/>
+			<animation name="16" frames="0-16" framerate="10" looped="false" autorun="false"/>
+			<animation name="17" frames="0-17" framerate="10" looped="false" autorun="false"/>
+			<animation name="18" frames="0-18" framerate="10" looped="false" autorun="false"/>
+			<animation name="19" frames="0-19" framerate="10" looped="false" autorun="false"/>
+			<animation name="20" frames="0-20" framerate="10" looped="false" autorun="false"/>
+			<animation name="21" frames="0-21" framerate="10" looped="false" autorun="false"/>
+			<animation name="22" frames="0-22" framerate="10" looped="false" autorun="false"/>
+			<animation name="23" frames="0-23" framerate="10" looped="false" autorun="false"/>
+			<animation name="24" frames="0-24" framerate="10" looped="false" autorun="false"/>
+			<animation name="25" frames="0-25" framerate="10" looped="false" autorun="false"/>
+			<animation name="26" frames="0-26" framerate="10" looped="false" autorun="false"/>
+			<animation name="27" frames="0-27" framerate="10" looped="false" autorun="false"/>
+			<animation name="28" frames="0-28" framerate="10" looped="false" autorun="false"/>
+			<animation name="29" frames="0-29" framerate="10" looped="false" autorun="false"/>
+			<animation name="30" frames="0-30" framerate="10" looped="false" autorun="false"/>
+			<animation name="31" frames="0-31" framerate="10" looped="false" autorun="false"/>
+			<animation name="32" frames="0-32" framerate="10" looped="false" autorun="false"/>
+			<animation name="33" frames="0-33" framerate="10" looped="false" autorun="false"/>
+			<animation name="34" frames="0-34" framerate="10" looped="false" autorun="false"/>
+			<animation name="35" frames="0-35" framerate="10" looped="false" autorun="false"/>
+			<animation name="36" frames="0-36" framerate="10" looped="false" autorun="false"/>
+			<animation name="37" frames="0-37" framerate="10" looped="false" autorun="false"/>
+			<animation name="38" frames="0-38" framerate="10" looped="false" autorun="false"/>
+			<animation name="39" frames="0-39" framerate="10" looped="false" autorun="false"/>
+			<animation name="40" frames="0-40" framerate="10" looped="false" autorun="false"/>
+			<animation name="41" frames="0-41" framerate="10" looped="false" autorun="false"/>
+		</art>
+		
+		<script>
+			<text>
+				import Reg;
+				
+				function init
+				{
+					owner.y = Reg.height - owner.height;
+				}
+			</text>
+		</script>
+		<script path="assets/scenes/dead/scripts/waves.hx" />
+	</entity>
 </data>

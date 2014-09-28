@@ -118,6 +118,8 @@ class EnemyManager
 				FlxKongregate.submitStats("Most Zombies Killed", Reg.zombiesKilled);
 				FlxKongregate.submitStats("Total Zombies Killed", Reg.zombiesKilled);
 				
+				Reg.waves = wave;
+				
 				pan = true;
 				
 				FlxG.camera.follow(null, null, null);
@@ -170,7 +172,6 @@ class EnemyManager
 		spawned = 0;
 		
 		++wave;
-		trace(wave);
 
 		leftTimer = rand.float(0,1);
 		rightTimer = rand.float(0,1);

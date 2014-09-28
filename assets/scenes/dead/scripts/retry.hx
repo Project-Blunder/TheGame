@@ -6,7 +6,7 @@ import ice.entity.EntityManager;
 import Reg;
 import googleAnalytics.Stats;
 
-class Start
+class retry
 {
 	//#
 	var owner:Entity;
@@ -60,7 +60,7 @@ class Start
 		}
 		else
 		{
-			Stats.trackEvent("game", "start", "started game");
+			Stats.trackEvent("game", "retry", "started again");
 			EntityManager.switchScene(["assets/scenes/play/setup.xml"]);
 		}
 	}
