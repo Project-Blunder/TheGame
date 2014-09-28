@@ -1,7 +1,9 @@
 package ;
 
 import flixel.addons.api.FlxKongregate;
+import flixel.FlxCamera;
 import flixel.FlxG;
+import flixel.math.FlxPoint;
 import googleAnalytics.Stats;
 import ice.group.EntityGroup;
 import ice.entity.EntityManager;
@@ -32,14 +34,25 @@ class EnemyManager
 	
 	var end:Bool = false;
 	
+	var pan:Bool = false;
+	var speed:Float = 170;
+	
 	public function init() 
 	{
 		EntityManager.instance.AddGroup(enemies, "enemies", 0);
+		Reg.roundTime = 0;
 		setUpWave();
 	}
 	
 	public function update()
 	{
+		if (pan)
+		{
+			panCamera();
+		}
+		
+		Reg.roundTime += FlxG.elapsed;
+		
 		if (FlxG.camera.scroll.y != 0)
 		{
 			return;
@@ -82,17 +95,50 @@ class EnemyManager
 			if (!player.alive)
 			{
 				end = true;
-				Stats.trackEvent("game", "over", "waves: " + wave + " kills: " + Reg.zombiesKilled);
+				
+				Stats.trackEvent(
+					"game", 
+					"over", 
+					"waves: " + wave
+				);
+				Stats.trackEvent(
+					"game", 
+					"over", 
+					"kills: " + Reg.zombiesKilled
+				);
+				Stats.trackEvent(
+					"game", 
+					"over", 
+					"round-time: " + Math.round(Reg.roundTime)
+				);
+				
 				Stats.trackEvent("kongregate", "submitted", "score");
+				
 				FlxKongregate.submitStats("Highest Wave", wave);
 				FlxKongregate.submitStats("Most Zombies Killed", Reg.zombiesKilled);
 				FlxKongregate.submitStats("Total Zombies Killed", Reg.zombiesKilled);
-				trace("score submitted");
+				
+				pan = true;
+				
+				FlxG.camera.follow(null, null, null);
+				FlxG.camera.minScrollY = null;
 			}
 		}
 	}
 	
 	//@
+	function panCamera()
+	{	
+		if (FlxG.camera.scroll.y > -Reg.height - Reg.start)
+		{
+			FlxG.camera.scroll.y -= speed * FlxG.elapsed;
+		}
+		else
+		{
+			EntityManager.switchScene(["assets/scenes/dead/setup.xml"]);
+		}
+	}
+	
 	function endWave()
 	{
 		var over:Bool = true;

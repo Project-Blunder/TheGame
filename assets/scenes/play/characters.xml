@@ -31,14 +31,14 @@
 		<script path="assets/scenes/play/scripts/Player.hx"/>
 	</entity>
 	
-	<entity tag="canine">
+	<!--<entity tag="canine">
 		<art path="assets/scenes/play/images/caninerun.png" width="27" height="17">
 			<animation name="run" frames="0-2" framerate="8" looped="true"/>
 			<animation name="jump" frames="3-4" framerate="8" looped="true"/>
 		</art>
 		
 		<script path="assets/scenes/play/scripts/EnemyCanine.hx"/>
-	</entity>
+	</entity>-->
 	
 	<script path="assets/scenes/play/scripts/EnemyManager.hx" />
 </data>

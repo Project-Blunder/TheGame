@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	<load path="assets/scenes/menu/objects.xml"/>
+	
+	<script path="assets/scenes/dead/scripts/setup.hx" />
+</data>

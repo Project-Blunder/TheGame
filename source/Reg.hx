@@ -47,4 +47,6 @@ class Reg
 	public static var kongConnected:Bool = false;
 	
 	public static var zombiesKilled:Int = 0;
+	
+	public static var roundTime:Float = 0;
 }

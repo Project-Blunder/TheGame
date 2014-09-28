@@ -33,6 +33,8 @@ class setup
 		
 		FlxG.camera.height = Math.floor(FlxG.height / 2.5);
 		FlxG.camera.y = (FlxG.height / 2 - FlxG.camera.height / 2) * FlxG.camera.zoom;
+		FlxG.camera.scroll.x = 0;
+		FlxG.camera.scroll.y = 0;
 		
 		Reg.start = FlxG.camera.y / FlxG.camera.zoom;
 		//OOOOOHHH AHHHHH

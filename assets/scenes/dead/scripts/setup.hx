@@ -52,7 +52,7 @@ class setup
 		FlxG.camera.scroll.y = -Reg.height - Reg.start;
 		FlxG.camera.scroll.x = 3;
 		
-		player = EntityManager.instance.GetEntityByTag("player");
+		player = EntityManager.instance.GetEntityByTag("player-menu");
 		player.setVar("hasControl", false);
 	}
 	
@@ -77,8 +77,6 @@ class setup
 			else
 			{
 				player.setVar("hasControl", true);
-				FlxG.camera.follow(player, null, FlxPoint.get(0, Reg.start + 100));
-				FlxG.camera.setScrollBoundsRect( -FlxG.width, 0, FlxG.width * 3, FlxG.height);
 				load = true;
 			}
 		}
