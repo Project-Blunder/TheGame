@@ -15,15 +15,15 @@
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
-    <class path="c:\haxetoolkit\haxe\lib\flixel\git" />
-    <class path="c:\haxetoolkit\haxe\lib\lime\1,0,1" />
-    <class path="c:\haxetoolkit\haxe\lib\openfl\2,0,1" />
-    <class path="c:\haxetoolkit\haxe\lib\iceentity\git" />
-    <class path="c:\haxetoolkit\haxe\lib\hscript\2,0,3" />
-    <class path="c:\haxetoolkit\haxe\lib\nape\2,0,16" />
-    <class path="c:\haxetoolkit\haxe\lib\flixel-addons\git" />
+    <class path="C:\HaxeToolkit\haxe\lib\flixel\git" />
+    <class path="C:\HaxeToolkit\haxe\lib\lime\1,0,1" />
+    <class path="C:\HaxeToolkit\haxe\lib\openfl\2,0,1" />
+    <class path="C:\HaxeToolkit\haxe\lib\iceentity\git" />
+    <class path="C:\HaxeToolkit\haxe\lib\hscript\2,0,3" />
+    <class path="C:\HaxeToolkit\haxe\lib\nape\2,0,16" />
+    <class path="C:\HaxeToolkit\haxe\lib\flixel-addons\1,1,0" />
     <class path="source" />
-    <class path="c:\haxetoolkit\haxe\lib\openfl\2,0,1\backends\flash" />
+    <class path="C:\HaxeToolkit\haxe\lib\openfl\2,0,1\backends\flash" />
     <class path="export\flash\haxe" />
   </classpaths>
   <!-- Build options -->
@@ -33,7 +33,7 @@
     <option noInlineOnDebug="False" />
     <option mainClass="ApplicationMain" />
     <option enabledebug="False" />
-    <option additional="--no-output &#xA;--macro flixel.system.macros.FlxConditionals.run()&#xA;-dce no&#xA;-swf-version 11.8" />
+    <option additional="--no-output&#xA;--macro flixel.system.macros.FlxConditionals.run()&#xA;-dce no&#xA;-swf-version 11.8" />
   </build>
   <!-- haxelib libraries -->
   <haxelib>
@@ -43,13 +43,17 @@
   <compileTargets>
     <compile path="source\GameClass.hx" />
   </compileTargets>
+  <!-- Assets to embed into the output SWF -->
+  <library>
+    <!-- example: <asset path="..." id="..." update="..." glyphs="..." mode="..." place="..." sharepoint="..." /> -->
+  </library>
   <!-- Paths to exclude from the Project Explorer tree -->
   <hiddenPaths>
     <hidden path="obj" />
     <hidden path="export" />
   </hiddenPaths>
   <!-- Executed before build -->
-  <preBuildCommand> </preBuildCommand>
+  <preBuildCommand />
   <!-- Executed after build -->
   <postBuildCommand alwaysRun="False" />
   <!-- Other project options -->

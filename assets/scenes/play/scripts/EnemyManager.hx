@@ -18,7 +18,6 @@ class EnemyManager
 	var rightTimer:Float = 0;
 	
 	var wave:Int = 0;
-	var waveDelay:Float = 2.5;
 	var enemyOffScreenSpeed:Float = 50;
 	var spawned:Int = 0;
 	var spawnCount:Int = 3;
@@ -40,6 +39,11 @@ class EnemyManager
 	
 	public function update()
 	{
+		if (FlxG.camera.scroll.y != 0)
+		{
+			return;
+		}
+		
 		var over:Bool = true;
 		for (e in enemies.members)
 		{

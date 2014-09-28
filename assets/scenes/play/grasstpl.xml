@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	<entity template="grass01">
+		<art width="14" height="11" path="assets/scenes/play/images/Grass01.png"/>
+		<script>
+			<text>
+				import flixel.FlxG;
+				import Reg;
+				
+				function init
+				{
+					owner.y = Reg.height - owner.height;
+				}
+			</text>
+		</script>
+	</entity>
+	<entity template="grass02">
+		<art width="14" height="11" path="assets/scenes/play/images/Grass02.png"/>
+		<script>
+			<text>
+				import flixel.FlxG;
+				import Reg;
+				
+				function init
+				{
+					owner.y = Reg.height - owner.height; 
+				}
+			</text>
+		</script>
+	</entity>
+	<entity template="grass03">
+		<art width="14" height="11" path="assets/scenes/play/images/Grass03.png"/>
+		<script>
+			<text>
+				import flixel.FlxG;
+				import Reg;
+				
+				function init
+				{
+					owner.y = Reg.height - owner.height;
+				}
+			</text>
+		</script>
+	</entity>
+	
+	<entity template="grass04">
+		<art width="14" height="11" path="assets/scenes/play/images/Grass04.png"/>
+		<script>
+			<text>
+				import flixel.FlxG;
+				import Reg;
+				
+				function init
+				{
+					owner.y = Reg.height - owner.height;
+				}
+			</text>
+		</script>
+	</entity>
+	
+	<entity template="grass05">
+		<art width="14" height="11" path="assets/scenes/play/images/Grass05.png"/>
+		<script>
+			<text>
+				import flixel.FlxG;
+				import Reg;
+				
+				function init
+				{
+					owner.y = Reg.height - owner.height;
+				}
+			</text>
+		</script>
+	</entity>
+</data>

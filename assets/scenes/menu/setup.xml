@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
-	<script>
-		<text>
-			import flixel.FlxG;		
-			
-			function init
-			{
-				FlxG.camera.bgColor = 0xffffffff;
-			}		
-		</text>
-	</script>
-	
+	<script path="assets/scenes/menu/scripts/setup.hx"/>
+
 	<load path="assets/scenes/menu/objects.xml"/>
 </data>

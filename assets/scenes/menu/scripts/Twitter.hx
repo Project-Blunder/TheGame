@@ -5,20 +5,22 @@ import ice.entity.Entity;
 import ice.entity.EntityManager;
 import Reg;
 
-class Start
+class Twitter
 {
 	//#
 	var owner:Entity;
 	//#
 	
-	var speed:Float = 130;
+	var speed:Float = 170;
 	
 	var player:Entity = EntityManager.instance.GetEntityByTag("player-menu");
 	
+	var up:Bool = true;
+	
 	public function init()
 	{
-		owner.y =  Reg.height - owner.height;
-		owner.offset.x = 11;
+		owner.y =  Reg.height - owner.height;	
+		owner.offset.x = -11;
 	}
 	
 	public function update()
@@ -44,13 +46,30 @@ class Start
 
 	function panCamera()
 	{
-		if (FlxG.camera.scroll.y > -Reg.height - Reg.start)
+		if (up)
 		{
-			FlxG.camera.scroll.y -= speed * FlxG.elapsed;
+			if (FlxG.camera.scroll.y > -Reg.height - Reg.start)
+			{
+				FlxG.camera.scroll.y -= speed * FlxG.elapsed;
+			}
+			else
+			{
+				up = false;
+			}
 		}
 		else
 		{
-			EntityManager.switchScene(["assets/scenes/play/setup.xml"]);
+			if (FlxG.camera.scroll.y < 0)
+			{
+				FlxG.camera.scroll.y += speed * FlxG.elapsed;
+				if (FlxG.camera.scroll.y >= 0)
+				{
+					FlxG.camera.scroll.y = 0;
+					player.x = FlxG.width / 2;
+					up = true;
+					FlxG.openURL("https://twitter.com/nico_m__");
+				}
+			}
 		}
 	}
 

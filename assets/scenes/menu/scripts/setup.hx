@@ -12,8 +12,6 @@ import Math;
 
 class setup
 {
-	var speed:Float = 130;
-	
 	public function init() 
 	{	
 		FlxG.camera.bgColor = 0xffffffff;
@@ -43,27 +41,5 @@ class setup
 		
 		if(Reg.html)
 		Reg.height = FlxG.camera.y / FlxG.camera.zoom + FlxG.camera.height / FlxG.camera.zoom + 5;	
-		
-		FlxG.camera.scroll.y = -Reg.height - Reg.start;
-		FlxG.camera.scroll.x = 3;//EntityManager.instance.GetEntityByTag("player").width/2;
-	}
-	
-	public function update()
-	{
-		if (FlxG.camera.scroll.y < 0)
-		{
-			FlxG.camera.scroll.y += speed * FlxG.elapsed;
-
-			if (FlxG.camera.scroll.y > 0)
-			{
-				FlxG.camera.scroll.y = 0;
-			}
-		}
-		else
-		{
-			var player = EntityManager.instance.GetEntityByTag("player");
-			FlxG.camera.follow(player, null, FlxPoint.get(0, Reg.start + 100));
-			FlxG.camera.setScrollBoundsRect( -FlxG.width, 0, FlxG.width * 3, FlxG.height);
-		}
 	}
 }

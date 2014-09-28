@@ -66,7 +66,7 @@ class Player
 		
 		
 		//Setup////////////////////////////////////////
-		owner.x = FlxG.width / 2 - owner.width / 2;
+		//owner.x = FlxG.width / 2 - owner.width / 2;
 		owner.y = floorHeight;
 
 		owner.offset.x = 16;

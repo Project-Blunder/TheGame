@@ -1,30 +1,39 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
+	<load path="assets/scenes/play/grasstpl.xml" />
+	<load path="assets/scenes/menu/characters.xml" />
 	
-	<!--entity tag="backgroundfun">
-		<art path="" width="1" height="1"/>
-		<script>
-		<text>
-			
-		</text>
-		</script>
-	</entity-->
-	
-	<entity tag="start">
-		<art path="assets/scenes/menu/images/start.png" width="159" height="66"/>
+	<entity tag="start" x="77%">
+		<art path="assets/scenes/menu/images/play.png" width="23" height="47"/>
 		<script path="assets/scenes/menu/scripts/Start.hx"/>
 	</entity>
 
-	<!--entity tag="credits">
-		<art path="" width="1" height="1"/>
-		<script path="assets/data/scripts/credits.hx"/>
-	</entity-->
-
-	<!--entity tag="mutetoggle">
-		<art path="" width="1" height="1"/>
-		<script path="assets/data/scripts/MuteToggle.hx"/>
-	</entity-->
+	<entity tag="twitter" x="17%">
+		<art path="assets/scenes/menu/images/twitter.png" width="23" height="47"/>
+		<script path="assets/scenes/menu/scripts/Twitter.hx"/>
+	</entity>
 	
-
+	<instance template="grass03" x="3%" />
+	<instance template="grass02" x="25%" />
+	<instance template="grass01" x="39%" />
+	<instance template="grass02" x="57%" />
+	<instance template="grass01" x="85%" />
+	<instance template="grass01" x="95%" />	
 	
+	<entity tag="ground">
+		<script>
+			<text>
+				import ice.entity.EntityManager;
+				import flixel.FlxG;
+				import Reg;
+				
+				function init
+				{
+					owner.makeGraphic(FlxG.width * 3, 2, 0xFF000000);
+					owner.x = -FlxG.width;
+					owner.y = Reg.height - 1;
+				}
+			</text>
+		</script>
+	</entity>
 </data>
