@@ -81,9 +81,9 @@ class EnemyManager
 			if (!player.alive)
 			{
 				end = true;
-				//FlxKongregate.submitStats("Highest Wave", wave);
-				//FlxKongregate.submitStats("Most Zombies Killed", Reg.zombiesKilled);
-				//FlxKongregate.submitStats("Total Zombies Killed", Reg.zombiesKilled);
+				FlxKongregate.submitStats("Highest Wave", wave);
+				FlxKongregate.submitStats("Most Zombies Killed", Reg.zombiesKilled);
+				FlxKongregate.submitStats("Total Zombies Killed", Reg.zombiesKilled);
 				trace("score submitted");
 			}
 		}

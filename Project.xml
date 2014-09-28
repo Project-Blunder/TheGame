@@ -46,7 +46,7 @@
 	<haxedef name="ICE_LIVE_RELOAD" unless="web" />
 	
 	<!-- This makes for-loops work in scripts -->
-	<haxeflag name="-dce" value="no" />
+	<!--<haxeflag name="-dce" value="no" />-->
 	
 	<!------------------------------------------------------------------------------>
 	
