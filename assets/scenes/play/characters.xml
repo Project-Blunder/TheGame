@@ -17,6 +17,11 @@
 		<script path="assets/scenes/play/scripts/EnemyBasic.hx"/>
 	</entity>
 	
+	<entity tag="health-bar">
+		<!--<art path="assets/scenes/play/images/health.png" width="201" height="13"/>-->
+		<script path="assets/scenes/play/scripts/Health.hx"/>
+	</entity>
+	
 	<entity tag="player" x="50%">
 		<art path="assets/scenes/play/images/PlayerAnim.png" width="37" height="24">
 			<animation name="tall" frames="0" framerate="1" looped="false" autorun="true"/>
