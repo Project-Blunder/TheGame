@@ -51,7 +51,7 @@ class setup
 		Reg.height = FlxG.camera.y / FlxG.camera.zoom + FlxG.camera.height / FlxG.camera.zoom + 5;	
 		
 		FlxG.camera.scroll.y = -Reg.height - Reg.start;
-		FlxG.camera.scroll.x = 3;
+		FlxG.camera.scroll.x = 0;
 		
 		player = EntityManager.instance.GetEntityByTag("player");
 		player.setVar("hasControl", false);
