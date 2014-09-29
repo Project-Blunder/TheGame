@@ -139,6 +139,11 @@ class Player
 		}
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
+		if (owner.health > startingHealth)
+		{
+			owner.health = startingHealth;
+		}
+		
 		//Flip player
 		if (hasControl)
 		{

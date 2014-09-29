@@ -23,6 +23,8 @@ class Health
 	
 	var startHealth:Float = 10;
 	
+	var lastHealth:Int = 10;
+	
 	public function init() 
 	{	
 		owner.scrollFactor.x = 0;
@@ -34,18 +36,30 @@ class Health
 	
 	public function update()
 	{
+		if (lastHealth < player.health)
+		{
+			onScreen = false;
+		}
+		
+		var pos = (214 * (Math.floor(player.health / startHealth * 10)) / 10) - 214;
 		if (onScreen)
 		{
-			owner.x = (214 * (Math.floor(player.health / startHealth * 10)) / 10) - 214;
+			owner.x = pos;
 		}
 		else
 		{
 			owner.x += speed * FlxG.elapsed;
-			if (owner.x >= 0)
+			if (owner.x >= pos)
 			{
-				owner.x = 0;
+				owner.x = pos;
 				onScreen = true;
+				if (owner.x == 0)
+				{
+					speed /= 3; //for increasing health
+				}
 			}
 		}
+		
+		lastHealth = player.health;
 	}
 }

@@ -112,6 +112,14 @@ class EnemyManager
 					"round-time: " + Math.round(Reg.roundTime)
 				);
 				
+				Stats.trackEvent(
+					"game", 
+					"overview", 
+					"waves: " + wave + 
+					", kills: " + Reg.zombiesKilled + 
+					", round-time: " + (Math.round(Reg.roundTime) / 60)
+					);
+				
 				Stats.trackEvent("kongregate", "submitted", "score");
 				
 				FlxKongregate.submitStats("Highest Wave", wave);
@@ -172,6 +180,8 @@ class EnemyManager
 		spawned = 0;
 		
 		++wave;
+		
+		player.health++;
 
 		leftTimer = rand.float(0,1);
 		rightTimer = rand.float(0,1);
