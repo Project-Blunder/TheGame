@@ -55,7 +55,7 @@ class Health
 				onScreen = true;
 				if (owner.x == 0)
 				{
-					speed /= 3; //for increasing health
+					speed = 175; //for increasing health
 				}
 			}
 		}

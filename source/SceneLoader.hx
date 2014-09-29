@@ -15,6 +15,8 @@ import ice.entity.*;
 import ice.group.EntityGroup;
 import ice.wrappers.FlxKeyWrap;
 import ice.wrappers.FlxColorWrap;
+import flixel.FlxCamera.FlxCameraFollowStyle;
+import ice.wrappers.FlxCameraFollowStyleWrap;
 import Reg;
 
 import googleAnalytics.Stats;
@@ -36,6 +38,7 @@ class SceneLoader extends FlxState
 		//Stops flixel from pausing the game when it loses focus, makes live-scripting 
 		//much nicer
 		FlxG.autoPause = false;
+		//FlxG.fixedTimestep = false;
 		
 		FlxKongregate.init(onLoad);
 		

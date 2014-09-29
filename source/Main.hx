@@ -34,6 +34,10 @@ class Main extends Sprite
 		#if html
 		Reg.html = true;
 		#end
+		
+		#if debug
+		Reg.debug = true;
+		#end
 	}
 	
 	public function new() 

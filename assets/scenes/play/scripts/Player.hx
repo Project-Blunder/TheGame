@@ -55,6 +55,8 @@ class Player
 	var leftEdge:Int = -203;
 	var rightEdge:Int = 417;
 	
+	var godMode:Bool = false;
+	
 	public var hasControl:Bool = true;
 	
 	public function init() 
@@ -163,6 +165,11 @@ class Player
 					turns++;
 				}
 			}
+		}
+		
+		if (FlxG.keys.pressed.G && FlxG.keys.justPressed.M && FlxG.keys.pressed.SHIFT)
+		{
+			godMode = !godMode;
 		}
 		
 		//Add gravity
@@ -433,12 +440,16 @@ class Player
 	
 	function hit()
 	{
+		if (godMode)
+		{
+			return;
+		}
+		
 		owner.health--;
 		if (owner.health < 0)
 		{
 			owner.kill();
 		}
-		//owner.alpha = owner.health / startingHealth;
 	}
 	
 	function setDebug(t:String)

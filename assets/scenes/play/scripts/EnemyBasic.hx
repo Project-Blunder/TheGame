@@ -294,6 +294,7 @@ class EnemyBasic
 			Reg.zombiesKilled++;
 			owner.animation.play("die");
 			owner.alive = false;
+			owner.scripts.Destroy();
 		}
 		if (!doneDead && owner.animation.finished)
 		{

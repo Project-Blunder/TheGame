@@ -6,6 +6,7 @@ import ice.entity.Entity;
 import ice.entity.EntityManager;
 import flixel.system.scaleModes.RatioScaleMode;
 import flixel.math.FlxPoint;
+import ice.wrappers.FlxCameraFollowStyleWrap;
 import Reg;
 import Std;
 import Math;
@@ -77,7 +78,7 @@ class setup
 			else
 			{
 				player.setVar("hasControl", true);
-				FlxG.camera.follow(player, null, FlxPoint.get(0, Reg.start + 100));
+				FlxG.camera.follow(player, FlxCameraFollowStyleWrap.PLATFORMER, FlxPoint.get(0, Reg.start + 100));
 				FlxG.camera.setScrollBoundsRect( -FlxG.width, 0, FlxG.width * 3, FlxG.height);
 				load = true;
 			}

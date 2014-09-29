@@ -96,6 +96,8 @@ class EnemyManager
 			{
 				end = true;
 				
+				if (!Reg.debug)
+				{
 				Stats.trackEvent(
 					"game", 
 					"over", 
@@ -125,6 +127,7 @@ class EnemyManager
 				FlxKongregate.submitStats("Highest Wave", wave);
 				FlxKongregate.submitStats("Most Zombies Killed", Reg.zombiesKilled);
 				FlxKongregate.submitStats("Total Zombies Killed", Reg.zombiesKilled);
+				}
 				
 				Reg.waves = wave;
 				
