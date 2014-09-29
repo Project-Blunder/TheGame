@@ -433,7 +433,7 @@ class Player
 		{
 			owner.kill();
 		}
-		owner.alpha = owner.health / startingHealth;
+		//owner.alpha = owner.health / startingHealth;
 	}
 	
 	function setDebug(t:String)

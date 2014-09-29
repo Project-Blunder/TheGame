@@ -29,6 +29,7 @@ class waves
 			if (FlxG.camera.scroll.y == 0)
 			{
 				owner.animation.play(Std.string(Reg.waves));
+				trace("display");
 				once = true;
 			}
 		}
