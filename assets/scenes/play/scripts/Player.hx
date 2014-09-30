@@ -155,6 +155,7 @@ class Player
 				{
 					owner.facing = FlxObject.LEFT;
 					turns++;
+					
 				}
 			}
 			else if (FlxG.keys.anyPressed([FlxKeyWrap.RIGHT, FlxKeyWrap.D]))
@@ -170,6 +171,7 @@ class Player
 		if (FlxG.keys.pressed.G && FlxG.keys.justPressed.M && FlxG.keys.pressed.SHIFT)
 		{
 			godMode = !godMode;
+			//owner.color = 0xFF93EC62;
 		}
 		
 		//Add gravity
@@ -215,6 +217,7 @@ class Player
 			if (FlxG.keys.anyPressed([FlxKeyWrap.S, FlxKeyWrap.DOWN]))
 			{
 				owner.FSM.PushState(crouching);
+				FlxG.sound.play("assets/sounds/Jump.mp3",0.2);
 			}
 			
 			//transition to attack
@@ -234,7 +237,7 @@ class Player
 			else if (FlxG.keys.anyPressed([FlxKeyWrap.RIGHT, FlxKeyWrap.D]))
 			{
 				owner.x += speed * FlxG.elapsed;
-				owner.animation.play("walk");
+				owner.animation.play("walk");	
 			}
 			
 			//jumping
@@ -242,6 +245,8 @@ class Player
 			{
 				owner.velocity.y -= jumpforce;
 				owner.FSM.PushState(jumping);
+				FlxG.sound.play("assets/sounds/Jump.mp3",0.7);
+				//if (Reg.flash) FlxG.sound.play("assets/sounds/JumpBit.wav",1,true);
 			}
 		}
 	}
@@ -266,10 +271,12 @@ class Player
 		if (FlxG.keys.anyPressed([FlxKeyWrap.LEFT, FlxKeyWrap.A]))
 		{
 			owner.x -= speed * FlxG.elapsed;
+			//if (Reg.flash) FlxG.sound.play("assets/sounds/stepsbit.wav",1,true);
 		}
 		else if (FlxG.keys.anyPressed([FlxKeyWrap.RIGHT, FlxKeyWrap.D]))
 		{
 			owner.x += speed * FlxG.elapsed;
+			//if (Reg.flash) FlxG.sound.play("assets/sounds/stepsbit.wav",1,true);
 		}
 	}
 	
@@ -297,8 +304,8 @@ class Player
 			var info = newObject();
 			info.high = false;
 			owner.FSM.PushState(attack, info);
-			if (Reg.flash) FlxG.sound.play("assets/sounds/Whoosh.mp3");
-			if (!Reg.flash) FlxG.sound.play("assets/sounds/Whoosh.ogg");
+			if (Reg.flash) FlxG.sound.play("assets/sounds/swing.mp3");
+			//if (!Reg.flash) FlxG.sound.play("assets/sounds/swing.ogg");
 		}
 	}	
 		
@@ -340,14 +347,11 @@ class Player
 				if (owner.FSM.info.high)
 				{
 					owner.animation.play("attack-tall");
-					if (Reg.flash) FlxG.sound.play("assets/sounds/Whoosh.mp3");
-					if (!Reg.flash) FlxG.sound.play("assets/sounds/Whoosh.ogg");
+					if (Reg.flash) FlxG.sound.play("assets/sounds/swing.mp3");
 				}
 				else
 				{
 					owner.animation.play("attack-crouch");
-					if (Reg.flash) FlxG.sound.play("assets/sounds/Whoosh.mp3");
-					if (!Reg.flash) FlxG.sound.play("assets/sounds/Whoosh.ogg");
 				}
 				FlxG.camera.shake(0.01, 0.2);
 				attacking = true;

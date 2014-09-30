@@ -21,11 +21,13 @@ class setup
 		//with the level of intensity
 		if (Reg.flash)
 		{
-			var music = FlxG.sound.load("assets/music/3bztheme.mp3",1,true,false,true);	
+			
+			var amb = FlxG.sound.load("assets/sounds/amb.mp3",.3,true,false,true);	
+			//var music = FlxG.sound.load("assets/music/3bztheme.mp3",1,true,false,true);	
 		}	
 		else
 		{
-			var music = FlxG.sound.load("assets/music/3bztheme.ogg", 1, true, false, true);	
+			//var music = FlxG.sound.load("assets/music/3bztheme.ogg", 1, true, false, true);	
 		}	
 		
 		if(!Reg.html)

@@ -135,6 +135,8 @@ class EnemyBasic
 	
 	function attack()
 	{
+		//FlxG.sound.play("assets/sounds/bite.mp3");//It gets repeated way too quickly
+		
 		if (owner.GetDistance(target) <= grabDist + 2)
 		{
 			if(owner.getMidpoint().y - target.getMidpoint().y < owner.height / 2)
@@ -144,6 +146,7 @@ class EnemyBasic
 					if (owner.animation.finished)
 					{
 						target.getVarAsDynamic("hit")();
+						
 					}
 				}
 				else
@@ -152,6 +155,7 @@ class EnemyBasic
 					{
 						owner.animation.play("swat");
 						target.getVarAsDynamic("hit")();
+						
 						return;
 					}
 				}
@@ -173,7 +177,7 @@ class EnemyBasic
 			owner.FSM.PopState();
 		}
 		currentState = "attack";
-		//FlxG.sound.play("assets/sounds/Eating.wav");
+		
 	}
 	
 	function grab()
@@ -196,6 +200,7 @@ class EnemyBasic
 	{
 		currentState = "hold";
 		owner.animation.play("hold");
+		
 		
 		if (timer < 1)
 		{
@@ -229,7 +234,7 @@ class EnemyBasic
 	{
 		currentState = "hit";
 		
-		FlxG.sound.play("assets/sounds/Thump.wav");
+		FlxG.sound.play("assets/sounds/bang.mp3");
 		
 		
 		timer = 0;
