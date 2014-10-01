@@ -1,4 +1,5 @@
 package ;
+import openfl.Assets;
 
 import flixel.addons.api.FlxKongregate;
 import ice.entity.EntityManager;
@@ -8,6 +9,7 @@ import ice.wrappers.FlxColorWrap;
 import ice.wrappers.FlxKeyWrap;
 
 import flixel.FlxG;
+import flixel.system.FlxSound;
 import flixel.text.FlxText;
 import flixel.util.FlxSpriteUtil;
 import flixel.FlxObject;
@@ -155,7 +157,7 @@ class Player
 				{
 					owner.facing = FlxObject.LEFT;
 					turns++;
-					
+					if (owner.y == floorHeight) FlxG.sound.play("assets/sounds/jump.mp3", 0.2);
 				}
 			}
 			else if (FlxG.keys.anyPressed([FlxKeyWrap.RIGHT, FlxKeyWrap.D]))
@@ -164,6 +166,7 @@ class Player
 				{
 					owner.facing = FlxObject.RIGHT;
 					turns++;
+					if (owner.y == floorHeight) FlxG.sound.play("assets/sounds/jump.mp3", 0.2) ; 
 				}
 			}
 		}
@@ -199,6 +202,8 @@ class Player
 	}
 	
 	//@
+
+	
 	function standing()
 	{
 		setDebug("stand");
@@ -217,7 +222,7 @@ class Player
 			if (FlxG.keys.anyPressed([FlxKeyWrap.S, FlxKeyWrap.DOWN]))
 			{
 				owner.FSM.PushState(crouching);
-				FlxG.sound.play("assets/sounds/Jump.mp3",0.2);
+				FlxG.sound.play("assets/sounds/jump.mp3",0.2);
 			}
 			
 			//transition to attack
@@ -237,7 +242,7 @@ class Player
 			else if (FlxG.keys.anyPressed([FlxKeyWrap.RIGHT, FlxKeyWrap.D]))
 			{
 				owner.x += speed * FlxG.elapsed;
-				owner.animation.play("walk");	
+				owner.animation.play("walk");
 			}
 			
 			//jumping
@@ -245,8 +250,7 @@ class Player
 			{
 				owner.velocity.y -= jumpforce;
 				owner.FSM.PushState(jumping);
-				FlxG.sound.play("assets/sounds/Jump.mp3",0.7);
-				//if (Reg.flash) FlxG.sound.play("assets/sounds/JumpBit.wav",1,true);
+				FlxG.sound.play("assets/sounds/jump.mp3",0.7);
 			}
 		}
 	}
@@ -271,12 +275,10 @@ class Player
 		if (FlxG.keys.anyPressed([FlxKeyWrap.LEFT, FlxKeyWrap.A]))
 		{
 			owner.x -= speed * FlxG.elapsed;
-			//if (Reg.flash) FlxG.sound.play("assets/sounds/stepsbit.wav",1,true);
 		}
 		else if (FlxG.keys.anyPressed([FlxKeyWrap.RIGHT, FlxKeyWrap.D]))
 		{
 			owner.x += speed * FlxG.elapsed;
-			//if (Reg.flash) FlxG.sound.play("assets/sounds/stepsbit.wav",1,true);
 		}
 	}
 	
@@ -450,6 +452,7 @@ class Player
 		}
 		
 		owner.health--;
+		FlxG.sound.play("assets/sounds/bite.mp3",0.3);
 		if (owner.health < 0)
 		{
 			owner.kill();

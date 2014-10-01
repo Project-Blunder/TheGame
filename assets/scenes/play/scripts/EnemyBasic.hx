@@ -135,7 +135,6 @@ class EnemyBasic
 	
 	function attack()
 	{
-		//FlxG.sound.play("assets/sounds/bite.mp3");//It gets repeated way too quickly
 		
 		if (owner.GetDistance(target) <= grabDist + 2)
 		{
@@ -234,7 +233,7 @@ class EnemyBasic
 	{
 		currentState = "hit";
 		
-		FlxG.sound.play("assets/sounds/bang.mp3");
+		FlxG.sound.play("assets/sounds/bangsolo.mp3");
 		
 		
 		timer = 0;
@@ -303,10 +302,12 @@ class EnemyBasic
 		}
 		if (!doneDead && owner.animation.finished)
 		{
+			FlxG.sound.play("assets/sounds/deathsolo.mp3");
 			switch(Math.floor(rand.float(0, 3, [3])))
 			{
 				case 1:
 					owner.animation.play("dead-1");
+					
 				case 2:
 					owner.animation.play("dead-2");
 			}
