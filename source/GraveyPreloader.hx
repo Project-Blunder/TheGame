@@ -40,7 +40,7 @@ class GraveyPreloader extends IceBasePreloader
 	
 	public function new () 
 	{
-		super(2, ["http://nicom1.github.io/", "chat.kongregate.com", "www.rawgit.com", FlxBasePreloader.LOCAL]);
+		super(2, ["http://nicom1.github.io/", "chat.kongregate.com", "rawgit.com", FlxBasePreloader.LOCAL]);
 	}
 
 	override private function create():Void	
