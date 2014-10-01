@@ -226,10 +226,8 @@ class IceBasePreloader extends NMEPreloader
 		}
 		
 		var homeDomain:String = Util.getDomain(loaderInfo.loaderURL);
-		trace(homeDomain);
 		for (allowedURL in allowedURLs)
 		{
-			trace(allowedURL);
 			if (Util.getDomain(allowedURL) == homeDomain)
 			{
 				return true;
