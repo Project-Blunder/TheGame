@@ -5,7 +5,7 @@
 	<script path="assets/scenes/dead/scripts/setup.hx" />
 	
 	<entity tag="waves" x="90%">
-		<art path="assets/scenes/dead/images/waves.png" width="23" height="47">
+		<art path="assets/scenes/dead/images/waves1.png" width="23" height="47">
 			<animation name="1" frames="0-1" framerate="10" looped="false" autorun="false"/>
 			<animation name="2" frames="0-2" framerate="10" looped="false" autorun="false"/>
 			<animation name="3" frames="0-3" framerate="10" looped="false" autorun="false"/>

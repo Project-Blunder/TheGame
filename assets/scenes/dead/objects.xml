@@ -18,7 +18,7 @@
 	<instance template="grass01" x="39%" />
 	<instance template="grass02" x="57%" />
 	<instance template="grass01" x="85%" />
-	<instance template="grass01" x="95%" />	
+	<!--<instance template="grass01" x="95%" />-->	
 	
 	<entity tag="ground">
 		<script>
