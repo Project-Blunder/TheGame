@@ -60,7 +60,7 @@ class Start
 		}
 		else
 		{
-			//Stats.trackEvent("game", "start", "started game");
+			Stats.trackEvent("game", "start", "started game");
 			EntityManager.switchScene(["assets/scenes/play/setup.xml"]);
 		}
 	}
