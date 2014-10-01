@@ -1,3 +1,5 @@
 *
 !.gitignore
-!flash/bin/3bz.swf
+!flash/
+!flash/bin/
+!flash/bin/*
