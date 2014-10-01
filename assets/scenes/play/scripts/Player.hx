@@ -269,6 +269,7 @@ class Player
 		if (owner.y >= floorHeight)
 		{
 			owner.FSM.PopState();
+			FlxG.sound.play("assets/sounds/jump.mp3",0.7);
 		}
 		
 		//movement
