@@ -229,6 +229,7 @@ class IceBasePreloader extends NMEPreloader
 		trace(homeDomain);
 		for (allowedURL in allowedURLs)
 		{
+			trace(allowedURL);
 			if (Util.getDomain(allowedURL) == homeDomain)
 			{
 				return true;
