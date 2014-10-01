@@ -4,6 +4,7 @@ import flixel.addons.api.FlxKongregate;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.FlxSubState;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.ui.FlxButton;
@@ -86,6 +87,11 @@ class SceneLoader extends FlxState
 		if (Reg.showDebug)
 		{
 			SceneLoader.debug.clear();
+		}
+		
+		if (FlxG.keys.justPressed.P)
+		{
+			openSubState(new PauseState());
 		}
 		
 		super.update(elapsed);
