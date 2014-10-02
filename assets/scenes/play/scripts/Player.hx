@@ -345,10 +345,12 @@ class Player
 			if (owner.FSM.info.high)
 			{
 				owner.animation.play("windup");
+				stepSound.volume = 0;
 			}
 			else
 			{
 				owner.animation.play("windup-crouch");
+				stepSound.volume = 0;
 			}
 			
 			//set-up timer for wind-down
