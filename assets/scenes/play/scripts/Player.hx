@@ -59,10 +59,12 @@ class Player
 	
 	var godMode:Bool = false;
 	
+
+	
 	public var hasControl:Bool = true;
 	
 	var stepSound:FlxSound;
-	var soundVol:Float = 1;
+	var soundVol:Float = 0.03;
 	
 	public function init() 
 	{
@@ -90,7 +92,7 @@ class Player
 		owner.setFacingFlip(FlxObject.LEFT, true, false);
 		///////////////////////////////////////////////////
 		
-		stepSound = FlxG.sound.load("assets/sounds/steps.mp3", 0, true,false,true);
+		stepSound = FlxG.sound.load("assets/sounds/jump.mp3", 0, true,false,true);
 		
 		//Start-Up/////////////////////////////
 		owner.FSM.PushState(standing);
@@ -162,7 +164,7 @@ class Player
 				{
 					owner.facing = FlxObject.LEFT;
 					turns++;
-					if (owner.y == floorHeight) FlxG.sound.play("assets/sounds/Jump.mp3", 0.2);
+					if (owner.y == floorHeight) FlxG.sound.play("assets/sounds/jump.mp3", 0.03);
 				}
 			}
 			else if (FlxG.keys.anyPressed([FlxKeyWrap.RIGHT, FlxKeyWrap.D]))
@@ -171,7 +173,7 @@ class Player
 				{
 					owner.facing = FlxObject.RIGHT;
 					turns++;
-					if (owner.y == floorHeight) FlxG.sound.play("assets/sounds/Jump.mp3", 0.2) ; 
+					if (owner.y == floorHeight) FlxG.sound.play("assets/sounds/jump.mp3", 0.03) ; 
 				}
 			}
 		}
@@ -228,7 +230,7 @@ class Player
 			if (FlxG.keys.anyPressed([FlxKeyWrap.S, FlxKeyWrap.DOWN]))
 			{
 				owner.FSM.PushState(crouching);
-				FlxG.sound.play("assets/sounds/Jump.mp3",0.2);
+				FlxG.sound.play("assets/sounds/jump.mp3",0.1);
 			}
 			
 			//transition to attack
@@ -242,15 +244,17 @@ class Player
 			//movement
 			if (FlxG.keys.anyPressed([FlxKeyWrap.LEFT, FlxKeyWrap.A]))
 			{
-				stepSound.volume = soundVol;
 				owner.x -= speed * FlxG.elapsed;
 				owner.animation.play("walk");
+				
+				stepSound.volume = soundVol;
 			}
 			else if (FlxG.keys.anyPressed([FlxKeyWrap.RIGHT, FlxKeyWrap.D]))
 			{
-				stepSound.volume = soundVol;
 				owner.x += speed * FlxG.elapsed;
 				owner.animation.play("walk");
+				
+				stepSound.volume = soundVol;
 			}
 			else
 			{
@@ -262,7 +266,7 @@ class Player
 			{
 				owner.velocity.y = -jumpforce;
 				owner.FSM.PushState(jumping);
-				FlxG.sound.play("assets/sounds/Jump.mp3",0.4);
+				FlxG.sound.play("assets/sounds/jump.mp3",0.1);
 			}
 		}
 	}
@@ -280,17 +284,19 @@ class Player
 		{
 			trace("floor");
 			owner.FSM.PopState();
-			FlxG.sound.play("assets/sounds/Jump.mp3",0.7);
+			FlxG.sound.play("assets/sounds/jump.mp3", 0.1);
 		}
 		
 		//movement
 		if (FlxG.keys.anyPressed([FlxKeyWrap.LEFT, FlxKeyWrap.A]))
 		{
 			owner.x -= speed * FlxG.elapsed;
+			stepSound.volume = 0;
 		}
 		else if (FlxG.keys.anyPressed([FlxKeyWrap.RIGHT, FlxKeyWrap.D]))
 		{
 			owner.x += speed * FlxG.elapsed;
+			stepSound.volume = 0;
 		}
 	}
 	
@@ -464,7 +470,7 @@ class Player
 		}
 		
 		owner.health--;
-		FlxG.sound.play("assets/sounds/bite.mp3",0.3);
+		FlxG.sound.play("assets/sounds/bite.mp3",0.2);
 		if (owner.health < 0)
 		{
 			owner.kill();
