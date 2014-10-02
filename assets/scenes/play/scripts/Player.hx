@@ -61,6 +61,9 @@ class Player
 	
 	public var hasControl:Bool = true;
 	
+	var stepSound:FlxSound;
+	var soundVol:Float = 1;
+	
 	public function init() 
 	{
 		//Debug///////////////////////////////////////
@@ -86,6 +89,8 @@ class Player
 		owner.setFacingFlip(FlxObject.RIGHT, false, false);
 		owner.setFacingFlip(FlxObject.LEFT, true, false);
 		///////////////////////////////////////////////////
+		
+		stepSound = FlxG.sound.load("assets/sounds/steps.mp3", 0, true,false,true);
 		
 		//Start-Up/////////////////////////////
 		owner.FSM.PushState(standing);
@@ -184,6 +189,7 @@ class Player
 		if (owner.y > floorHeight)
 		{
 			owner.y = floorHeight;
+			owner.velocity.y = 0;
 		}
 		
 		if (owner.x < leftEdge)
@@ -236,21 +242,27 @@ class Player
 			//movement
 			if (FlxG.keys.anyPressed([FlxKeyWrap.LEFT, FlxKeyWrap.A]))
 			{
+				stepSound.volume = soundVol;
 				owner.x -= speed * FlxG.elapsed;
 				owner.animation.play("walk");
 			}
 			else if (FlxG.keys.anyPressed([FlxKeyWrap.RIGHT, FlxKeyWrap.D]))
 			{
+				stepSound.volume = soundVol;
 				owner.x += speed * FlxG.elapsed;
 				owner.animation.play("walk");
+			}
+			else
+			{
+				stepSound.volume = 0;
 			}
 			
 			//jumping
 			if (owner.y >= floorHeight && FlxG.keys.anyJustPressed([FlxKeyWrap.UP, FlxKeyWrap.W]))
 			{
-				owner.velocity.y -= jumpforce;
+				owner.velocity.y = -jumpforce;
 				owner.FSM.PushState(jumping);
-				FlxG.sound.play("assets/sounds/Jump.mp3",0.7);
+				FlxG.sound.play("assets/sounds/Jump.mp3",0.4);
 			}
 		}
 	}
@@ -260,14 +272,13 @@ class Player
 		setDebug("jump");
 		
 		//play anim
-		if (owner.velocity.y <= 0)
-		{
-			owner.animation.play("fall");
-		}
+		owner.animation.play("fall");
+
 		
 		//transtion back to standing
 		if (owner.y >= floorHeight)
 		{
+			trace("floor");
 			owner.FSM.PopState();
 			FlxG.sound.play("assets/sounds/Jump.mp3",0.7);
 		}

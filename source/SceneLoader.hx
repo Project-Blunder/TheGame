@@ -18,6 +18,7 @@ import ice.wrappers.FlxKeyWrap;
 import ice.wrappers.FlxColorWrap;
 import flixel.FlxCamera.FlxCameraFollowStyle;
 import ice.wrappers.FlxCameraFollowStyleWrap;
+import flixel.system.FlxSound;
 import Reg;
 
 import googleAnalytics.Stats;
