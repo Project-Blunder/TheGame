@@ -157,7 +157,7 @@ class Player
 				{
 					owner.facing = FlxObject.LEFT;
 					turns++;
-					if (owner.y == floorHeight) FlxG.sound.play("assets/sounds/jump.mp3", 0.2);
+					if (owner.y == floorHeight) FlxG.sound.play("assets/sounds/Jump.mp3", 0.2);
 				}
 			}
 			else if (FlxG.keys.anyPressed([FlxKeyWrap.RIGHT, FlxKeyWrap.D]))
@@ -166,7 +166,7 @@ class Player
 				{
 					owner.facing = FlxObject.RIGHT;
 					turns++;
-					if (owner.y == floorHeight) FlxG.sound.play("assets/sounds/jump.mp3", 0.2) ; 
+					if (owner.y == floorHeight) FlxG.sound.play("assets/sounds/Jump.mp3", 0.2) ; 
 				}
 			}
 		}
@@ -222,7 +222,7 @@ class Player
 			if (FlxG.keys.anyPressed([FlxKeyWrap.S, FlxKeyWrap.DOWN]))
 			{
 				owner.FSM.PushState(crouching);
-				FlxG.sound.play("assets/sounds/jump.mp3",0.2);
+				FlxG.sound.play("assets/sounds/Jump.mp3",0.2);
 			}
 			
 			//transition to attack
@@ -250,7 +250,7 @@ class Player
 			{
 				owner.velocity.y -= jumpforce;
 				owner.FSM.PushState(jumping);
-				FlxG.sound.play("assets/sounds/jump.mp3",0.7);
+				FlxG.sound.play("assets/sounds/Jump.mp3",0.7);
 			}
 		}
 	}
@@ -269,7 +269,7 @@ class Player
 		if (owner.y >= floorHeight)
 		{
 			owner.FSM.PopState();
-			FlxG.sound.play("assets/sounds/jump.mp3",0.7);
+			FlxG.sound.play("assets/sounds/Jump.mp3",0.7);
 		}
 		
 		//movement
