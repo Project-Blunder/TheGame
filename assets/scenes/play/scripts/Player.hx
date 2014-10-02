@@ -311,7 +311,7 @@ class Player
 		}
 		
 		owner.animation.play("crouch");
-		
+		stepSound.volume = 0;
 		//back to standing on key release
 		if (!FlxG.keys.anyPressed([FlxKeyWrap.S, FlxKeyWrap.DOWN]))
 		{
