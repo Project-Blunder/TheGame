@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	<entity tag="player" template="player" x="50%">
+		<art path="assets/scenes/play/images/PlayerAnim.png" width="37" height="24">
+			<animation name="tall" frames="11-12" framerate="1" looped="true" autorun="true"/>
+			<animation name="windup" frames="1" framerate="2" looped="false" />
+			<animation name="attack-tall" frames="2" framerate="2" looped="false" />
+			<animation name="crouch" frames="3" framerate="1" looped="false" />
+			<animation name="windup-crouch" frames="4" framerate="2" looped="false" />
+			<animation name="attack-crouch" frames="5" framerate="4" looped="false" />
+			<animation name="walk" frames="6-8,7" framerate="5" looped="true" />
+			<animation name="fall" frames="9,10" framerate="5" looped="true" />
+		</art>
+		<script path="assets/scenes/play/scripts/Player.hx"/>
+	</entity>
+</data>
