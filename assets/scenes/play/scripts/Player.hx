@@ -278,7 +278,6 @@ class Player
 		//transtion back to standing
 		if (owner.y >= floorHeight)
 		{
-			trace("floor");
 			owner.FSM.PopState();
 			FlxG.sound.play("assets/sounds/Jump.mp3",0.7);
 		}
