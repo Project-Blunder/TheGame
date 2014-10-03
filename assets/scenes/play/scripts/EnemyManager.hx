@@ -4,6 +4,7 @@ import flixel.addons.api.FlxKongregate;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.math.FlxPoint;
+import flixel.system.FlxSound;
 import googleAnalytics.Stats;
 import ice.group.EntityGroup;
 import ice.entity.EntityManager;
@@ -37,10 +38,16 @@ class EnemyManager
 	var pan:Bool = false;
 	var speed:Float = 170;
 	
+	var growlSound: FlxSound;
+	
+	
 	public function init() 
 	{
 		EntityManager.instance.AddGroup(enemies, "enemies", 0);
 		Reg.roundTime = 0;
+		
+		growlSound = FlxG.sound.load("assets/sounds/growlexp3.mp3", 0.4, false, false, false);
+		
 		setUpWave();
 	}
 	
@@ -86,13 +93,18 @@ class EnemyManager
 			if (leftTimer < 0)
 			{
 				addEnemy(0);
+				growlSound.pan = -1;
+				growlSound.play();
 				setLeftTimer();
 			}
 			if (rightTimer < 0)
 			{
 				addEnemy(1);
-				setRightTimer();
+				growlSound.pan = 1;
+				growlSound.play();
+				setRightTimer();	
 			}
+		
 		}
 		
 		if (!end)
@@ -188,7 +200,7 @@ class EnemyManager
 		
 		player.health++;
 
-		leftTimer = rand.float(0,1);
+		leftTimer = rand.float(0, 1); 
 		rightTimer = rand.float(0,1);
 			
 		if (wave != 1)
