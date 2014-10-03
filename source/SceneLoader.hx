@@ -19,6 +19,7 @@ import ice.wrappers.FlxColorWrap;
 import flixel.FlxCamera.FlxCameraFollowStyle;
 import ice.wrappers.FlxCameraFollowStyleWrap;
 import flixel.system.FlxSound;
+import openfl.Assets;
 import Reg;
 
 import googleAnalytics.Stats;
