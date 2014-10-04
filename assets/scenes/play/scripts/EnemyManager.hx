@@ -43,15 +43,28 @@ class EnemyManager
 	var pan:Bool = false;
 	var speed:Float = 170;
 	
-	var growlSound: FlxSound;
+	var leftGrowlSound:FlxSound;
+	var rightGrowlSound:FlxSound;
 	
 	
 	public function init() 
 	{
 		EntityManager.instance.AddGroup(enemies, "enemies", 0);
-		Reg.roundTime = 0;
 		
-		growlSound = FlxG.sound.load("assets/sounds/growlexp3.mp3", 0.4, false, false, false);
+		Reg.roundTime = 0;
+		Reg.waves = 0;		
+		Reg.zombiesKilled:Int = 0;
+		Reg.roundTime:Float = 0;
+		Reg.waves:Int = 0;
+		Reg.zombieBaseSpeed:Float = 25;
+		Reg.burstChance:Float = 0;
+		Reg.burstTime:Float = 0.5;
+		
+		
+		leftGrowlSound = FlxG.sound.load("assets/sounds/growlexp3.mp3", 0.4, false, false, false);
+		leftGrowlSound.pan = -1;
+		rightGrowlSound = FlxG.sound.load("assets/sounds/growlexp3.mp3", 0.4, false, false, false);
+		rightGrowlSound.pan = 1;
 		
 		setUpWave();
 	}
@@ -158,6 +171,7 @@ class EnemyManager
 		}
 		else
 		{
+			FlxG.camera.scroll.x = 0;
 			EntityManager.switchScene(["assets/scenes/dead/setup.xml"]);
 		}
 	}
@@ -227,20 +241,12 @@ class EnemyManager
 		
 		if (direction == 1)
 		{
-			if (!growlSound.playing)
-			{
-				growlSound.pan = 1;
-				growlSound.play();
-			}
+			rightGrowlSound.play();
 			enemy.x = FlxG.camera.scroll.x + FlxG.width + enemy.width;
 		}
 		else
 		{
-			if (!growlSound.playing)
-			{
-				growlSound.pan = -1;
-				growlSound.play();
-			}
+			leftGrowlSound.play();
 			enemy.x = FlxG.camera.scroll.x -enemy.width;
 		}
 		
