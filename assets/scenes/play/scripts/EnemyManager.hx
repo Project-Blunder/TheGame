@@ -28,7 +28,7 @@ class EnemyManager
 	var spawnDefault:Float = 2;
 	var spawnRange:Float = 1;
 	
-	var spawnTimeDefault:Float = 4;
+	var spawnTimeDefault:Float = 6;
 	var spawnTimeRange:Float = 0.2;
 	
 	var speedIncrease:Float = 2;
@@ -212,17 +212,22 @@ class EnemyManager
 		++wave;
 		
 		player.health++;
-		
-		Reg.zombieBaseSpeed += speedIncrease;
-		Reg.burstChance += burstChanceIncrease;
-		Reg.burstTime += burstTimeIncrease;
-		Reg.dogChance += dogChanceIncrease;
 
 		leftTimer = rand.float(0, 1); 
 		rightTimer = rand.float(0,1);
 			
+		if (wave == 3)
+		{
+			spawnTimeDefault = 4;
+		}
+		
 		if (wave != 1)
 		{
+			Reg.zombieBaseSpeed += speedIncrease;
+			Reg.burstChance += burstChanceIncrease;
+			Reg.burstTime += burstTimeIncrease;
+			Reg.dogChance += dogChanceIncrease;
+			
 			spawnCount += Math.floor(rand.float(spawnDefault - spawnRange, spawnDefault + spawnRange + 1));
 			spawnTimeDefault -= rand.float(spawnTimeRange / 2, spawnTimeRange);
 		}
@@ -248,7 +253,7 @@ class EnemyManager
 		}
 		else
 		{
-			enemy = EntityManager.instance.instantiate("enemy");
+			enemy = EntityManager.instance.instantiate("canine");
 		}
 		enemies.add(enemy);
 		

@@ -175,12 +175,11 @@ class EnemyCanine
 			owner.alive = false;
 			owner.FSM.destroy();
 			owner.scripts.Destroy();
-		}
-		/*if (!doneDead && owner.animation.finished)
-		{
+			
+			FlxG.sound.play("assets/sounds/bangsquish.mp3", 0.3);
+			FlxG.sound.play("assets/sounds/ouch.mp3", 0.2);
 			FlxG.sound.play("assets/sounds/deathsolo.mp3");
-			doneDead = true;
-		}*/
+		}
 	}
 	
 	function setDebug(t:String)
