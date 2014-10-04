@@ -36,6 +36,8 @@ class EnemyManager
 	var burstChanceIncrease:Float = 5;
 	var burstTimeIncrease:Float = 0.5;
 	
+	var dogChanceIncrease:Float = 3;
+	
 	var rand = new FlxRandom();
 	
 	var end:Bool = false;
@@ -59,6 +61,7 @@ class EnemyManager
 		Reg.zombieBaseSpeed:Float = 25;
 		Reg.burstChance:Float = 0;
 		Reg.burstTime:Float = 0.5;
+		Reg.dogChance = 0;
 		
 		
 		leftGrowlSound = FlxG.sound.load("assets/sounds/growlexp3.mp3", 0.4, false, false, false);
@@ -213,6 +216,7 @@ class EnemyManager
 		Reg.zombieBaseSpeed += speedIncrease;
 		Reg.burstChance += burstChanceIncrease;
 		Reg.burstTime += burstTimeIncrease;
+		Reg.dogChance += dogChanceIncrease;
 
 		leftTimer = rand.float(0, 1); 
 		rightTimer = rand.float(0,1);
@@ -236,7 +240,16 @@ class EnemyManager
 	
 	function addEnemy(direction:Int)
 	{
-		var enemy = EntityManager.instance.instantiate("canine");
+		
+		var enemy = null;
+		if (rand.bool(Reg.dogChance))
+		{
+			enemy = EntityManager.instance.instantiate("canine");
+		}
+		else
+		{
+			enemy = EntityManager.instance.instantiate("enemy");
+		}
 		enemies.add(enemy);
 		
 		if (direction == 1)

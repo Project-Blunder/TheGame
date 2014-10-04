@@ -30,7 +30,7 @@ class EnemyCanine
 	
 	var rand = new FlxRandom();
 	
-	var speed:Float = 80;
+	var speed:Float = 10;
 	var reactionTime:Float = 0.1;
 	var slideTime:Float = 0.35;
 	
@@ -45,11 +45,8 @@ class EnemyCanine
 		debugText.color = 0xFFFF0000;
 		EntityManager.instance.AddFlxBasic(debugText);
 		
-		//owner.makeGraphic(17, 17, FlxColorWrap.RED);
-		
 		owner.y = Reg.height - owner.height - 1;
-		owner.width = 11;
-		owner.offset.x = 8;	
+		owner.width = 26;
 		owner.health = 2;
 		owner.drag.x = 350;
 		owner.drag.y = 300;

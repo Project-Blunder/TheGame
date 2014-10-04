@@ -499,7 +499,17 @@ class Player
 	
 	function getXDist(t:FlxObject):Float
 	{
-		return Math.abs(owner.getMidpoint().x - t.getMidpoint().x);
+		var dist = owner.getMidpoint().x - t.getMidpoint().x;
+		
+		if (dist < 0)
+		{
+			dist += t.width / 2;
+		}
+		else
+		{
+			dist -= t.width / 2;
+		}
+		return Math.abs(dist);
 	}
 	//@
 }
