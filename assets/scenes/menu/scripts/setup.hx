@@ -17,18 +17,10 @@ class setup
 		FlxG.camera.bgColor = 0xffffffff;
 		FlxG.mouse.visible = false;
 		
-		//Music theme (very partial first draft!) - the idea is that the tempo can get faster and faster
-		//with the level of intensity
-		if (Reg.flash)
-		{
-			
-			var amb = FlxG.sound.load("assets/sounds/amb.mp3",.3,true,false,true);	
-			//var music = FlxG.sound.load("assets/music/3bztheme.mp3",1,true,false,true);	
-		}	
-		else
-		{
-			//var music = FlxG.sound.load("assets/music/3bztheme.ogg", 1, true, false, true);	
-		}	
+		//Music stuff
+		var amb = FlxG.sound.load("assets/sounds/amb.mp3",.3,true,false,true);	
+		var music = FlxG.sound.load("assets/sounds/3bzmelody.mp3",0.6,true,false,true);	
+
 		
 		if(!Reg.html)
 		FlxG.scaleMode = new RatioScaleMode(true);
