@@ -13,12 +13,12 @@
 			<animation name="die" frames="17-24" framerate="20" looped="false" autorun="false" />
 			<animation name="dead-1" frames="25" framerate="1" looped="true" autorun="false" />
 			<animation name="dead-2" frames="26" framerate="1" looped="true" autorun="false" />
+			<animation name="burst!" frames="27-30" framerate="15" looped="true" autorun="false" />
 		</art>
 		<script path="assets/scenes/play/scripts/EnemyBasic.hx"/>
 	</entity>
 	
 	<entity tag="health-bar">
-		<!--<art path="assets/scenes/play/images/health.png" width="201" height="13"/>-->
 		<script path="assets/scenes/play/scripts/Health.hx"/>
 	</entity>
 	

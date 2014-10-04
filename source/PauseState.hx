@@ -8,7 +8,6 @@ import flixel.FlxSubState;
  */
 class PauseState extends FlxSubState
 {
-
 	public function new() 
 	{
 		super();

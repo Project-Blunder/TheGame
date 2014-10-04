@@ -20,6 +20,8 @@ import flixel.FlxCamera.FlxCameraFollowStyle;
 import ice.wrappers.FlxCameraFollowStyleWrap;
 import flixel.system.FlxSound;
 import openfl.Assets;
+import openfl.events.Event;
+import openfl.Lib;
 import Reg;
 
 import googleAnalytics.Stats;
@@ -98,4 +100,14 @@ class SceneLoader extends FlxState
 		
 		super.update(elapsed);
 	}	
+	
+	override function onFocusLost() 
+	{
+		openSubState(new PauseState());
+	}
+	
+	override public function onFocus():Void 
+	{
+		subState.close();
+	}
 }

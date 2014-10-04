@@ -29,6 +29,14 @@ class EnemyBasic
 	
 	var rand = new FlxRandom();
 	
+	var crazyZombie:Bool = false;
+	var burstSpeed:Float = 100;
+	var burstTime:Float = 1;
+	var burstTimer:Float = 0;
+	var burstDelay:Float = 10;
+	var burstMinDelay:Float = 2;
+	var burstMaxDelay:Float = 10;
+	
 	var speed:Float;
 	var reactionTime:Float = rand.float(0.05, 0.15);
 	var stunnedChance:Float = 35;
@@ -61,6 +69,9 @@ class EnemyBasic
 		owner.setFacingFlip(FlxObject.LEFT, true, false);
 		owner.setFacingFlip(FlxObject.RIGHT, false, false);
 		
+		crazyZombie = rand.bool(100);
+		burstDelay = rand.float(burstMinDelay, burstMaxDelay);
+		
 		owner.FSM.PushState(hunt);
 	}
 	
@@ -90,6 +101,19 @@ class EnemyBasic
 	function hunt()
 	{
 		currentState = "hunt";
+		
+		//BURST-STUFF///////////////////////////////
+		if (crazyZombie)
+		{
+			burstTimer += FlxG.elapsed;
+			if (burstTimer > burstDelay)
+			{
+				owner.FSM.PushState(burst);
+				burstTimer = 0;
+				burstDelay = rand.float(burstMinDelay, burstMaxDelay);
+			}
+		}
+		/////////////////////////////////////////////
 
 		if (owner.facing == FlxObject.LEFT)
 		{
@@ -115,6 +139,61 @@ class EnemyBasic
 			{
 				owner.FSM.PushState(attack);
 				attack();
+			}
+		}
+		if (!isFacing(target))
+		{
+			timer += FlxG.elapsed;
+			if (timer > reactionTime)
+			{
+				timer = 0;
+				if (owner.facing == FlxObject.LEFT)
+				{
+					owner.facing = FlxObject.RIGHT;
+				}
+				else
+				{
+					owner.facing = FlxObject.LEFT;
+				}
+			}
+		}
+	}
+	
+	function burst()
+	{
+		burstTimer += FlxG.elapsed;
+		if (burstTimer > burstTime)
+		{
+			owner.FSM.PopState();
+			burstTimer = 0;
+		}
+		
+		if (owner.facing == FlxObject.LEFT)
+		{
+			if (getXDist(target) > grabDist)
+			{
+				owner.x -= burstSpeed * FlxG.elapsed;
+				owner.animation.play("burst!");
+			}
+			else
+			{
+				owner.FSM.ReplaceState(attack);
+				burstTimer = 0;
+				return;
+			}
+		}
+		else
+		{
+			if (getXDist(target) > grabDist)
+			{
+				owner.x += burstSpeed * FlxG.elapsed;
+				owner.animation.play("burst!");
+			}
+			else
+			{
+				owner.FSM.ReplaceState(attack);
+				burstTimer = 0;
+				return;
 			}
 		}
 		if (!isFacing(target))
