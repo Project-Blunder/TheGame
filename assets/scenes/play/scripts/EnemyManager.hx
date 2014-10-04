@@ -253,7 +253,7 @@ class EnemyManager
 		}
 		else
 		{
-			enemy = EntityManager.instance.instantiate("canine");
+			enemy = EntityManager.instance.instantiate("enemy");
 		}
 		enemies.add(enemy);
 		
