@@ -26,14 +26,16 @@
 	
 	<instance template="player"/>
 	
-	<!--<entity tag="canine">
+	<entity tag="canine" template="canine">
 		<art path="assets/scenes/play/images/caninerun.png" width="27" height="17">
-			<animation name="run" frames="0-2" framerate="8" looped="true"/>
-			<animation name="jump" frames="3-4" framerate="8" looped="true"/>
+			<animation name="run" frames="0-3" framerate="10" looped="true"/>
+			<animation name="slide" frames="0-3" framerate="14" looped="true"/>
+			<animation name="attack" frames="4-7" framerate="14" looped="false"/>
+			<animation name="die" frames="8-11" framerate="13" looped="false"/>
 		</art>
 		
 		<script path="assets/scenes/play/scripts/EnemyCanine.hx"/>
-	</entity>-->
+	</entity>
 	
 	<script path="assets/scenes/play/scripts/EnemyManager.hx" />
 </data>

@@ -30,20 +30,13 @@ class EnemyCanine
 	
 	var rand = new FlxRandom();
 	
-	var speed:Float = 80;//rand.float(25 - 1, 25 + 1);
-	var reactionTime:Float = 0.1;//rand.float(0.05, 0.15);
+	var speed:Float = 80;
+	var reactionTime:Float = 0.1;
 	var slideTime:Float = 0.35;
-	var attackDist:Int = 60;
+	
+	var attackDist:Int = 15;
 	
 	var target:Entity = EntityManager.instance.GetEntityByTag("player");
-	var group:EntityGroup = EntityManager.instance.GetGroup("enemies");
-	
-	var jumpForce:Float = 230;
-	var gravity:Float = 100;
-	
-	var floorHeight:Int;
-	var groundTimer:Float = 0;
-	var jumpDelay:Float = 0.35;
 	
 	var direction:Int = 0;
 	
@@ -60,6 +53,8 @@ class EnemyCanine
 		owner.health = 2;
 		owner.drag.x = 350;
 		owner.drag.y = 300;
+		
+		speed = Reg.zombieBaseSpeed * 3;
 		
 		floorHeight = Reg.height - owner.height - 1;	
 	
@@ -84,16 +79,6 @@ class EnemyCanine
 		{
 			debugText.visible = false;
 		}
-		owner.y += gravity * FlxG.elapsed;
-		if (owner.y > floorHeight)
-		{
-			owner.y = floorHeight;
-			owner.velocity.y = 0;
-		}
-		if (owner.y == floorHeight)
-		{
-			groundTimer += FlxG.elapsed;
-		}
 	}
 	
 	public function destroy()
@@ -112,6 +97,8 @@ class EnemyCanine
 		{
 			slideTimer -= FlxG.elapsed;
 			
+			owner.animation.play("slide");
+			
 			if (slideTimer <= 0)
 			{
 				direction = owner.facing;
@@ -126,6 +113,13 @@ class EnemyCanine
 		{
 			owner.x += speed * FlxG.elapsed;
 		}
+		
+		if (getXDist(target) < attackDist)
+		{
+			owner.FSM.PushState(attack);
+			return;
+		}
+		
 		if (!isFacing(target))
 		{
 			timer += FlxG.elapsed;
@@ -144,60 +138,52 @@ class EnemyCanine
 				}
 			}
 		}
-		
-		if (groundTimer > jumpDelay && isFacing(target) && getXDist(target) < attackDist)
-		{
-			//owner.FSM.PushState(jump);
-		}
-	}
-	
-	function jump()
-	{
-		groundTimer = 0;
-		
-		owner.velocity.y -= jumpForce;
-
-		owner.animation.play("jump");
-		
-		owner.FSM.ReplaceState(midAir);
-	}
-	
-	function midAir()
-	{
-		if (owner.facing == FlxObject.LEFT)
-		{
-			owner.velocity.x = -100;
-		}
-		else
-		{
-			owner.velocity.x = 100;
-		}
-		
-		if (owner.y == floorHeight)
-		{
-			owner.velocity.x = 0;
-			owner.FSM.PopState();
-		}
 	}
 	
 	function attack()
 	{
+		if (target.y + target.height > owner.y - 2)
+		{
+			if (currentState != "attack")
+			{
+				owner.animation.play("attack");
+			}
+			else
+			{
+				if (owner.animation.finished)
+				{
+						if (getXDist(target) < attackDist)
+						{
+							target.getVarAsDynamic("hit")();
+						}
+					owner.FSM.PopState();
+					return; 
+				}
+			}
+		}
+		else
+		{
+			owner.FSM.PopState();
+		}
+		
 		currentState = "attack";
-	}
-	
-	function stunned()
-	{
-		currentState = "stunned";
 	}
 	
 	function hit(high:Bool)
 	{
-		currentState = "hit";
-	}
-	
-	function knocked()
-	{
-		currentState = "knocked";
+		if (owner.alive)
+		{
+			Reg.zombiesKilled++;
+			owner.animation.play("die");
+			owner.alive = false;
+			owner.FSM.destroy();
+			owner.scripts.Destroy();
+		}
+		/*if (!doneDead && owner.animation.finished)
+		{
+			FlxG.sound.play("assets/sounds/deathsolo.mp3");
+			doneDead = true;
+		}*/
 	}
 	
 	function setDebug(t:String)
