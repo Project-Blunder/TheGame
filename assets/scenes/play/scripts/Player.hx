@@ -318,7 +318,7 @@ class Player
 		}
 		
 		//low-attack
-		if (FlxG.keys.anyJustReleased([FlxKeyWrap.SPACE, FlxKeyWrap.Z, FlxKeyWrap.X, FlxKeyWrap.C]))
+		if (FlxG.keys.anyJustPressed([FlxKeyWrap.SPACE, FlxKeyWrap.Z, FlxKeyWrap.X, FlxKeyWrap.C]))
 		{
 			var info = newObject();
 			info.high = false;
