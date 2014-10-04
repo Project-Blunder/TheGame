@@ -30,7 +30,11 @@ class EnemyManager
 	
 	var spawnTimeDefault:Float = 4;
 	var spawnTimeRange:Float = 0.2;
+	
 	var speedIncrease:Float = 2;
+	
+	var burstChanceIncrease:Float = 5;
+	var burstTimeIncrease:Float = 0.5;
 	
 	var rand = new FlxRandom();
 	
@@ -57,11 +61,6 @@ class EnemyManager
 		if (pan)
 		{
 			panCamera();
-		}
-		
-		if (FlxG.keys.justPressed.P)
-		{
-			
 		}
 		
 		Reg.roundTime += FlxG.elapsed;
@@ -198,6 +197,8 @@ class EnemyManager
 		player.health++;
 		
 		Reg.zombieBaseSpeed += speedIncrease;
+		Reg.burstChance += burstChanceIncrease;
+		Reg.burstTime += burstTimeIncrease;
 
 		leftTimer = rand.float(0, 1); 
 		rightTimer = rand.float(0,1);

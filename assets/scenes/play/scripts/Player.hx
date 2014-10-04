@@ -93,6 +93,7 @@ class Player
 		///////////////////////////////////////////////////
 		
 		stepSound = FlxG.sound.load("assets/sounds/jump.mp3", 0, true,false,true);
+		stepSound.play();
 		
 		//Start-Up/////////////////////////////
 		owner.FSM.PushState(standing);
@@ -158,6 +159,7 @@ class Player
 		//Flip player
 		if (hasControl)
 		{
+			stepSound.play();
 			if (FlxG.keys.anyPressed([FlxKeyWrap.LEFT, FlxKeyWrap.A]))
 			{
 				if (owner.facing != FlxObject.LEFT)
@@ -176,6 +178,10 @@ class Player
 					if (owner.y == floorHeight) FlxG.sound.play("assets/sounds/jump.mp3", 0.03) ; 
 				}
 			}
+		}
+		else
+		{
+			stepSound.stop();
 		}
 		
 		if (FlxG.keys.pressed.G && FlxG.keys.justPressed.M && FlxG.keys.pressed.SHIFT)
@@ -204,9 +210,9 @@ class Player
 		}
 	}
 	
-	public function reload()
+	public function destroy()
 	{
-
+		stepSound.destroy();
 	}
 	
 	//@
@@ -227,6 +233,7 @@ class Player
 		
 		if (hasControl)
 		{
+			stepSound.play();
 			if (FlxG.keys.anyPressed([FlxKeyWrap.S, FlxKeyWrap.DOWN]))
 			{
 				owner.FSM.PushState(crouching);
@@ -268,6 +275,10 @@ class Player
 				owner.FSM.PushState(jumping);
 				FlxG.sound.play("assets/sounds/jump.mp3",0.1);
 			}
+		}
+		else
+		{
+			stepSound.stop();
 		}
 	}
 	

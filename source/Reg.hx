@@ -54,4 +54,6 @@ class Reg
 	public static var waves:Int = 0;
 	
 	public static var zombieBaseSpeed:Float = 25;
+	public static var burstChance:Float = 0;
+	public static var burstTime:Float = 0.5;
 }

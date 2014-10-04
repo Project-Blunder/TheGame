@@ -69,8 +69,13 @@ class EnemyBasic
 		owner.setFacingFlip(FlxObject.LEFT, true, false);
 		owner.setFacingFlip(FlxObject.RIGHT, false, false);
 		
-		crazyZombie = rand.bool(100);
+		crazyZombie = rand.bool(Reg.burstChance);
+		if (crazyZombie)
+		{
+			owner.color = 0xFFFF0000;
+		}
 		burstDelay = rand.float(burstMinDelay, burstMaxDelay);
+		burstTime = Reg.burstTime;
 		
 		owner.FSM.PushState(hunt);
 	}
@@ -177,7 +182,9 @@ class EnemyBasic
 			}
 			else
 			{
-				owner.FSM.ReplaceState(attack);
+				var info = { };
+				info.quick = true;
+				owner.FSM.ReplaceState(attack, info);
 				burstTimer = 0;
 				return;
 			}
@@ -191,7 +198,9 @@ class EnemyBasic
 			}
 			else
 			{
-				owner.FSM.ReplaceState(attack);
+				var info = { };
+				info.quick = true;
+				owner.FSM.ReplaceState(attack, info);
 				burstTimer = 0;
 				return;
 			}
@@ -229,11 +238,30 @@ class EnemyBasic
 				}
 				else
 				{
+					var swat:Bool = false;
 					if (rand.bool(swatChance))
 					{
-						owner.animation.play("swat");
-						target.getVarAsDynamic("hit")();
-						
+						swat = true;
+					}
+					else if (owner.FSM.info != null && owner.FSM.info.quick)
+					{
+						swat = true;
+					}
+					if (swat)
+					{
+						if (currentState != "attack-swat")
+						{
+							owner.animation.play("swat");
+							target.getVarAsDynamic("hit")();
+						}
+						else
+						{
+							if (owner.animation.finished)
+							{
+								owner.FSM.PopState();
+							}
+						}
+						currentState = "attack-swat";
 						return;
 					}
 				}

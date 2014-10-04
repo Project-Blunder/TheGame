@@ -31,6 +31,7 @@ class Start
 			if (FlxG.overlap(owner, player))
 			{
 				pan = true;
+				player.setVar("hasControl", false);
 			}
 		}
 		else
