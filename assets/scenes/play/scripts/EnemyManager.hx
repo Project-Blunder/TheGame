@@ -236,7 +236,7 @@ class EnemyManager
 	
 	function addEnemy(direction:Int)
 	{
-		var enemy = EntityManager.instance.instantiate("enemy");
+		var enemy = EntityManager.instance.instantiate("canine");
 		enemies.add(enemy);
 		
 		if (direction == 1)
