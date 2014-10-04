@@ -28,8 +28,9 @@ class EnemyManager
 	var spawnDefault:Float = 2;
 	var spawnRange:Float = 1;
 	
-	var spawnTimeDefault:Float = 6;
-	var spawnTimeRange:Float = 0.25;
+	var spawnTimeDefault:Float = 4;
+	var spawnTimeRange:Float = 0.2;
+	var speedIncrease:Float = 2;
 	
 	var rand = new FlxRandom();
 	
@@ -195,6 +196,8 @@ class EnemyManager
 		++wave;
 		
 		player.health++;
+		
+		Reg.zombieBaseSpeed += speedIncrease;
 
 		leftTimer = rand.float(0, 1); 
 		rightTimer = rand.float(0,1);

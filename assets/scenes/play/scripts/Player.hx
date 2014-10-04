@@ -234,7 +234,7 @@ class Player
 			}
 			
 			//transition to attack
-			if (FlxG.keys.justPressed.SPACE)
+			if (FlxG.keys.anyJustPressed([FlxKeyWrap.SPACE, FlxKeyWrap.Z, FlxKeyWrap.X, FlxKeyWrap.C]))
 			{
 				var info = newObject();
 				info.high = true;
@@ -318,7 +318,7 @@ class Player
 		}
 		
 		//low-attack
-		if (FlxG.keys.justPressed.SPACE)
+		if (FlxG.keys.anyJustReleased([FlxKeyWrap.SPACE, FlxKeyWrap.Z, FlxKeyWrap.X, FlxKeyWrap.C]))
 		{
 			var info = newObject();
 			info.high = false;
@@ -363,7 +363,7 @@ class Player
 			}
 			
 			//on release play attack anim
-			if (FlxG.keys.justReleased.SPACE)
+			if (FlxG.keys.anyJustReleased([FlxKeyWrap.SPACE, FlxKeyWrap.Z, FlxKeyWrap.X, FlxKeyWrap.C])) // FlxG.keys.justReleased.SPACE)
 			{
 				if (owner.FSM.info.high)
 				{

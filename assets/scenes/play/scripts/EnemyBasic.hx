@@ -29,7 +29,7 @@ class EnemyBasic
 	
 	var rand = new FlxRandom();
 	
-	var speed:Float = rand.float(25 - 1, 25 + 1);
+	var speed:Float;
 	var reactionTime:Float = rand.float(0.05, 0.15);
 	var stunnedChance:Float = 35;
 	var swatChance:Float = 25;
@@ -53,6 +53,8 @@ class EnemyBasic
 		owner.offset.x = 8;	
 		owner.health = 2;
 		owner.drag.x = 350;
+		
+		speed = rand.float(Reg.zombieBaseSpeed - 1, Reg.zombieBaseSpeed + 1);
 		
 		separateDist = owner.width;
 	

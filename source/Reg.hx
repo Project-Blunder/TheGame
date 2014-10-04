@@ -52,4 +52,6 @@ class Reg
 	public static var roundTime:Float = 0;
 	
 	public static var waves:Int = 0;
+	
+	public static var zombieBaseSpeed:Float = 25;
 }
