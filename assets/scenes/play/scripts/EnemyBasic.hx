@@ -233,7 +233,7 @@ class EnemyBasic
 	{
 		currentState = "hit";
 		
-		FlxG.sound.play("assets/sounds/bangsolo.mp3");
+		FlxG.sound.play("assets/sounds/bangsolo.mp3", 0.1);
 		
 		
 		timer = 0;
