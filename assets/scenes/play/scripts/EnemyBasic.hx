@@ -135,7 +135,6 @@ class EnemyBasic
 	
 	function attack()
 	{
-		
 		if (owner.GetDistance(target) <= grabDist + 2)
 		{
 			if(owner.getMidpoint().y - target.getMidpoint().y < owner.height / 2)
@@ -145,7 +144,6 @@ class EnemyBasic
 					if (owner.animation.finished)
 					{
 						target.getVarAsDynamic("hit")();
-						
 					}
 				}
 				else
@@ -160,6 +158,7 @@ class EnemyBasic
 				}
 				
 				owner.animation.play("scary");
+				
 				
 				if (target.getMidpoint().x < owner.getMidpoint().x)
 				{
@@ -233,7 +232,9 @@ class EnemyBasic
 	{
 		currentState = "hit";
 		
-		FlxG.sound.play("assets/sounds/bangsolo.mp3", 0.1);
+		//FlxG.sound.play("assets/sounds/bangsolo.mp3", 0.1);
+		
+		FlxG.sound.play("assets/sounds/bangsquish.mp3", 0.3);
 		
 		
 		timer = 0;
@@ -254,6 +255,7 @@ class EnemyBasic
 		}
 		
 		owner.animation.play("hit");
+		FlxG.sound.play("assets/sounds/ouch.mp3", 0.05);
 		
 		var info = newObject();
 		info.high = high;
@@ -263,6 +265,7 @@ class EnemyBasic
 	function knocked()
 	{
 		currentState = "knocked";
+		
 		
 		if (owner.velocity.x == 0)
 		{
