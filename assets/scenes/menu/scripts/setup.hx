@@ -19,7 +19,7 @@ class setup
 		
 		//Music stuff
 		var amb = FlxG.sound.load("assets/sounds/amb.mp3",.3,true,false,true);	
-		var music = FlxG.sound.load("assets/sounds/3bzmelody.mp3",0.6,true,false,true);	
+		var music = FlxG.sound.load("assets/sounds/beat2.mp3", 0.3, true, false, true);	
 
 		
 		if(!Reg.html)
