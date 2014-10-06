@@ -31,7 +31,6 @@ import googleAnalytics.Stats;
  */
 class SceneLoader extends FlxState
 {
-	
 	public static var debug:Debug;
 	
 	/**
@@ -55,6 +54,9 @@ class SceneLoader extends FlxState
 		
 		Stats.init("UA-49979451-1", "nicom1.github.io");
 		Stats.trackEvent("load", "menu", ""); 
+		
+		FlxG.sound.volumeDownKeys = null;
+		FlxG.sound.volumeUpKeys = null;
 		
 		//Builds a scene from an XML entity declaration
 		EntityManager.instance.BuildFromXML("assets/scenes/menu/setup.xml");
@@ -98,6 +100,43 @@ class SceneLoader extends FlxState
 			openSubState(new PauseState());
 		}
 		
+		//MUSIC/SOUND VOLUME CONTROL//////////////////////////////////
+		if (FlxG.keys.justPressed.PLUS)
+		{
+			if (Reg.sfxVol < 1)
+			{
+				Reg.sfxVol += 0.1;
+			}
+		}
+		else if (FlxG.keys.justPressed.MINUS)
+		{
+			if (Reg.sfxVol > 0)
+			{
+				Reg.sfxVol -= 0.1;
+			}
+		}
+		
+		if (FlxG.keys.justPressed.RBRACKET)
+		{
+			if (Reg.musicVol < 1)
+			{
+				Reg.musicVol += 0.1;
+			}
+		}
+		else if (FlxG.keys.justPressed.LBRACKET)
+		{
+			if (Reg.musicVol > 0)
+			{
+				Reg.musicVol -= 0.1;
+			}
+		}
+		
+		if (FlxG.keys.justPressed.M)
+		{
+			FlxG.sound.muted = ! FlxG.sound.muted;
+		}
+		/////////////////////////////////////////////////////////////////
+		
 		super.update(elapsed);
 	}	
 	
@@ -109,5 +148,6 @@ class SceneLoader extends FlxState
 	override public function onFocus():Void 
 	{
 		subState.close();
+		FlxG.sound.muted = false;
 	}
 }

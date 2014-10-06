@@ -343,7 +343,7 @@ class EnemyBasic
 		
 		//FlxG.sound.play("assets/sounds/bangsolo.mp3", 0.1);
 		
-		FlxG.sound.play("assets/sounds/bangsquish.mp3", 0.3);
+		FlxG.sound.play("assets/sounds/bangsquish.mp3", 0.075 * Reg.sfxVol);
 		
 		
 		timer = 0;
@@ -364,7 +364,7 @@ class EnemyBasic
 		}
 		
 		owner.animation.play("hit");
-		FlxG.sound.play("assets/sounds/ouch.mp3", 0.05);
+		FlxG.sound.play("assets/sounds/ouch.mp3", 0.05 * Reg.sfxVol);
 		
 		var info = newObject();
 		info.high = high;
@@ -414,7 +414,7 @@ class EnemyBasic
 		}
 		if (!doneDead && owner.animation.finished)
 		{
-			FlxG.sound.play("assets/sounds/deathsolo.mp3");
+			FlxG.sound.play("assets/sounds/deathsolo.mp3", Reg.sfxVol);
 			switch(Math.floor(rand.float(0, 3, [3])))
 			{
 				case 1:

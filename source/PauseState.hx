@@ -10,6 +10,7 @@ class PauseState extends FlxSubState
 {
 	public function new() 
 	{
+		FlxG.sound.muted = true;
 		super();
 	}
 	
@@ -17,6 +18,7 @@ class PauseState extends FlxSubState
 	{
 		if (FlxG.keys.justPressed.P)
 		{
+			FlxG.sound.muted = false;
 			close();
 		}
 		super.update(elapsed);

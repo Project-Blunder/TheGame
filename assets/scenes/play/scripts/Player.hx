@@ -166,7 +166,7 @@ class Player
 				{
 					owner.facing = FlxObject.LEFT;
 					turns++;
-					if (owner.y == floorHeight) FlxG.sound.play("assets/sounds/jump.mp3", 0.03);
+					if (owner.y == floorHeight) FlxG.sound.play("assets/sounds/jump.mp3", 0.03 * Reg.sfxVol);
 				}
 			}
 			else if (FlxG.keys.anyPressed([FlxKeyWrap.RIGHT, FlxKeyWrap.D]))
@@ -175,7 +175,7 @@ class Player
 				{
 					owner.facing = FlxObject.RIGHT;
 					turns++;
-					if (owner.y == floorHeight) FlxG.sound.play("assets/sounds/jump.mp3", 0.03) ; 
+					if (owner.y == floorHeight) FlxG.sound.play("assets/sounds/jump.mp3", 0.03 * Reg.sfxVol) ; 
 				}
 			}
 		}
@@ -237,7 +237,7 @@ class Player
 			if (FlxG.keys.anyPressed([FlxKeyWrap.S, FlxKeyWrap.DOWN]))
 			{
 				owner.FSM.PushState(crouching);
-				FlxG.sound.play("assets/sounds/jump.mp3",0.1);
+				FlxG.sound.play("assets/sounds/jump.mp3",0.1 * Reg.sfxVol);
 			}
 			
 			//transition to attack
@@ -254,14 +254,14 @@ class Player
 				owner.x -= speed * FlxG.elapsed;
 				owner.animation.play("walk");
 				
-				stepSound.volume = soundVol;
+				stepSound.volume = soundVol * Reg.sfxVol;
 			}
 			else if (FlxG.keys.anyPressed([FlxKeyWrap.RIGHT, FlxKeyWrap.D]))
 			{
 				owner.x += speed * FlxG.elapsed;
 				owner.animation.play("walk");
 				
-				stepSound.volume = soundVol;
+				stepSound.volume = soundVol * Reg.sfxVol;
 			}
 			else
 			{
@@ -273,7 +273,7 @@ class Player
 			{
 				owner.velocity.y = -jumpforce;
 				owner.FSM.PushState(jumping);
-				FlxG.sound.play("assets/sounds/jump.mp3",0.1);
+				FlxG.sound.play("assets/sounds/jump.mp3",0.1 * Reg.sfxVol);
 			}
 		}
 		else
@@ -294,7 +294,7 @@ class Player
 		if (owner.y >= floorHeight)
 		{
 			owner.FSM.PopState();
-			FlxG.sound.play("assets/sounds/jump.mp3", 0.1);
+			FlxG.sound.play("assets/sounds/jump.mp3", 0.1 * Reg.sfxVol);
 		}
 		
 		//movement
@@ -334,8 +334,7 @@ class Player
 			var info = newObject();
 			info.high = false;
 			owner.FSM.PushState(attack, info);
-			if (Reg.flash) FlxG.sound.play("assets/sounds/swing.mp3");
-			//if (!Reg.flash) FlxG.sound.play("assets/sounds/swing.ogg");
+			if (Reg.flash) FlxG.sound.play("assets/sounds/swing.mp3", Reg.sfxVol);
 		}
 	}	
 		
@@ -379,7 +378,7 @@ class Player
 				if (owner.FSM.info.high)
 				{
 					owner.animation.play("attack-tall");
-					if (Reg.flash) FlxG.sound.play("assets/sounds/swing.mp3");
+					if (Reg.flash) FlxG.sound.play("assets/sounds/swing.mp3", Reg.sfxVol);
 				}
 				else
 				{
@@ -482,7 +481,7 @@ class Player
 		}
 		
 		owner.health--;
-		FlxG.sound.play("assets/sounds/bite.mp3",0.2);
+		FlxG.sound.play("assets/sounds/bite.mp3",0.2 * Reg.sfxVol);
 		if (owner.health < 0)
 		{
 			owner.kill();

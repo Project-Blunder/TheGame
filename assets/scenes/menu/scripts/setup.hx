@@ -18,8 +18,8 @@ class setup
 		FlxG.mouse.visible = false;
 		
 		//Music stuff
-		var amb = FlxG.sound.load("assets/sounds/amb.mp3",.3,true,false,true);	
-		var music = FlxG.sound.load("assets/sounds/beat2.mp3", 0.3, true, false, true);	
+		Reg.amb = FlxG.sound.load("assets/sounds/amb.mp3",0.4,true,false,true);	
+		Reg.music = FlxG.sound.load("assets/sounds/mood.mp3", 0.4, true, false, true);	
 
 		
 		if(!Reg.html)
@@ -37,5 +37,11 @@ class setup
 		
 		if(Reg.html)
 		Reg.height = FlxG.camera.y / FlxG.camera.zoom + FlxG.camera.height / FlxG.camera.zoom + 5;	
+	}
+	
+	public function update()
+	{
+		Reg.amb.volume = 0.4 * Reg.sfxVol;
+		Reg.music.volume = 0.4 * Reg.musicVol;
 	}
 }

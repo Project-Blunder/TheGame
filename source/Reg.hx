@@ -1,6 +1,7 @@
 package;
 
 import flixel.addons.api.FlxKongregate;
+import flixel.system.FlxSound;
 import flixel.util.FlxSave;
 
 /**
@@ -57,4 +58,11 @@ class Reg
 	public static var burstChance:Float = 0;
 	public static var burstTime:Float = 0.5;
 	public static var dogChance:Float = 0;
+	
+	public static var sfxVol:Float = 1;
+	public static var musicVol:Float = 1;
+	
+	public static var amb:FlxSound;
+	public static var music:FlxSound;
+	
 }

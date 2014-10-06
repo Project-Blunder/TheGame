@@ -176,9 +176,9 @@ class EnemyCanine
 			owner.FSM.destroy();
 			owner.scripts.Destroy();
 			
-			FlxG.sound.play("assets/sounds/bangsquish.mp3", 0.3);
-			FlxG.sound.play("assets/sounds/ouch.mp3", 0.2);
-			FlxG.sound.play("assets/sounds/deathsolo.mp3");
+			FlxG.sound.play("assets/sounds/bangsquish.mp3", 0.1 * Reg.sfxVol);
+			FlxG.sound.play("assets/sounds/ouch.mp3", 0.07 * Reg.sfxVol);
+			FlxG.sound.play("assets/sounds/deathsolo.mp3", Reg.sfxVol);
 		}
 	}
 	

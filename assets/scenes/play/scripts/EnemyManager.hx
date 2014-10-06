@@ -74,6 +74,9 @@ class EnemyManager
 	
 	public function update()
 	{
+		leftGrowlSound.volume = 0.4 * Reg.sfxVol;
+		rightGrowlSound.volume = 0.4 * Reg.sfxVol;
+		
 		if (pan)
 		{
 			panCamera();
@@ -245,7 +248,6 @@ class EnemyManager
 	
 	function addEnemy(direction:Int)
 	{
-		
 		var enemy = null;
 		if (rand.bool(Reg.dogChance))
 		{
