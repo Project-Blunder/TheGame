@@ -394,13 +394,20 @@ class Player
 			{
 				if (enemies != null)
 				{
+					var hitE:Bool = false;
 					for (target in enemies.members)
 					{
 						if (target != null && target.alive)
-						{						
+						{		
 							if (getXDist(target) < attackDist && isFacing(target))
 							{
-								//Hit just one enemy
+								if (hitE)
+								{
+									if (getXDist(target) > attackDist / 2)
+									{
+										break;
+									}
+								}
 								if (owner.FSM.info.high)
 								{
 									target.getVarAsDynamic("hit")(true);
@@ -409,7 +416,7 @@ class Player
 								{
 									target.getVarAsDynamic("hit")(false);
 								}
-								break;
+								hitE = true;
 							}
 						}
 					}

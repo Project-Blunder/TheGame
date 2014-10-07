@@ -69,7 +69,6 @@ class GraveyPreloader extends IceBasePreloader
 	
 	override public function update(Percent:Float):Void
 	{
-		trace(Percent);
 		percentage.y = percentStart - Math.ceil((Percent * percentage.height) / 4) * 4;
 	}
 	
