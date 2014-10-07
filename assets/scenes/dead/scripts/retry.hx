@@ -61,7 +61,7 @@ class retry
 		else
 		{
 			FlxG.camera.scroll.x = 0;
-			Stats.trackEvent("game", "retry", "started again");
+			GA.submit("game", "retry", "started again");
 			EntityManager.switchScene(["assets/scenes/play/setup.xml"]);
 		}
 	}

@@ -52,8 +52,11 @@ class SceneLoader extends FlxState
 		debug = new Debug();
 		add(debug);
 		
-		Stats.init("UA-49979451-1", "nicom1.github.io");
-		Stats.trackEvent("load", "menu", ""); 
+		try{
+			Stats.init("UA-49979451-1", "nicom1.github.io");
+			Stats.trackEvent("load", "menu", ""); 
+		}
+		catch (e:Dynamic){	}
 		
 		FlxG.sound.volumeDownKeys = null;
 		FlxG.sound.volumeUpKeys = null;
@@ -64,7 +67,7 @@ class SceneLoader extends FlxState
 	
 	function onLoad()
 	{
-		Stats.trackEvent("kongregate", "loaded", "success");
+		GA.submit("kongregate", "loaded", "success");
 		Reg.kongConnected = true;
 	}
 	

@@ -81,7 +81,7 @@ class Twitter
 				up = false;
 				player.setVar("hasControl", false);
 				player.x = FlxG.width / 2;
-				Stats.trackEvent("load", "twitter", "opened twitter");
+				GA.submit("load", "twitter", "opened twitter");
 				FlxG.openURL("https://twitter.com/nico_m__");
 			}
 		}

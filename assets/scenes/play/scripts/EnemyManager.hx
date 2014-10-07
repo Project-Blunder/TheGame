@@ -12,6 +12,7 @@ import ice.entity.Entity;
 import flixel.math.FlxRandom;
 import Math;
 import Reg;
+import GA;
 
 class EnemyManager
 {
@@ -128,23 +129,23 @@ class EnemyManager
 			{
 				end = true;
 				
-				Stats.trackEvent(
+				GA.submit(
 					"game", 
 					"over", 
 					"waves: " + wave
 				);
-				Stats.trackEvent(
+				GA.submit(
 					"game", 
 					"over", 
 					"kills: " + Reg.zombiesKilled
 				);
-				Stats.trackEvent(
+				GA.submit(
 					"game", 
 					"over", 
 					"round-time: " + Math.round(Reg.roundTime)
 				);
 				
-				Stats.trackEvent(
+				GA.submit(
 					"game", 
 					"overview", 
 					"waves: " + wave + 
@@ -152,7 +153,7 @@ class EnemyManager
 					", round-time: " + (Math.round(Reg.roundTime) / 60)
 				);
 				
-				Stats.trackEvent("kongregate", "submitted", "score");
+				GA.submit("kongregate", "submitted", "score");
 				
 				FlxKongregate.submitStats("Highest Wave", wave);
 				FlxKongregate.submitStats("Most Zombies Killed", Reg.zombiesKilled);
