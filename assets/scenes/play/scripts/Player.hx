@@ -30,6 +30,7 @@ class Player
 		
 	//Attacking////////////////////
 	var attackDist:Float = 21;
+	var facingMargin:Float = 1;
 	var attacking:Bool = false;
 	var attackDefault:Float = 0.2;
 	var attackTimer:Float = -1;
@@ -399,11 +400,18 @@ class Player
 					{
 						if (target != null && target.alive)
 						{		
-							if (getXDist(target) < attackDist && isFacing(target))
+							var dist = getXDist(target);
+							if (dist < attackDist)
 							{
+								//let the player hit when facing the wrong way if on top of the zombie
+								if (!isFacing(target) && dist > facingMargin)
+								{
+									break;
+								}
+								//let the player hit more than one zombie if they are very close
 								if (hitE)
 								{
-									if (getXDist(target) > attackDist / 2)
+									if (dist > attackDist / 2)
 									{
 										break;
 									}
