@@ -5,6 +5,7 @@ import ice.entity.Entity;
 import ice.entity.EntityManager;
 import Reg;
 import googleAnalytics.Stats;
+import GA;
 
 class Start
 {

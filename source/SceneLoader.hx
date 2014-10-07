@@ -24,6 +24,7 @@ import openfl.events.Event;
 import openfl.Lib;
 import Reg;
 
+import GA;
 import googleAnalytics.Stats;
 
 /**
