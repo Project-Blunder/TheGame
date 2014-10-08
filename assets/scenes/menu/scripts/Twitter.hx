@@ -6,6 +6,7 @@ import ice.entity.EntityManager;
 import ice.wrappers.FlxKeyWrap;
 import Reg;
 import googleAnalytics.Stats;
+import GA;
 
 class Twitter
 {

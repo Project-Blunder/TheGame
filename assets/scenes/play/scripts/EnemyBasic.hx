@@ -343,7 +343,7 @@ class EnemyBasic
 		
 		//FlxG.sound.play("assets/sounds/bangsolo.mp3", 0.1);
 		
-		FlxG.sound.play("assets/sounds/bangsquish.mp3", 0.075 * Reg.sfxVol);
+		FlxG.sound.play("assets/sounds/bangsquish.mp3", 0.15 * Reg.sfxVol);
 		
 		
 		timer = 0;

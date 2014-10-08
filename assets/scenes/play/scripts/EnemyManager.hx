@@ -46,6 +46,11 @@ class EnemyManager
 	var pan:Bool = false;
 	var speed:Float = 170;
 	
+	var sprintRound:Int = 3;
+	var startSprint:Float = 15;
+	var dogRound:Int = 5;
+	var startDog:Float = 20;
+	
 	var leftGrowlSound:FlxSound;
 	var rightGrowlSound:FlxSound;
 	
@@ -155,9 +160,12 @@ class EnemyManager
 				
 				GA.submit("kongregate", "submitted", "score");
 				
-				FlxKongregate.submitStats("Highest Wave", wave);
-				FlxKongregate.submitStats("Most Zombies Killed", Reg.zombiesKilled);
-				FlxKongregate.submitStats("Total Zombies Killed", Reg.zombiesKilled);
+				if (Reg.kongConnected)
+				{
+					FlxKongregate.submitStats("Highest Wave", wave);
+					FlxKongregate.submitStats("Most Zombies Killed", Reg.zombiesKilled);
+					FlxKongregate.submitStats("Total Zombies Killed", Reg.zombiesKilled);
+				}
 			
 				Reg.waves = wave;
 				
@@ -228,12 +236,34 @@ class EnemyManager
 		if (wave != 1)
 		{
 			Reg.zombieBaseSpeed += speedIncrease;
-			Reg.burstChance += burstChanceIncrease;
-			Reg.burstTime += burstTimeIncrease;
-			Reg.dogChance += dogChanceIncrease;
 			
 			spawnCount += Math.floor(rand.float(spawnDefault - spawnRange, spawnDefault + spawnRange + 1));
 			spawnTimeDefault -= rand.float(spawnTimeRange / 2, spawnTimeRange);
+		}
+		
+		if (wave >= sprintRound)
+		{
+			if (wave == sprintRound)
+			{
+				Reg.burstChance = startSprint;
+			}
+			if (Reg.burstChance < 50)
+			{
+				Reg.burstChance += burstChanceIncrease;
+			}
+			Reg.burstTime += burstTimeIncrease;
+		}
+		
+		if (wave >= dogRound)
+		{
+			if (wave == dogRound)
+			{
+				Reg.dogChance = startDog;
+			}
+			if (Reg.dogChance < 40)
+			{
+				Reg.dogChance += dogChanceIncrease;
+			}
 		}
 	}
 	
