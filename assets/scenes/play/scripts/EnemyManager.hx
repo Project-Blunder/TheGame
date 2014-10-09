@@ -160,12 +160,9 @@ class EnemyManager
 				
 				GA.submit("kongregate", "submitted", "score");
 				
-				if (Reg.kongConnected)
-				{
-					FlxKongregate.submitStats("Highest Wave", wave);
-					FlxKongregate.submitStats("Most Zombies Killed", Reg.zombiesKilled);
-					FlxKongregate.submitStats("Total Zombies Killed", Reg.zombiesKilled);
-				}
+				FlxKongregate.submitStats("Highest Wave", wave);
+				FlxKongregate.submitStats("Most Zombies Killed", Reg.zombiesKilled);
+				FlxKongregate.submitStats("Total Zombies Killed", Reg.zombiesKilled);
 			
 				Reg.waves = wave;
 				
